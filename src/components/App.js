@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css';
+//import '././components/css/App.css';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends Component {
   
   componentDidMount() {
     //const height = this.divElement.clientHeight;
-//this.setState({ height:height });
+    //this.setState({ height:height });
   }
   render() {
     return (
@@ -21,10 +21,6 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">traveler hub</h1>
         </header>
-        <div style={{backgroundColor: "#37BC9B", height: 500}}>
-          <div classname="col" style={{backgroundColor: "red", height: 100}}></div>
-          <div classname="col" style={{backgroundColor: "blue", height: 100}}></div>
-        </div>
       </div>
     );
   }
