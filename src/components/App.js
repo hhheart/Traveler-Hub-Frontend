@@ -1,12 +1,10 @@
-
-
 import React, { Component } from 'react';
 //import DataSet from '../static/package_response.json'; 
-//import '././components/css/App.css';
 //var data = require('./package_response.json');
-import ItemList from './item_list';
+import PackageList from './package_list';
 
-import MyJson from './data.json'
+//import '../static/css/App.css';
+import MyJson from './data.json';
 
 
 class App extends Component {
@@ -21,11 +19,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App ">
         <header className="App-header">
             <h1 className="App-title">traveler hub</h1>
         </header>
-        < ItemList />
+        <div className="container">
+        <div className="row">
+            <div className="col-md"> 
+                hello1 
+            </div>
+            <div className="col-md"> 
+                hello2
+            </div>
+        </div>
+        </div>
+        <PackageList />
       </div>
     );
   }
