@@ -1,42 +1,32 @@
 import React, { Component } from 'react';
-//import DataSet from '../static/package_response.json'; 
-//var data = require('./package_response.json');
 import PackageList from './package_list';
-
 //import '../static/css/App.css';
-import MyJson from './data.json';
+import Json from './data.json';
+import axios from 'axios';
 
 
-class App extends Component {
-  /*constructor(props) {
-    super(props)
-
-  }*/
-  
-  componentDidMount() {
-    console.log(MyJson);
-  }
-
-  render() {
-    return (
-      <div className="App ">
-        <header className="App-header">
-            <h1 className="App-title">traveler hub</h1>
-        </header>
-        <div className="container">
-        <div className="row">
-            <div className="col-md"> 
-                hello1 
+class App extends Component {  
+  constructor(props){
+    super(props);
+        this.state = { 
+            //packages: []   
+            packages: Json,
+        };
+    }    
+    componentWillMount(){
+        axios.get('https://cors-anywhere.herokuapp.com/http://supertam.xyz:3000/package')
+        .then(res => {
+            //console.log(res)
+            this.setState({ packages: res.data });
+        });
+    }
+    render(){
+        return ( 
+            <div>
+                <PackageList packages={this.state.packages} />
             </div>
-            <div className="col-md"> 
-                hello2
-            </div>
-        </div>
-        </div>
-        <PackageList />
-      </div>
-    );
-  }
+        )
+    }
 }
 
 export default App;
