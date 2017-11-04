@@ -1,17 +1,21 @@
 import React from 'react';
+import PackageListItem from './package_list_item';
 
-const PackageList = () =>{
+import '../static/css/style.css'; 
+
+const PackageList = (props) =>{
+    const PackageItem = props.packages.map((package_item) => {
+        return (      
+            <PackageListItem 
+                key={package_item._id}
+                package_item={package_item} />
+        )
+    });
     return (
-        <div>
-            <div>
-                hello
-            </div>
-            <div className="alert alert-primary" role="alert">
-                This is a primary alert with Give it a click if you like.
-            </div>
-            <img  alt='bunny' src={require('../static/images/polebunny.gif')}/>
-        </div>
-    )
+        <ul className="list-group">
+            {PackageItem}
+        </ul>
+    );
 }
 
 export default PackageList;
