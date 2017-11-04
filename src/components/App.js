@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import PackageList from './package_list';
+import Navbar from './navbar';
 
 import axios from 'axios';
 import '../static/css/App.css';
@@ -14,7 +16,7 @@ class App extends Component {
         };
     }    
     componentWillMount(){
-        axios.get('https://cors-anywhere.herokuapp.com/http://supertam.xyz:3000/package')
+        axios.get('http://supertam.xyz:3000/package')
         .then(res => {
             console.log(res)
             this.setState({ packages: res.data });
@@ -23,8 +25,10 @@ class App extends Component {
     render(){
         return ( 
             <div>
-                <img  alt='bunny' src={require('../static/images/polebunny.gif')}/>
-                <PackageList packages={this.state.packages} />
+                <Navbar />
+                <main>
+                    <PackageList packages={this.state.packages} />
+                </main>
             </div>
         )
     }
