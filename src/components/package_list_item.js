@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const PackageListItem = ({package_item}) => {
     const titleUrl = package_item.name;
@@ -19,6 +20,7 @@ const PackageListItem = ({package_item}) => {
                     <div>{travel_date}</div>
                     <div>{price}</div>
                     <div>{companyUrl}</div>
+                    <div><Link to="/detail">more detail</Link></div>
                 </div>
             </div>
         </li>
