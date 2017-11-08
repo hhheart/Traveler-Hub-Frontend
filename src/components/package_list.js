@@ -6,6 +6,8 @@ import '../static/css/style.css';
 
 import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+
 class PackageList extends Component {
     constructor(props){
         super(props);
@@ -40,6 +42,7 @@ class PackageList extends Component {
     render(){ 
         return ( 
             <ul className="list-group">
+                <Link to="/test/test-link">go test me</Link>
                 {this.render_package_list_items()}
             </ul>
         )

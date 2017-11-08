@@ -3,11 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PackageDetail = (props) => {
-    const {package_item} = props.location.state 
-    //console.log(name)
+    const {package_item} = props.location.state;
     return (
         <div>
-            
             <div className="detail package-list-detail">
                 <div className="package-list-image">
                     <img alt="package_image" src={package_item.image} />

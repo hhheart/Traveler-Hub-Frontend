@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-const PackageListItem = ({package_item}) => {
+const PackageListItem = ({package_item, match}) => {
+    const ID = package_item.package_id;
     const titleUrl = package_item.package_name;
     const imageUrl = package_item.image;
     const companyUrl = package_item.company_name;
@@ -21,7 +22,7 @@ const PackageListItem = ({package_item}) => {
                     <div>{price}</div>
                     <div>{companyUrl}</div>
                     <div><Link to={ 
-                        {pathname: '/detail', state: {package_item: package_item,} }}>more detail</Link></div>
+                        {pathname: `/detail/${ID}`, state: {package_item: package_item,} }}>more detail</Link></div>
                 </div>
             </div>
         </li>
