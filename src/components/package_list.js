@@ -30,7 +30,7 @@ class PackageList extends Component {
             <div>
                 {PackageItem.map(( package_item => 
                     <PackageListItem 
-                        key={package_item._id}
+                        key={package_item.package_id}
                         package_item={package_item} />
                 ))}
             </div>
