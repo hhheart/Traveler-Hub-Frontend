@@ -1,23 +1,18 @@
 import React, {Component} from 'react';
-
 import PackageListItem from './package_list_item';
-
-import '../static/css/style.css'; 
-
-import axios from 'axios';
-
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import '../static/css/package_list.css'; 
 
-class PackageList extends Component {
+export default class PackageList extends Component {
     constructor(props){
         super(props);
             this.state = {  
                 packages: [],
-                //PackageItem: [],
             };  
 
     }    
-
+    // run before component rendered
     componentWillMount(){
         axios.get('http://supertam.xyz:3000/package')
         .then(res => {
@@ -27,27 +22,56 @@ class PackageList extends Component {
     }
     
     render_package_list_items(){
-        let PackageItem = this.state.packages;
+        const PackageItem = this.state.packages;
         return (
             <div>
-                {PackageItem.map(( package_item => 
+                { PackageItem.map(( (package_item,i) => 
+                    
                     <PackageListItem 
                         key={package_item.package_id}
                         package_item={package_item} />
-                ))}
+                    
+                   ))}
             </div>
         )
     }
 
+    render_package_list_row(){
+        const PackageItem = this.state.packages;
+        const rowContent = [];
+        for(var i = 0; i < PackageItem.length; i+=3) {
+            const oneRow = [];
+            oneRow.push(PackageItem.slice(i, i+3).map(item => {
+            return (
+                <PackageListItem 
+                        key={item.package_id}
+                        package_item={item} />      
+            )}))
+        rowContent.push(oneRow.map(itm => {return <div className="row">{itm}</div>}))
+        }
+        return rowContent;
+    }
+
     render(){ 
         return ( 
-            <ul className="list-group">
-                <Link to="/test/test-link">go test me</Link>
-                {this.render_package_list_items()}
-            </ul>
+            <div>
+                <div className="jumbotron text-center bg-white">
+                    <div className="container">
+                        <h3>ไปเที่ยวไหนดีนะ ???</h3>
+                        <p>
+                            <button className="btn btn-primary jumbotron-btn">Ask Ours Expert</button>
+                            <button className="btn btn-success jumbotron-btn">Search & Go!</button>
+                        </p>
+                    </div>
+                </div>
+                <div className="album bg-light">
+                    <div className="container">
+                        <div className="row justify-content-center">                                
+                            {this.render_package_list_row()}
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
-    }
-        
+    }    
 }
-
-export default PackageList;

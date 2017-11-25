@@ -1,0 +1,39 @@
+
+.package-list-card {
+  width: 230px;
+  height: 320px;
+  margin: 5px 5px 5px 5px;
+}
+.package-list-card:hover {
+  border-width: 1px;
+  border-color: #fcb034;
+}
+.card-title {
+  font-size: 14px;
+}
+.package-list-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+}
+.package-list-detail {
+  font-size: 12px;
+  margin-top: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  left: 10px;
+}
+.btn-detail {
+  background-color: #ddd;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 2px;
+  cursor: pointer;
+}
+.btn-detail:hover {
+  background-color: orange;
+  color: white;
+}
+

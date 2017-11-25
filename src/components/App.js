@@ -1,8 +1,8 @@
 import React from 'react'
 import Navbar from './navbar';
-import '../static/css/App.css';
+//import '../static/css/App.css';
 
-const App = ({children}) => (
+const App = ( {children} ) => (
 
     <div>
         <Navbar />
