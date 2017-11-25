@@ -19,7 +19,6 @@ const PackageListItem = ({package_item, match}) => {
                     <div className="card-text package-list-detail ">
                         <div>เดินทาง: {travel_date}</div>
                         <div>ราคา: {price}</div>
-                        
                         <div>
                             <Link 
                                 className="btn btn-block btn-detail"
