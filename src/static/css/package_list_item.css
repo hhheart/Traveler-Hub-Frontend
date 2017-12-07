@@ -1,7 +1,7 @@
 
 .package-list-card {
-  width: 230px;
-  height: 320px;
+  width: 18vw;
+  height: 45vh;
   margin: 5px 5px 5px 5px;
 }
 .package-list-card:hover {
@@ -12,9 +12,6 @@
   font-size: 14px;
 }
 .package-list-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 140px;
 }
 .package-list-detail {

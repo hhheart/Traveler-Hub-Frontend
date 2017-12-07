@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PackageListItem from './package_list_item';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../static/css/package_list.css'; 
 
@@ -47,7 +47,7 @@ export default class PackageList extends Component {
                         key={item.package_id}
                         package_item={item} />      
             )}))
-        rowContent.push(oneRow.map(itm => {return <div className="row">{itm}</div>}))
+        rowContent.push(oneRow.map(itm => {return <div className="row mx-auto justify-content-center">{itm}</div>}))
         }
         return rowContent;
     }
@@ -71,6 +71,9 @@ export default class PackageList extends Component {
                         </div>
                     </div>
                 </div>
+                <footer className="footer">
+                    <div className="text-center align-middle test">pagination</div>
+                </footer>
             </div>
         )
     }    

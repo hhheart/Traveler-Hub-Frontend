@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PackageListItem from './package_list_item';
-import { Link } from 'react-router-dom';
+//mport { Link } from 'react-router-dom';
 import axios from 'axios';
-//import '../static/css/package_list.css'; 
+
+import '../static/css/home.css';
 
 export default class HomePage extends Component {
     constructor(props){
@@ -19,50 +20,94 @@ export default class HomePage extends Component {
             this.setState({ packages: res.data });
         });
     }
-    
-    render_package_list_items(){
-        const PackageItem = this.state.packages;
-        return (
-            <div>
-                { PackageItem.map(( (package_item,i) => 
-                    
-                    <PackageListItem 
-                        key={package_item.package_id}
-                        package_item={package_item} />
-                    
-                   ))}
-            </div>
-        )
-    }
 
-    render_package_list_row(){
+    render_package_list_row_test(){
         const PackageItem = this.state.packages;
         const rowContent = [];
-        for(var i = 0; i < PackageItem.length; i+=3) {
+        for(var i = 4; i < 8; i+=4) {
             const oneRow = [];
-            oneRow.push(PackageItem.slice(i, i+3).map(item => {
+            oneRow.push(PackageItem.slice(i, i+4).map(item => {
             return (
                 <PackageListItem 
                         key={item.package_id}
                         package_item={item} />      
             )}))
-        rowContent.push(oneRow.map(itm => {return <div className="row">{itm}</div>}))
+        rowContent.push(oneRow.map(itm => {return <div className="row mx-auto justify-content-center">{itm}</div>}))
         }
         return rowContent;
     }
 
+    render_carousel_item(){
+        const PackageItem = this.state.packages;
+        const Content = []; 
+        Content.push(PackageItem.map((item,i) => {
+            if (i < 5){
+                if (i == 0){
+                    return (
+                        <div className="carousel-item active">
+                            <img className="d-block carousel" src={item.image} alt="active slide"/>
+                        </div>  
+                )}
+                else {
+                    return (
+                        <div className="carousel-item">
+                            <img className="d-block carousel" src={item.image} alt="item slide"/>
+                        </div>  
+                )}                         
+            }
+            else return null;
+        }))
+        return <div>{Content}</div>;      
+    }
+    
     render(){ 
         return ( 
-            <div>
-                <div className="jumbotron text-center bg-white">
-                    <div className="container">
-                        <h3>ไปเที่ยวไหนดีนะ ???</h3>
-                        <p>
-                            <button className="btn btn-primary jumbotron-btn">Ask Ours Expert</button>
-                            <button className="btn btn-success jumbotron-btn">Search & Go!</button>
-                        </p>
+            <div style={{backgroundColor:'#f9f9f9'}}>
+                <div className="jumbotron text-center test-home-jumbotron">
+                    <div className="container-fluid">
+                        <h3>_HOMEPAGE-Header_ </h3>
                     </div>
                 </div>
+                <div className="container-fluid carousel-body">
+                    <div id="Carousel_Indicator" className="carousel slide" data-ride="carousel"> 
+                        <div className="card p-1">
+                            <ol className="carousel-indicators">
+                                <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
+                                <li data-target="#Carousel_Indicator" data-slide-to="1"></li>
+                                <li data-target="#Carousel_Indicator" data-slide-to="2"></li>
+                                <li data-target="#Carousel_Indicator" data-slide-to="3"></li>
+                                <li data-target="#Carousel_Indicator" data-slide-to="4"></li>
+                            </ol>
+                            <div className="carousel-inner">
+                                {this.render_carousel_item()}
+                            </div>
+                            <a className="carousel-control-prev" href="#Carousel_Indicator" role="button" data-slide="prev">
+                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span className="sr-only">Previous</span>
+                            </a>
+                            <a className="carousel-control-next" href="#Carousel_Indicator" role="button" data-slide="next">
+                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span className="sr-only">Next</span>
+                            </a>
+                        </div>      
+                    </div>
+                </div>      
+                <div className="container-fluid home-body" >
+                    <div className="home-body-title">New Release</div>
+                    <div className="card home-body-card"> 
+                        {this.render_package_list_row_test()}
+                    </div>
+                    <div className="home-body-title">Recommend</div>
+                    <div className="card home-body-card"> 
+                        {this.render_package_list_row_test()}
+                    </div>
+                    <div className="home-body-title">ForYou</div>
+                    <div className="card home-body-card"> 
+                        {this.render_package_list_row_test()}
+                    </div>
+                </div>             
+                <footer className="test-home-footer">
+                </footer>
             </div>
         )
     }    

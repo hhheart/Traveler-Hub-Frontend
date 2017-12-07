@@ -1,0 +1,38 @@
+.test-home-jumbotron {
+    background-color: #ddd;
+    height: 30vh;
+    width: auto;
+    margin: 0 auto;
+}
+.carousel-body {
+    background-color: #f9f9f9;
+    padding: 3vh 0 4vh 0;
+}
+.carousel {
+    height: 50vh;
+    width: 60vw;
+    margin: 0 auto;
+}
+.home-body {
+    background-color: #f9f9f9;
+    height: auto;
+    width: 80vw;
+    margin-bottom: 5vh;
+}
+.home-body-title {
+    font-size: 30px;
+}
+.home-body-card {
+    margin: 0 auto;
+    margin: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.test-home-footer {
+    height: 10vh;
+    background-color: #ddd;
+}
+.test-home-footer-text {
+    margin: 5vh 5vh 2vh 0;
+}

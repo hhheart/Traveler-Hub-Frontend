@@ -12,3 +12,9 @@
 .package-card-detail {
     background-color: red;
 }
+
+.test-page-return {
+    text-align: center;
+    height: 10vh;
+    line-height: 10vh;
+}

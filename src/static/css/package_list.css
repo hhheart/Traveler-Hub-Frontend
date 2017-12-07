@@ -1,3 +1,15 @@
+:root {
+    --footer_height: 100px;
+}
 .jumbotron-btn {
     margin: 5px;
+}
+.footer {
+    height: var(--footer_height);
+    width: auto;
+}
+.test {
+    text-align: center;
+    vertical-align: middle;
+    line-height: var(--footer_height);  
 }
