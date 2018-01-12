@@ -4,6 +4,7 @@ import PackageListItem from './package_list_item';
 import axios from 'axios';
 
 import '../static/css/home.css';
+import '../static/css/ribbon.css';
 
 export default class HomePage extends Component {
     constructor(props){
@@ -59,6 +60,26 @@ export default class HomePage extends Component {
         }))
         return <div>{Content}</div>;      
     }
+
+    render_banner(){
+        return (
+            <div class="banner one">
+                <div class="bk l">
+                    <div class="arrow top"></div> 
+                    <div class="arrow bottom"></div>
+                </div>
+                <div class="skew l"></div>
+                <div class="main">
+                    <div>New Release</div>   
+                </div>
+                <div class="skew r"></div>                      
+                <div class="bk r">
+                    <div class="arrow top"></div> 
+                    <div class="arrow bottom"></div>
+                </div>
+            </div>
+        )
+    }
     
     render(){ 
         return ( 
@@ -70,6 +91,7 @@ export default class HomePage extends Component {
                 </div>
                 <div className="container-fluid carousel-body">
                     <div id="Carousel_Indicator" className="carousel slide" data-ride="carousel"> 
+                        <div class="ribbon ribbon-top-left"><span className="white">New Release</span></div>
                         <div className="card p-1">
                             <ol className="carousel-indicators">
                                 <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
@@ -93,18 +115,25 @@ export default class HomePage extends Component {
                     </div>
                 </div>      
                 <div className="container-fluid home-body" >
-                    <div className="home-body-title">New Release</div>
+                    <hr/>
+                    {this.render_banner()}
                     <div className="card home-body-card"> 
+                        <div class="ribbon ribbon-top-left"><span className="red">HOT</span></div>
                         {this.render_package_list_row_test()}
                     </div>
-                    <div className="home-body-title">Recommend</div>
+                    <hr/>
+                    {this.render_banner()}
                     <div className="card home-body-card"> 
+                        <div class="ribbon ribbon-top-left"><span className="green">Recommend</span></div>
                         {this.render_package_list_row_test()}
                     </div>
-                    <div className="home-body-title">ForYou</div>
+                    <hr/>
+                    {this.render_banner()}
                     <div className="card home-body-card"> 
+                        <div class="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
                         {this.render_package_list_row_test()}
                     </div>
+                    <hr/>
                 </div>             
                 <footer className="test-home-footer">
                 </footer>

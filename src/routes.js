@@ -17,10 +17,12 @@ export default (
     <App>
         <div>
             <Switch>
+                
                 <Route exact path={'/'} component={HomePage} />
                 <Route path={'/package/detail/:id'} component={PackageDetail} />
                 <Route path={'/package'} component={PackageList} />
                 <Route path={'/test/:name'} component={Test} />
+                
             </Switch>
         </div>
     </App>

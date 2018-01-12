@@ -35,7 +35,7 @@
 
         .timeline > li > .timeline-panel {
             width: 76%;
-            float: right;
+            float: left;
             border: 1px solid #d4d4d4;
             border-radius: 2px;
             padding: 20px;
@@ -67,7 +67,16 @@
                 border-bottom: 14px solid transparent;
                 content: " ";
             }
-
+        
+        .timeline > li > .test-time {
+            width: 20%;
+            padding: 20px;
+            float: left;
+            text-align: right;
+            line-height: 0px;
+            position: absolute;
+            top: 16px;      
+        }
         .timeline > li > .timeline-badge {
             color: #fff;
             width: 20px;
@@ -105,6 +114,11 @@
             border-bottom-left-radius: 50%;
             
         }
+        .timeline > li > .test-date-timeline-badge:hover {
+                cursor: pointer;
+                color: red;
+                border: 3px solid red;
+            }
 
         .timeline > li.timeline-inverted > .timeline-panel {
             float: right;

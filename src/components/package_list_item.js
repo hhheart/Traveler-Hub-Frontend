@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import ReactStars from 'react-stars'
 
 import '../static/css/package_list_item.css'; 
 
@@ -10,6 +11,10 @@ const PackageListItem = ({package_item, match}) => {
     //const companyUrl = package_item.company_name;
     const price = package_item.human_price;
     const travel_date = package_item.travel_date;
+
+    const ratingChanged = (newRating) => {
+        console.log(newRating)
+      }
     return (
         <div>
             <div className="card package-list-card">
@@ -18,7 +23,18 @@ const PackageListItem = ({package_item, match}) => {
                     <div className="card-title">{titleUrl}</div>
                     <div className="card-text package-list-detail ">
                         <div>เดินทาง: {travel_date}</div>
-                        <div>ราคา: {price}</div>
+                        <div className="row">
+                            <div className="col-7">ราคา: {price}</div>
+                            <div className="col-5 justify-content-end">
+                                <ReactStars 
+                                    count={5} 
+                                    value={5}
+                                    edit={false}
+                                    onChange={null} 
+                                    size={12} 
+                                    color2={'#ffd700'} />
+                            </div>
+                        </div>
                         <div>
                             <Link 
                                 className="btn btn-block btn-detail"
