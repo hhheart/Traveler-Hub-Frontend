@@ -136,6 +136,10 @@ export default class HomePage extends Component {
                     <hr/>
                 </div>             
                 <footer className="test-home-footer">
+                <div class="fb-customerchat"
+                    page_id="327284147773040"
+                    ref="<OPTIONAL_WEBHOOK_PARAM>">
+                </div>
                 </footer>
             </div>
         )
