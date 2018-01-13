@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () =>{    
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand" href="#">_LOGO_</a>
+        <nav className="navbar navbar-expand-lg navbar-white">
+            <img className="navbar-brand" 
+                alt="_LOGO_"
+                style={{width:'15vw',height:'12vh'}} 
+                src={require('../static/images/logo.png')} />
             <button 
                 className="navbar-toggler" 
                 type="button" 

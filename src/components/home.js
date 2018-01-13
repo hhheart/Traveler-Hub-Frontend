@@ -84,11 +84,6 @@ export default class HomePage extends Component {
     render(){ 
         return ( 
             <div style={{backgroundColor:'#f9f9f9'}}>
-                <div className="jumbotron text-center test-home-jumbotron">
-                    <div className="container-fluid">
-                        <h3>_HOMEPAGE-Header_ </h3>
-                    </div>
-                </div>
                 <div className="container-fluid carousel-body">
                     <div id="Carousel_Indicator" className="carousel slide" data-ride="carousel"> 
                         <div class="ribbon ribbon-top-left"><span className="white">New Release</span></div>
@@ -136,10 +131,6 @@ export default class HomePage extends Component {
                     <hr/>
                 </div>             
                 <footer className="test-home-footer">
-                <div class="fb-customerchat"
-                    page_id="327284147773040"
-                    ref="<OPTIONAL_WEBHOOK_PARAM>">
-                </div>
                 </footer>
             </div>
         )
