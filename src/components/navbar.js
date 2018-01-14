@@ -6,8 +6,8 @@ const Navbar = () =>{
         <nav className="navbar navbar-expand-lg navbar-white">
             <img className="navbar-brand" 
                 alt="_LOGO_"
-                style={{width:'15vw',height:'12vh'}} 
-                src={require('../static/images/logo.png')} />
+                style={{width:'12vw',height:'10vh'}} 
+                src={require('../static/images/logo_2.png')} />
             <button 
                 className="navbar-toggler" 
                 type="button" 
@@ -29,10 +29,14 @@ const Navbar = () =>{
                 </ul>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">ลงชื่อเข้าใช้</a>
+                        <a className="nav-link" href="#" data-toggle="modal" data-target="#register">ลงชื่อเข้าใช้</a>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>
                     </li>
                 </ul>
             </div>
+           
         </nav>
     )  
 }

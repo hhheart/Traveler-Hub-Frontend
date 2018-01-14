@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom';
 
 import './static/css/index.css';
 
-import {
-    BrowserRouter as Router,
-    //StaticRouter,
-    //browserHistory,
-} from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop.jsx';
+import { BrowserRouter as Router,} from 'react-router-dom';
 
 import routes from './routes';
 
 ReactDOM.render((
         <Router>
-            {routes}
+            <ScrollToTop>
+                {routes}
+            </ScrollToTop>
         </Router>
 ), document.getElementById('root'));

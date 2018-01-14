@@ -43,7 +43,7 @@ export default class HomePage extends Component {
         const Content = []; 
         Content.push(PackageItem.map((item,i) => {
             if (i < 5){
-                if (i == 0){
+                if (i === 0){
                     return (
                         <div className="carousel-item active">
                             <img className="d-block carousel" src={item.image} alt="active slide"/>
@@ -86,7 +86,7 @@ export default class HomePage extends Component {
             <div style={{backgroundColor:'#f9f9f9'}}>
                 <div className="container-fluid carousel-body">
                     <div id="Carousel_Indicator" className="carousel slide" data-ride="carousel"> 
-                        <div class="ribbon ribbon-top-left"><span className="white">New Release</span></div>
+                        <div className="ribbon ribbon-top-left"><span className="white">New Release</span></div>
                         <div className="card p-1">
                             <ol className="carousel-indicators">
                                 <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
