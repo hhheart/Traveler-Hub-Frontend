@@ -27,48 +27,60 @@ export default class Register extends Component{
         this.onChange = this.onChange.bind(this);
       }  
     componentDidMount() {
-        $(document).ready(function () {
-    
+        $(document).ready(function () { 
             var navListItems = $('div.setup-panel div a'),
+
+
                     allWells = $('.setup-content'),
-                    allNextBtn = $('.nextBtn');
-          
-            allWells.hide();
-          
+                    allNextBtn = $('.nextBtn');     
+            allWells.hide();   
+
             navListItems.click(function (e) {
                 e.preventDefault();
                 var $target = $($(this).attr('href')),
                         $item = $(this);
           
                 if (!$item.hasClass('disabled')) {
-                    navListItems.removeClass('btn-primary').addClass('btn-default');
-                    $item.addClass('btn-primary');
+                    // navListItems.removeClass('btn-dark').addClass('btn-light');
+                    //$item.addClass('btn-dark');
                     allWells.hide();
                     $target.show();
                     $target.find('input:eq(0)').focus();
                 }
             });
-          
+
             allNextBtn.click(function(){
                 var curStep = $(this).closest(".setup-content"),
                     curStepBtn = curStep.attr("id"),
                     nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                     curInputs = curStep.find("input[type='text'],input[type='url']"),
                     isValid = true;
-          
+                    
+                var status = $('div.setup-panel div.active');
+                var nextstatus = status.next();
+                
+                if (status.hasClass('active')) {
+                    status.removeClass('active').addClass('complete');
+                }
+
+                if ($('div.setup-panel div').next()!=null){
+                        
+                    if (nextstatus.hasClass('disabled')) {
+                        nextstatus.removeClass('disabled').addClass('active');
+                    }
+                }
+
                 $(".form-group").removeClass("has-error");
                 for(var i=0; i<curInputs.length; i++){
                     if (!curInputs[i].validity.valid){
                         isValid = false;
                         $(curInputs[i]).closest(".form-group").addClass("has-error");
                     }
-                }
-          
+                }   
                 if (isValid)
                     nextStepWizard.removeAttr('disabled').trigger('click');
-            });
-          
-            $('div.setup-panel div a.btn-primary').trigger('click');
+            });   
+            $('div.setup-panel a.first-child').trigger('click');
           });
     }
     onChange(event,id){
@@ -89,22 +101,30 @@ export default class Register extends Component{
     render(){
         return(    
             <div className="container">          
-                <div className="stepwizard offset-md-3">
-                    <div className="stepwizard-row setup-panel">
-                        <div className="stepwizard-step">
-                            <a href="#step-1" role="button" className="btn btn-primary btn-circle">1</a>
-                            <p>ขั้นตอนที่ 1</p>
-                        </div>
-                        <div className="stepwizard-step">
-                            <a href="#step-2" role="button" className="btn btn-default btn-circle" disabled="disabled">2</a>
-                            <p>ขั้นตอนที่ 2</p>
-                        </div>
-                        <div className="stepwizard-step">
-                            <a href="#step-3" role="button" className="btn btn-default btn-circle" disabled="disabled">3</a>
-                            <p>เสร็จสิ้น!</p>
-                        </div>
+                <div class="row bs-wizard setup-panel">     
+
+                    <div class="col-4 bs-wizard-step first-child active">
+                        <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a href="#step-1" class="first-child bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">รายละเอียดเบื้องต้น</div>
                     </div>
-                </div> 
+                    
+                    <div class="col-4 bs-wizard-step disabled">
+                        <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 2</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a href="#step-2" class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">รายละเอียดทั่วไป</div>
+                    </div>
+                    
+                    <div class="col-4 bs-wizard-step last-child disabled">
+                        <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 3</div>
+                        <div class="progress"><div class="progress-bar"></div></div>
+                        <a href="#step-3" class="bs-wizard-dot"></a>
+                        <div class="bs-wizard-info text-center">เสร็จสิ้น!</div>
+                    </div>
+                </div>   
+
                 <form class="was-validated" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:3000/user" method="post" noValidate>
                     <div className="row setup-content" id="step-1">
                         <div className="col-6 offset-md-3">
