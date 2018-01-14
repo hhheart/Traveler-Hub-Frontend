@@ -10,22 +10,44 @@ export default class HomePage extends Component {
     constructor(props){
         super(props);
             this.state = {  
-                packages: [],
+                packages:[],
+                NewRelease_packages:[],
+                Hot_packages:[],
             };  
     }    
     // run before component rendered
     componentWillMount(){
         axios.get('http://supertam.xyz:3000/package')
         .then(res => {
-            console.log(res)
+            //console.log(res)
             this.setState({ packages: res.data });
+        });
+        axios.get('http://supertam.xyz:3000/package/latest')
+        .then(res => {
+            //console.log(res)
+            this.setState({ NewRelease_packages: res.data });
+        });
+        axios.get('http://supertam.xyz:3000/package/popular')
+        .then(res => {
+            //console.log(res)
+            this.setState({ Hot_packages: res.data });
         });
     }
 
-    render_package_list_row_test(){
-        const PackageItem = this.state.packages;
+    render_package_list_row_test(type){
+        var PackageItem;
+        if (type === "N"){
+            PackageItem = this.state.NewRelease_packages;
+        }
+        else if (type === "P"){
+            PackageItem = this.state.Hot_packages;
+        }
+        else {
+            PackageItem = this.state.packages;
+        }
+
         const rowContent = [];
-        for(var i = 4; i < 8; i+=4) {
+        for(var i = 1; i < 4; i+=4) {
             const oneRow = [];
             oneRow.push(PackageItem.slice(i, i+4).map(item => {
             return (
@@ -61,7 +83,7 @@ export default class HomePage extends Component {
         return <div>{Content}</div>;      
     }
 
-    render_banner(){
+    render_banner(quote){
         return (
             <div class="banner one">
                 <div class="bk l">
@@ -70,7 +92,7 @@ export default class HomePage extends Component {
                 </div>
                 <div class="skew l"></div>
                 <div class="main">
-                    <div>New Release</div>   
+                    <div>{quote}</div>   
                 </div>
                 <div class="skew r"></div>                      
                 <div class="bk r">
@@ -86,7 +108,7 @@ export default class HomePage extends Component {
             <div style={{backgroundColor:'#f9f9f9'}}>
                 <div className="container-fluid carousel-body">
                     <div id="Carousel_Indicator" className="carousel slide" data-ride="carousel"> 
-                        <div className="ribbon ribbon-top-left"><span className="white">New Release</span></div>
+                        <div className="ribbon ribbon-top-left"><span className="white">News</span></div>
                         <div className="card p-1">
                             <ol className="carousel-indicators">
                                 <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
@@ -111,22 +133,22 @@ export default class HomePage extends Component {
                 </div>      
                 <div className="container-fluid home-body" >
                     <hr/>
-                    {this.render_banner()}
+                    {this.render_banner("New Release")}
                     <div className="card home-body-card"> 
-                        <div class="ribbon ribbon-top-left"><span className="red">HOT</span></div>
-                        {this.render_package_list_row_test()}
+                        <div class="ribbon ribbon-top-left"><span className="red">New Release</span></div>
+                        {this.render_package_list_row_test("N")}
                     </div>
                     <hr/>
-                    {this.render_banner()}
+                    {this.render_banner("Popular")}
                     <div className="card home-body-card"> 
-                        <div class="ribbon ribbon-top-left"><span className="green">Recommend</span></div>
-                        {this.render_package_list_row_test()}
+                        <div class="ribbon ribbon-top-left"><span className="green">Popular</span></div>
+                        {this.render_package_list_row_test("P")}
                     </div>
                     <hr/>
-                    {this.render_banner()}
+                    {this.render_banner("ForYOU.")}
                     <div className="card home-body-card"> 
                         <div class="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
-                        {this.render_package_list_row_test()}
+                        {this.render_package_list_row_test("D")}
                     </div>
                     <hr/>
                 </div>             

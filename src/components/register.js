@@ -29,8 +29,6 @@ export default class Register extends Component{
     componentDidMount() {
         $(document).ready(function () { 
             var navListItems = $('div.setup-panel div a'),
-
-
                     allWells = $('.setup-content'),
                     allNextBtn = $('.nextBtn');     
             allWells.hide();   
@@ -62,14 +60,12 @@ export default class Register extends Component{
                 if (status.hasClass('active')) {
                     status.removeClass('active').addClass('complete');
                 }
-
                 if ($('div.setup-panel div').next()!=null){
                         
                     if (nextstatus.hasClass('disabled')) {
                         nextstatus.removeClass('disabled').addClass('active');
                     }
                 }
-
                 $(".form-group").removeClass("has-error");
                 for(var i=0; i<curInputs.length; i++){
                     if (!curInputs[i].validity.valid){
@@ -102,14 +98,12 @@ export default class Register extends Component{
         return(    
             <div className="container">          
                 <div class="row bs-wizard setup-panel">     
-
                     <div class="col-4 bs-wizard-step first-child active">
                         <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
                         <div class="progress"><div class="progress-bar"></div></div>
                         <a href="#step-1" class="first-child bs-wizard-dot"></a>
                         <div class="bs-wizard-info text-center">รายละเอียดเบื้องต้น</div>
-                    </div>
-                    
+                    </div>                 
                     <div class="col-4 bs-wizard-step disabled">
                         <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 2</div>
                         <div class="progress"><div class="progress-bar"></div></div>
@@ -124,7 +118,6 @@ export default class Register extends Component{
                         <div class="bs-wizard-info text-center">เสร็จสิ้น!</div>
                     </div>
                 </div>   
-
                 <form class="was-validated" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:3000/user" method="post" noValidate>
                     <div className="row setup-content" id="step-1">
                         <div className="col-6 offset-md-3">
