@@ -86,7 +86,7 @@ export default class Register extends Component{
     }
     onSubmit(event){
         event.preventDefault();
-        axios.post('http://supertam.xyz:3000/user', this.state.POST_DATA)
+        axios.post('http://supertam.xyz:5000/user', this.state.POST_DATA)
           .then(function (response) {
             console.log(response);
           })
@@ -118,7 +118,7 @@ export default class Register extends Component{
                         <div class="bs-wizard-info text-center">เสร็จสิ้น!</div>
                     </div>
                 </div>   
-                <form class="was-validated" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:3000/user" method="post" noValidate>
+                <form class="was-validated" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:5000/user" method="post" noValidate>
                     <div className="row setup-content" id="step-1">
                         <div className="col-6 offset-md-3">
                             <div className="col-md-12">

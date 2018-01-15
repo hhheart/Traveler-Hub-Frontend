@@ -14,7 +14,7 @@ export default class PackageList extends Component {
     }    
     // run before component rendered
     componentWillMount(){
-        axios.get('http://supertam.xyz:3000/package')
+        axios.get('http://supertam.xyz:5000/package')
         .then(res => {
             console.log(res)
             this.setState({ packages: res.data });

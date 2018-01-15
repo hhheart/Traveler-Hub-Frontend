@@ -12,9 +12,8 @@ const PackageListItem = ({package_item, match}) => {
     const price = package_item.human_price;
     const travel_date = package_item.travel_date;
 
-    const ratingChanged = (newRating) => {
-        console.log(newRating)
-      }
+    const logo = package_item.logo;
+    const ratingChanged = (newRating) => {console.log(newRating)}
     return (
         <div>
             <div className="card package-list-card">
@@ -22,7 +21,10 @@ const PackageListItem = ({package_item, match}) => {
                 <div className="card-body">
                     <div className="card-title">{titleUrl}</div>
                     <div className="card-text package-list-detail ">
-                        <div>เดินทาง: {travel_date}</div>
+                        <div className="row">
+                            <div className="col-8">เดินทาง: {travel_date}</div>
+                            <div className="col-4"><img style={{width:'25px',height:'25px'}} alt="package-list-logo" src={logo}/></div>
+                        </div>
                         <div className="row">
                             <div className="col-7">ราคา: {price}</div>
                             <div className="col-5 justify-content-end">
