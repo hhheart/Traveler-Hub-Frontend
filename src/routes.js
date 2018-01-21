@@ -13,20 +13,21 @@ import PackageDetail from './components/package_detail';
 import Test from './components/test';
 
 import Register from './components/register';
+import Login from './components/login';
 
 //import { URL_ROOT } from 'endpoint';
 export default (
     <App>
         <div>
-            <Switch>
-                
+            <Switch>          
                 <Route exact path={'/'} component={HomePage} />
 
                 <Route path={'/package/detail/:id'} component={PackageDetail} />
                 <Route path={'/package'} component={PackageList} />
                 
                 <Route path={'/member/register'} component={Register}/>
-                
+                <Route path={'/member/login'} component={Login}/>
+
                 <Route path={'/test/:name'} component={Test} />
                 
             </Switch>

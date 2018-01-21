@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PackageListItem from './package_list_item';
-//mport { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import '../static/css/home.css';
@@ -33,8 +32,7 @@ export default class HomePage extends Component {
             this.setState({ Hot_packages: res.data });
         });
     }
-
-    render_package_list_row_test(type){
+    render_package_list_row(type){
         var PackageItem;
         if (type === "N"){
             PackageItem = this.state.NewRelease_packages;
@@ -59,7 +57,6 @@ export default class HomePage extends Component {
         }
         return rowContent;
     }
-
     render_carousel_item(){
         const PackageItem = this.state.packages;
         const Content = []; 
@@ -82,7 +79,6 @@ export default class HomePage extends Component {
         }))
         return <div>{Content}</div>;      
     }
-
     render_banner(quote){
         return (
             <div class="banner one">
@@ -102,7 +98,6 @@ export default class HomePage extends Component {
             </div>
         )
     }
-    
     render(){ 
         return ( 
             <div style={{backgroundColor:'#f9f9f9'}}>
@@ -136,19 +131,19 @@ export default class HomePage extends Component {
                     {this.render_banner("New Release")}
                     <div className="card home-body-card"> 
                         <div class="ribbon ribbon-top-left"><span className="red">New Release</span></div>
-                        {this.render_package_list_row_test("N")}
+                        {this.render_package_list_row("N")}
                     </div>
                     <hr/>
                     {this.render_banner("Popular")}
                     <div className="card home-body-card"> 
                         <div class="ribbon ribbon-top-left"><span className="green">Popular</span></div>
-                        {this.render_package_list_row_test("P")}
+                        {this.render_package_list_row("P")}
                     </div>
                     <hr/>
                     {this.render_banner("ForYOU.")}
                     <div className="card home-body-card"> 
                         <div class="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
-                        {this.render_package_list_row_test("D")}
+                        {this.render_package_list_row("D")}
                     </div>
                     <hr/>
                 </div>             

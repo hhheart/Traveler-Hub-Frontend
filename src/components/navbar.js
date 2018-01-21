@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Navbar = () =>{    
     return (
@@ -24,19 +24,19 @@ const Navbar = () =>{
                         <Link className="nav-link" to="/">หน้าแรก</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/package">แพ็คเกจ</Link>
+                        <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
                     </li>
                 </ul>
+
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <a className="nav-link" href="#" data-toggle="modal" data-target="#register">ลงชื่อเข้าใช้</a>
+                        <Link className="nav-link" to="/member/login">ลงชื่อเข้าใช้</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>
                     </li>
                 </ul>
-            </div>
-           
+            </div>     
         </nav>
     )  
 }
