@@ -1,33 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () =>{    
-    return (
-        <nav className="navbar navbar-expand-lg navbar-white">
-            <img className="navbar-brand" 
-                alt="_LOGO_"
-                style={{width:'12vw',height:'10vh'}} 
-                src={require('../static/images/logo_2.png')} />
-            <button 
-                className="navbar-toggler" 
-                type="button" 
-                data-toggle="collapse" 
-                data-target="#navbarNav" 
-                aria-controls="navbarNav" 
-                aria-expanded="false" 
-                aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { test, test2 } from '../actions/index';
+
+class Navbar extends Component{
+    renderUserContent(){
+        if (this.props.fact === true){
+            return (
+                <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">หน้าแรก</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
+                        GUEST
                     </li>
                 </ul>
-
+            )
+        }
+        else {
+            return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <Link className="nav-link" to="/member/login">ลงชื่อเข้าใช้</Link>
@@ -36,9 +26,50 @@ const Navbar = () =>{
                         <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>
                     </li>
                 </ul>
-            </div>     
-        </nav>
-    )  
+            )
+        }
+    }
+    render(){
+        return (
+            <nav className="navbar navbar-expand-lg navbar-white">
+                <img className="navbar-brand" 
+                    alt="_LOGO_"
+                    style={{width:'12vw',height:'10vh'}} 
+                    src={require('../static/images/logo_2.png')} />
+                <button 
+                    className="navbar-toggler" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/">หน้าแรก</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
+                        </li>
+                    </ul>
+    
+                    {this.renderUserContent()}
+
+                </div>     
+            </nav>
+        ) 
+    }     
 }
 
-export default Navbar;
+function mapStateToProps(state){
+    return {
+        fact: state.Test
+    };
+}
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({test,test2}, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
