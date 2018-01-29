@@ -46,7 +46,7 @@
 }
 .test-layout-title {
 
-  font-size: 1vmax;
+  font-size: 13px;
 
   height: 11vh;
   overflow: auto;
@@ -60,7 +60,7 @@
 }
 .test-layout-detail {
 
-  font-size: 0.9vmax;
+  font-size: 12px;
 
   min-height: auto;
   max-height: 19vh;
