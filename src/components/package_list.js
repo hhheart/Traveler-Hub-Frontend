@@ -62,7 +62,7 @@ export default class PackageList extends Component {
                     </div>
                 </div>
                 <div className=" bg-light">
-                    <div className="container">
+                    <div className="container-fluid">
                                                      
                             {this.render_package_list_row()}
                         
