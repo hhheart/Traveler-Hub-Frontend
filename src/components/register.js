@@ -96,7 +96,7 @@ export default class Register extends Component{
     }
     render(){
         return(    
-            <div className="container">          
+            <div className="layout">          
                 <div class="row bs-wizard setup-panel">     
                     <div class="col-4 bs-wizard-step first-child active">
                         <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
@@ -120,50 +120,50 @@ export default class Register extends Component{
                 </div>   
                 <form class="was-validated" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:5000/user" method="post" noValidate>
                     <div className="row setup-content" id="step-1">
-                        <div className="col-6 offset-md-3">
-                            <div className="col-md-12">
+                        <div className="col-8 offset-2 col-md-6 offset-md-3">
+                            
                                 <h3>รายละเอียดเบื้องต้น</h3>
-                                    <div className="form-group">
-                                        <label className="control-label">อีเมลล์</label>
-                                        <input 
-                                            name="email"
-                                            maxLength="100" 
-                                            type="text" 
-                                            className="form-control form-control-success" 
-                                            placeholder="Enter Email"
-                                            onChange={this.onChange}
-                                            value={this.state.POST_DATA.email}
-                                            required/>
-                                        <div className="invalid-feedback">กรุณาระบุ อีเมลล์</div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="control-label">ชื่อผู้ใช้งาน</label>
-                                        <input 
-                                            name="username"
-                                            maxLength="100" 
-                                            type="text" 
-                                            className="form-control" 
-                                            placeholder="Enter Username" 
-                                            onChange={this.onChange}
-                                            value={this.state.POST_DATA.username}
-                                            required/>
-                                        <div className="invalid-feedback">กรุณาระบุ ชื่อผู้ใช้งาน</div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="control-label">รหัสผ่าน</label>
-                                        <input 
-                                            name="password"
-                                            maxLength="100" 
-                                            type="password" 
-                                            className="form-control" 
-                                            placeholder="Enter Password" 
-                                            onChange={this.onChange}
-                                            value={this.state.POST_DATA.password}
-                                            required/>
-                                        <div className="invalid-feedback">กรุณาระบุ รหัสผ่าน</div>
-                                    </div>
-                                    <button className="btn btn-primary nextBtn btn-lg pull-right" type="button" >ถัดไป</button>
-                            </div>
+                                <div className="form-group">
+                                    <label className="control-label">อีเมล์</label>
+                                    <input 
+                                        name="email"
+                                        maxLength="100" 
+                                        type="text" 
+                                        className="form-control form-control-success" 
+                                        placeholder="Enter Email"
+                                        onChange={this.onChange}
+                                        value={this.state.POST_DATA.email}
+                                        required/>
+                                    <div className="invalid-feedback">กรุณาระบุ อีเมลล์</div>
+                                </div>
+                                <div className="form-group">
+                                    <label className="control-label">ชื่อผู้ใช้งาน</label>
+                                    <input 
+                                        name="username"
+                                        maxLength="100" 
+                                        type="text" 
+                                        className="form-control" 
+                                        placeholder="Enter Username" 
+                                        onChange={this.onChange}
+                                        value={this.state.POST_DATA.username}
+                                        required/>
+                                    <div className="invalid-feedback">กรุณาระบุ ชื่อผู้ใช้งาน</div>
+                                </div>
+                                <div className="form-group">
+                                    <label className="control-label">รหัสผ่าน</label>
+                                    <input 
+                                        name="password"
+                                        maxLength="100" 
+                                        type="password" 
+                                        className="form-control" 
+                                        placeholder="Enter Password" 
+                                        onChange={this.onChange}
+                                        value={this.state.POST_DATA.password}
+                                        required/>
+                                    <div className="invalid-feedback">กรุณาระบุ รหัสผ่าน</div>
+                                </div>
+                                <button className="btn btn-primary nextBtn btn-lg pull-left" type="button" >ถัดไป</button>
+                            
                         </div>
                     </div>
                     <div className="row setup-content" id="step-2">
@@ -241,7 +241,9 @@ export default class Register extends Component{
                             </div>
                         </div>
                     </div>
-                </form>   
+                </form> 
+                <footer className="test-home-footer">
+                </footer>  
             </div>       
         )
     }

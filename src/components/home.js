@@ -148,6 +148,7 @@ export default class HomePage extends Component {
                     <hr/>
                 </div>             
                 <footer className="test-home-footer">
+                    
                 </footer>
             </div>
         )

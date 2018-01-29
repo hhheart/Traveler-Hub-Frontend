@@ -1,0 +1,11 @@
+a,button{
+    outline: none;
+    box-shadow:none !important;
+    
+    }
+
+.navbar-logo-size{
+    height: 10vh;
+    width: auto;
+}
+

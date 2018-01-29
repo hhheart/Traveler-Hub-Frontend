@@ -31,42 +31,55 @@ const Timeline = ({data}) => {
         </ul>
     )
 }
+
+const renderPackageHeader = (props) => {
+    if ("(max-device-width: 1024px)"){
+        return console.log('yes baby')
+    }
+    else {
+        return console.log('no sir')
+    }
+}
 const PackageDetail = (props) => {
     const {package_item} = props.location.state;
     return (
+        
         <div>
+           
             <div className="container">
-                <div id="header-content" className="row">
-                    <div className="col-md-5">
-                        <img className="package-detail-image img-fluid" 
-                            alt="package_detail_image" 
-                            src={package_item.image} />
-                    </div>
-                    <div className="col-md-7 package-detail-header">
-                        <div className="row-md-6">
-                            <h4 >{package_item.package_name}</h4>
-                            <div><span style={{color:'red', font:14, marginLeft:10+'px'}}>Hightlight.</span></div>
-                            <p >&emsp;&emsp;&emsp;&emsp;{package_item.detail}</p>
-                        </div>
-                        <div><span style={{color:'red', font:14, marginLeft:10+'px'}}>รายละเอียด.</span></div>
-                        <div className="row-md-6 package-card-detail card mx-auto bg-light">
-                            <div className="row card-text card-body">
-                                <ul className="col mr-auto" style={{marginLeft:10+'px'}}>
+                <div id="header-content" className="row">           
+                    <img className="col-md-5 package-detail-image img-fluid text-center" 
+                        alt="package_detail_image" 
+                    src={package_item.image} />               
+                    
+                    <div id="detail" className="col-md-7 package-detail-header">
+                        <h4 className="package-card-title-margin text-padding">{package_item.package_name}</h4>
+                        <div id="package-datail" className="row-md-5"> 
+                            <div><span className="package-detail-highlight">Hightlight.</span></div>
+                            <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{package_item.detail}</p>
+                        </div>          
+                        <div id="package-highlight" className="row-md-5 card package-card-margin bg-light">
+                            <div><span className="package-detail-highlight">รายละเอียด.</span></div>
+                            <div className="row card-text">
+                                <ul className="col test-padding">
                                     <li>สถานที่: {package_item.location}</li>
                                     <li>ช่วงเวลาเดินทาง: {package_item.travel_date}</li>
                                 </ul>
-                                <ul className="col ml-auto" style={{marginLeft:10+'px'}}>
+                                <ul className="col test-padding">
                                     <li>ระยะเวลา: {package_item.travel_duration} วัน</li>
                                     <li>ราคา: {package_item.human_price}</li>
                                 </ul>
                             </div>
+                        </div>
+                        <div className="row-md-2 text-center">
+                            <button className="btn btn-primary btn-block">จองเลย !</button>
                         </div>
                     </div>
                 </div>
                 <hr/>
                     <Timeline data={package_item.timeline}/>
                 <hr/>
-                <div className="test-page-return"><Link to="/">go back</Link></div>
+                <div className="page-return"><Link to="/">go back</Link></div>
             </div>
             <footer className="test-home-footer">
             </footer>

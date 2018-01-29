@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 
 import { test, test2 } from '../actions/index';
 
+import $ from 'jquery';
+
 class Login extends Component{
     render(){
-        console.log('fact: '+this.props.fact)
         return (     
             <div>
                 <button onClick={()=>this.props.test()}>login success</button>

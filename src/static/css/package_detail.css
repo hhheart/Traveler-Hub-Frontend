@@ -1,19 +1,47 @@
-.package-detail-image {
-    margin: 10px 10px 10px 10px;
-    width: 500px;
-    height: 320px;
+
+@media only screen and (min-device-width : 0px) and (max-device-width : 900px) { 
+    .package-detail-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90vw;
+        height:35vh;
+    }
+}
+@media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {   
+    .package-detail-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5vh;
+        width: auto;
+        height: 40vh;
+    }
 }
 .package-detail-header {
-    margin: 25px 0px 10px 0px;
+    min-height: 40vh;
+    max-height: auto;
+
 }
-.package-detail-title {
+.text-padding {
+    padding: 1vh 1vh 1vh 1vh;
+}
+.test-padding {
+    margin-left: 5vh;
     
 }
-.package-card-detail {
-    background-color: red;
+.package-card-margin {
+    margin-bottom: 2vh;
 }
-
-.test-page-return {
+.package-card-title-margin {
+    margin-top: 2vh;
+}
+.package-detail-highlight {
+    color: red; 
+    font:14px; 
+    margin-left:10px;
+}
+.page-return {
     text-align: center;
     height: 10vh;
     line-height: 10vh;

@@ -37,9 +37,9 @@ export default class PackageList extends Component {
     render_package_list_row(){
         const PackageItem = this.state.packages;
         const rowContent = [];
-        for(var i = 0; i < PackageItem.length; i+=3) {
+        for(var i = 0; i < PackageItem.length; i+=4) {
             const oneRow = [];
-            oneRow.push(PackageItem.slice(i, i+3).map(item => {
+            oneRow.push(PackageItem.slice(i, i+4).map(item => {
             return (
                 <PackageListItem 
                         key={item.package_id}
@@ -61,11 +61,11 @@ export default class PackageList extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="album bg-light">
+                <div className=" bg-light">
                     <div className="container">
-                        <div className="row justify-content-center">                                
+                                                     
                             {this.render_package_list_row()}
-                        </div>
+                        
                     </div>
                 </div>
                 <footer className="footer">

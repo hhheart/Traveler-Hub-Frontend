@@ -17,38 +17,36 @@ const PackageListItem = ({package_item, match}) => {
     return (
         <div>
             <div className="card package-list-card">
-                <img alt="package-list-img" className="package-list-image card-img-top" src={imageUrl}/>
-                <div className="card-body">
-                    <div className="card-title">{titleUrl}</div>
-                    <div className="card-text package-list-detail ">
-                        <div className="row">
-                            <div className="col-8">เดินทาง: {travel_date}</div>
-                            <div className="col-4"><img style={{width:'25px',height:'25px'}} alt="package-list-logo" src={logo}/></div>
-                        </div>
-                        <div className="row">
-                            <div className="col-7">ราคา: {price}</div>
-                            <div className="col-5 justify-content-end">
-                                <ReactStars 
-                                    count={5} 
-                                    value={5}
-                                    edit={false}
-                                    onChange={null} 
-                                    size={12} 
-                                    color2={'#ffd700'} />
-                            </div>
-                        </div>
-                        <div>
-                            <Link 
-                                className="btn btn-block btn-detail"
-                                to={{
-                                    pathname: `/package/detail/${ID}`, 
-                                    state: {package_item: package_item, 
-                                }}}>
-                                ดูรายละเอียด
-                            </Link>
-                        </div>
+                <div className="package-list-image card-img-top">
+                    <img alt="package-list-img" className="card-img-top image-layout" src={imageUrl}/>
+                    <div className="package-item-star"> 
+                        <ReactStars 
+                            count={5} 
+                            value={5}
+                            edit={false}
+                            onChange={null} 
+                            size={15} 
+                            color2={'#ffd700'} />
                     </div>
                 </div>
+                <div className="test-layout-title bg-light">{titleUrl}</div>
+                <div className="card-body test-layout-detail ">  
+                    <div className="row">
+                        <div className="col-9">
+                            <div className="set-left">เดินทาง: {travel_date}</div> 
+                            <div className="set-left">ราคา: {price}</div>
+                        </div>    
+                        <img className="col-3 bg-warning package-list-agency-image img-fluid" alt="package-list-logo" src={logo}/>   
+                    </div>
+                    <Link 
+                        className="btn  btn-detail"
+                        to={{
+                            pathname: `/package/detail/${ID}`, 
+                            state: {package_item: package_item, 
+                        }}}>
+                        ดูรายละเอียด
+                    </Link>                                                       
+                </div>                 
             </div>
         </div>
     );
