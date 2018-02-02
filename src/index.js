@@ -10,10 +10,10 @@ import routes from './routes';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-
+import { apiMiddleware } from 'redux-api-middleware';
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(apiMiddleware)(createStore);
 
 ReactDOM.render((
     <Provider store={createStoreWithMiddleware(reducers)}>

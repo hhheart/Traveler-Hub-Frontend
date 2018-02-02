@@ -39,7 +39,7 @@ const PackageListItem = ({package_item, match}) => {
                         <img className="col-3 bg-warning package-list-agency-image img-fluid" alt="package-list-logo" src={logo}/>   
                     </div>
                     <Link 
-                        className="btn  btn-detail"
+                        className="btn btn-detail"
                         to={{
                             pathname: `/package/detail/${ID}`, 
                             state: {package_item: package_item, 

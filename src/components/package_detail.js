@@ -42,10 +42,8 @@ const renderPackageHeader = (props) => {
 }
 const PackageDetail = (props) => {
     const {package_item} = props.location.state;
-    return (
-        
-        <div>
-           
+    return (  
+        <div>         
             <div className="container">
                 <div id="header-content" className="row">           
                     <img className="col-md-5 package-detail-image img-fluid text-center" 
@@ -59,6 +57,7 @@ const PackageDetail = (props) => {
                             <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{package_item.detail}</p>
                         </div>          
                         <div id="package-highlight" className="row-md-5 card package-card-margin bg-light">
+                            
                             <div><span className="package-detail-highlight">รายละเอียด.</span></div>
                             <div className="row card-text">
                                 <ul className="col test-padding">
@@ -72,7 +71,7 @@ const PackageDetail = (props) => {
                             </div>
                         </div>
                         <div className="row-md-2 text-center">
-                            <button className="btn btn-primary btn-block">จองเลย !</button>
+                            <button className="btn btn-primary btn-block ">จองเลย !</button>
                         </div>
                     </div>
                 </div>

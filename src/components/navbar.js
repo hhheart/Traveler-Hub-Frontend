@@ -5,10 +5,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { test, test2 } from '../actions/index';
 
-import LoginModal from '../components/login';
+//import LoginModal from '../components/login';
+import LoginModal from '../containers/login';
 
 import '../static/css/nav.css'
 
+import {URL_ROOT} from '../constants/endpoints';
 class Navbar extends Component{
     renderUserContent(){
         if (this.props.fact === true){
@@ -62,7 +64,7 @@ class Navbar extends Component{
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">หน้าแรก</Link>
+                            <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>

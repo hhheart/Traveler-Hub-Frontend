@@ -13,9 +13,10 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 5vh;
         width: auto;
-        height: 40vh;
+        height: 45vh;
+        
+        
     }
 }
 .package-detail-header {
@@ -25,6 +26,8 @@
 }
 .text-padding {
     padding: 1vh 1vh 1vh 1vh;
+    overflow: auto;
+    height: 8vh;
 }
 .test-padding {
     margin-left: 5vh;
@@ -34,12 +37,18 @@
     margin-bottom: 2vh;
 }
 .package-card-title-margin {
-    margin-top: 2vh;
+    margin-top: 0vh;
 }
 .package-detail-highlight {
     color: red; 
     font:14px; 
     margin-left:10px;
+}
+.btn-layout {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    
 }
 .page-return {
     text-align: center;
