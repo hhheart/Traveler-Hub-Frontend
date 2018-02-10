@@ -1,27 +1,55 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { test, test2 } from '../actions/index';
-
-//import LoginModal from '../components/login';
+import {URL_ROOT} from '../constants/endpoints';
 import LoginModal from '../containers/login';
-
 import '../static/css/nav.css'
 
-import {URL_ROOT} from '../constants/endpoints';
-class Navbar extends Component{
+export class NavbarView extends Component{ 
+    renderLogoutModal(){
+        return(
+            <div className="modal fade" id="logoutModal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLongTitle">ยืนยันที่จะลงชื่อออก !</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button 
+                            type="button" 
+                            data-dismiss="modal"
+                            className="btn btn-outline-danger" 
+                            onClick={this.props.handleLogout} >ลงชื่อออก</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     renderUserContent(){
-        if (this.props.fact === true){
+        if (localStorage.getItem("login_token")){
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        GUEST
+                    <img src={require("../static/images/user.png")} alt="..." class="" style={{width:50+'px',height:50+'px'}}/>
                     </li>
-                    <li className="nav-item">
-                        <button>logout</button>
-                        
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {this.props.email}
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a className="dropdown-item" href="#">ข้อมูลผู้ใช้งาน</a>
+                        <a className="dropdown-item" href="#">ประวัติ</a>
+                        <div className="dropdown-divider text-center"></div>
+                            <button
+                                className="btn btn-outline-danger btn-logout-layout"
+                                data-toggle="modal" 
+                                data-target="#logoutModal"
+                            >ลงชื่อออก</button>  
+                        </div>
                     </li>
                 </ul>
             )
@@ -30,15 +58,10 @@ class Navbar extends Component{
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item ">
-                        <LoginModal />
-                        <a className="nav-link" href="" data-toggle="modal" data-target="#myModal">ลงชื่อเข้าใช้</a>
+                        <a className="nav-link" href="" data-toggle="modal" data-target="#loginModal">ลงชื่อเข้าใช้</a>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>
-                        
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/member/login">test-login</Link>
                         
                     </li>
                 </ul>
@@ -47,44 +70,39 @@ class Navbar extends Component{
     }
     render(){
         return (
-            <nav className="navbar navbar-expand-lg navbar-light">
-                <img className="navbar-brand navbar-logo-size" 
-                    alt="_LOGO_" 
-                    src={require('../static/images/logo_2.png')} />
-                <button 
-                    className="navbar-toggler" 
-                    type="button" 
-                    data-toggle="collapse" 
-                    data-target="#navbarNav" 
-                    aria-controls="navbarNav" 
-                    aria-expanded="false" 
-                    aria-label="Toggle navigation">
-                <span className="navbar-dark navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
-                        </li>
-                        <li className="nav-item">
+            <div>
+                <LoginModal />
+                {this.renderLogoutModal()}
+                <nav className="navbar navbar-expand-lg navbar-light bg-white">
+                    <img className="navbar-brand navbar-logo-size" 
+                        alt="_LOGO_" 
+                        src={require('../static/images/logo_2.png')} />
+                    <button 
+                        className="navbar-toggler" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#navbarNav" 
+                        aria-controls="navbarNav" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span className="navbar-dark navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse bg-white" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
+                            </li>
+                            <li className="nav-item">
                             <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
-                        </li>
-                    </ul>
-    
-                    {this.renderUserContent()}
-
-                </div>     
-            </nav>
+                            </li>
+                            <li className="nav-item">
+                            <Link className="nav-link" to="/package">ค้นหาแพ็คเกจ</Link>
+                            </li>
+                        </ul>
+                        {this.renderUserContent()}
+                    </div>     
+                </nav>
+            </div>
         ) 
     }     
 }
-
-function mapStateToProps(state){
-    return {
-        fact: state.Test
-    };
-}
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({test,test2}, dispatch)
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

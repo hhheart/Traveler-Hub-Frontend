@@ -1,9 +1,9 @@
 import React from 'react';
 import '../static/css/social-button.css'; 
 
-const LoginModal = ({onSubmit ,onEmailChange, onPasswordChage}) => {
+const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage, closeModal, test}) => {
     return (
-        <div className="modal fade" id="myModal" tabIndex="-1" role="dialog">
+        <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -48,17 +48,24 @@ const LoginModal = ({onSubmit ,onEmailChange, onPasswordChage}) => {
                         <div className="row align-items-center justify-content-center">หรือ</div>
                         <br />
                         <div className="social-buttons">
-                            <button className="btn btn-block btn-social btn-facebook">
+                            <button 
+                                className="btn btn-block btn-social btn-facebook"
+                                type="button" 
+                                data-dismiss="modal"
+                                onClick={onSubmit_facebook}
+                                >
                                 <i className="fa fa-facebook-official"></i>
                                 Sign in with Facebook
                             </button>
-                        </div>
+                            <a href='http://supertam.xyz:5000/auth/facebook' onClick={test} className='btn btn-primary'>facebook</a>
+                        </div> 
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                         <button 
                             type="button" 
                             className="btn btn-warning"
+                            data-dismiss="modal"
                             onClick={onSubmit}
                             >เข้าสู่ระบบ</button>
                     </div>

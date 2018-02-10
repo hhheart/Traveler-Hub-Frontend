@@ -8,7 +8,8 @@ import reducer_test from './test';
 
 const rootReducer = combineReducers({
   Test: reducer_test,
-  user
+  user,
+  
 });
 
 export default rootReducer;

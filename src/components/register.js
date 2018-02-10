@@ -87,12 +87,12 @@ export default class Register extends Component{
     onSubmit(event){
         event.preventDefault();
         axios.post('http://supertam.xyz:5000/user', this.state.POST_DATA)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
     render(){
         return(    

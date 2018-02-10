@@ -1,4 +1,4 @@
-import React /*{ Component }*/ from 'react';
+import React from 'react';
 import {
     Route,
     Switch,
@@ -19,7 +19,7 @@ import {URL_ROOT} from './constants/endpoints';
 export default (
     <App>
         <div>
-            <Switch>          
+            <Switch>  
                     <Route exact path={`${URL_ROOT}`} component={HomePage} />
                     <Route path={'/package/detail/:id'} component={PackageDetail} />
                     <Route path={'/package'} component={PackageList} />      

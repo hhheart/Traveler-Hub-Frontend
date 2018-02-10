@@ -89,7 +89,7 @@
             left: 20%;
             margin-left: -10px;
             background-color: #fcb034;
-            z-index: 100;
+            z-index: 0;
             border-top-right-radius: 50%;
             border-top-left-radius: 50%;
             border-bottom-right-radius: 50%;

@@ -9,3 +9,37 @@ a,button{
     width: auto;
 }
 
+.navbar{
+    position: fixed; 
+    top: 0;
+    height: 12vh;
+    width: 100%;
+    z-index: 100;
+
+    border-bottom-color: rgb(107, 102, 102);
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
+    
+    box-shadow: 1px 1px 5px grey;
+}
+
+.dropdown-menu { 
+    position: absolute;
+    right: 0; 
+    left: auto; 
+    box-shadow: 1px 1px 10px grey;
+}
+
+.btn-logout-layout {
+    margin-left: 5%;
+    width: 90%;
+}
+
+.modal {
+    overflow-y: auto;
+}
+
+.modal-open {
+    overflow: auto;
+}
+
