@@ -26,16 +26,19 @@ class PackageSearch extends Component{
         })
     }
     onPNameChange(event){   
-        this.setState({pname_request: '&name='+event.target.value})  
-        console.log(this.state.pname_request)      
+        this.setState({pname_request: '&name='+event.target.value})       
     }
     onMinPriceChange(event){
-        this.setState({minp_request: '&minPrice='+event.target.value}) 
-        console.log(this.state.minp_request)   
+        this.setState({minp_request: '&minPrice='+event.target.value})    
     }
     onMaxPriceChange(event){      
-        this.setState({maxp_request: '&maxPrice='+event.target.value})
-        console.log(this.state.maxp_request)   
+        this.setState({maxp_request: '&maxPrice='+event.target.value})  
+    }
+    onArrivalChange(event){
+        this.setState({maxp_request: '&Arrival='+event.target.value})  
+    }
+    onDepartureChange(event){
+        this.setState({maxp_request: '&Departure='+event.target.value})  
     }
     onSearchSubmit(event){
         this.getRequestLink()
@@ -46,15 +49,18 @@ class PackageSearch extends Component{
         })
     }
     render(){
-        return (     
+        return (    
             <div>         
-                <div className="container-fluid row bg-danger" style={{margin:0}}>     
+                <div className="container-fluid row bg-danger" style={{paddingTop:12+'vh', margin:0}}>     
                     <div className="col-3">
                         <SearchBar
                             onPNameChange={this.onPNameChange.bind(this)}
                             onMinPriceChange={this.onMinPriceChange.bind(this)}
                             onMaxPriceChange={this.onMaxPriceChange.bind(this)}
-                            onSearchSubmit={this.onSearchSubmit.bind(this)}             
+                            onSearchSubmit={this.onSearchSubmit.bind(this)}   
+                            onArrivalChange={this.onArrivalChange.bind(this)}
+                            onDepartureChange={this.onDepartureChange.bind(this)}
+                            onRegionChange={this.onRegionChange.bind(this)}         
                         />
                     </div>
                     <div className="col-9 bg-info">

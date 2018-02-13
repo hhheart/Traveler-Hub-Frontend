@@ -1,6 +1,14 @@
 import React  from 'react';
 
-const SearchBar = ({onPNameChange, onMinPriceChange, onMaxPriceChange, onSearchSubmit}) => {
+const SearchBar = ({
+    onPNameChange, 
+    onMinPriceChange, 
+    onMaxPriceChange, 
+    onSearchSubmit,
+    onArrivalChange,
+    onDepartureChange,
+    onRegionChange,
+    }) => {
     return (
         <div className="card">
             <div className="card-header">
@@ -10,8 +18,9 @@ const SearchBar = ({onPNameChange, onMinPriceChange, onMaxPriceChange, onSearchS
                 <input className="form-control" type="search" placeholder="ค้นหาจากชื่อ" onChange={onPNameChange} />
                 <input className="form-control" type="search" placeholder="ราคาต่ำสุด" onChange={onMinPriceChange} />
                 <input className="form-control" type="search" placeholder="ราคาสูงสุด" onChange={onMaxPriceChange}/>
-                <input className="form-control" type="search" placeholder="วันเดินทางไป"/>
-                <input className="form-control" type="search" placeholder="วันเดินทางกลับ"/>
+                <input className="form-control" type="search" placeholder="วันเดินทางไป" onChange={onArrivalChange}/>
+                <input className="form-control" type="search" placeholder="วันเดินทางกลับ" onChange={onDepartureChange}/>
+                <input className="form-control" type="search" placeholder="ภูมิภาค/จังหวัด" onChange={onRegionChange}/>
                 <input className="form-control" type="search" placeholder="คะแนน"/>
                 <div className="input-group">
                     <div className="input-group-prepend">
@@ -19,14 +28,13 @@ const SearchBar = ({onPNameChange, onMinPriceChange, onMaxPriceChange, onSearchS
                     </div>
                     <select className="custom-select" id="inputGroupSelect01">
                         <option selected>ทั้งหมด</option>
-                        <option value="1">a</option>
-                        <option value="2">b</option>
-                        <option value="3">c</option>
+                        <option value="1">หนุ่มสาวทัวร์</option>
+                        <option value="2">wonderful tour</option>
                     </select>
                 </div>
                 <div className="card">
                     <div className="card-body">
-                        _TagSearch_
+                        _Tag_Search_Detail_
                     </div>
                 </div>
                 
