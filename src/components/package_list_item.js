@@ -36,7 +36,7 @@ const PackageListItem = ({package_item, match}) => {
                             <div className="set-left">เดินทาง: {travel_date}</div> 
                             <div className="set-left">ราคา: {price}</div>
                         </div>    
-                        <img className="col-3 bg-warning package-list-agency-image img-fluid" alt="package-list-logo" src={logo}/>   
+                        <img className="col-3 package-list-agency-image img-fluid" alt="package-list-logo" src={logo}/>   
                     </div>
                     <Link 
                         className="btn btn-detail"

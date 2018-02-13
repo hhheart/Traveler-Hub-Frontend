@@ -34,7 +34,7 @@ export class NavbarView extends Component{
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                    <img src={require("../static/images/user.png")} alt="..." class="" style={{width:50+'px',height:50+'px'}}/>
+                    <img src={require("../static/images/user.png")} alt="user" className="" style={{width:50+'px',height:50+'px'}}/>
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -96,7 +96,7 @@ export class NavbarView extends Component{
                             <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="/package">ค้นหาแพ็คเกจ</Link>
+                            <Link className="nav-link" to="/package/search">ค้นหาแพ็คเกจ</Link>
                             </li>
                         </ul>
                         {this.renderUserContent()}

@@ -20,7 +20,7 @@ export default class PackageList extends Component {
             this.setState({ packages: res.data });
         });
     }
-    render_package_list_items(){
+    /*render_package_list_items(){
         const PackageItem = this.state.packages;
         return (
             <div>
@@ -33,7 +33,7 @@ export default class PackageList extends Component {
                    ))}
             </div>
         )
-    }
+    }*/
     render_package_list_row(){
         const PackageItem = this.state.packages;
         const rowContent = [];

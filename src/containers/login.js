@@ -41,9 +41,6 @@ class Login extends Component{
             console.log(response)
         })
     }
-    test(){
-        console.log()
-    }
     render(){
         return (     
             <LoginModal  
@@ -51,7 +48,6 @@ class Login extends Component{
                 onPasswordChage={this.onPasswordChange.bind(this)}
                 onSubmit={this.onSubmit.bind(this)}
                 onSubmit_facebook={this.onSubmit_facebook.bind(this)}
-                test={this.test.bind(this)}
             />
         )
     }
