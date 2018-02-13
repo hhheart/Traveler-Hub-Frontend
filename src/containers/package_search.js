@@ -60,7 +60,7 @@ class PackageSearch extends Component{
                             onSearchSubmit={this.onSearchSubmit.bind(this)}   
                             onArrivalChange={this.onArrivalChange.bind(this)}
                             onDepartureChange={this.onDepartureChange.bind(this)}
-                            onRegionChange={this.onRegionChange.bind(this)}         
+                                  
                         />
                     </div>
                     <div className="col-9 bg-info">
