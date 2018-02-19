@@ -1,50 +1,97 @@
-import React  from 'react';
+import React, {Component} from 'react';
 
-const SearchBar = ({
-    onPNameChange, 
-    onMinPriceChange, 
-    onMaxPriceChange, 
-    onSearchSubmit,
-    onArrivalChange,
-    onDepartureChange,
-    onRegionChange,
-    }) => {
-    return (
-        <div className="card">
-            <div className="card-header">
-                <h5 className="card-title">ค้นหาแบบละเอียด</h5>
-            </div>
-            <div className="card-body">
-                <input className="form-control" type="search" placeholder="ค้นหาจากชื่อ" onChange={onPNameChange} />
-                <input className="form-control" type="search" placeholder="ราคาต่ำสุด" onChange={onMinPriceChange} />
-                <input className="form-control" type="search" placeholder="ราคาสูงสุด" onChange={onMaxPriceChange}/>
-                <input className="form-control" type="search" placeholder="วันเดินทางไป" onChange={onArrivalChange}/>
-                <input className="form-control" type="search" placeholder="วันเดินทางกลับ" onChange={onDepartureChange}/>
-                <input className="form-control" type="search" placeholder="ภูมิภาค/จังหวัด" onChange={onRegionChange}/>
-                <input className="form-control" type="search" placeholder="คะแนน"/>
-                <div className="input-group">
-                    <div className="input-group-prepend">
-                        <label className="input-group-text">บริษัท</label>
-                    </div>
-                    <select className="custom-select" id="inputGroupSelect01">
-                        <option selected>ทั้งหมด</option>
-                        <option value="1">หนุ่มสาวทัวร์</option>
-                        <option value="2">wonderful tour</option>
-                    </select>
+export default class SearchBar extends Component {
+
+    renderBTN(){
+        if (this.props.loading){
+            return (
+                <div className="card-footer">
+                    <button 
+                        className="btn btn-outline-success btn-block" 
+                        type="submit"
+                        onClick={this.props.onSearchSubmit}
+                        >
+                        <i class="fa fa-circle-o-notch fa-spin" style={{fontSize:24+'px'}}/>
+                    </button>
                 </div>
-                <div className="card">
-                    <div className="card-body">
-                        _Tag_Search_Detail_
-                    </div>
+            )
+        } 
+        else {
+            return (
+                <div className="card-footer">
+                    <button 
+                        className="btn btn-outline-success btn-block" 
+                        type="submit"
+                        onClick={this.props.onSearchSubmit}
+                        >
+                        ค้นหาเลย
+                    </button>
                 </div>
-                
+            )
+        }       
+    }
+    render(){
+        return (
+            <div className="card search-bar-style">
+                <div className="card-header">
+                    <h5 className="card-title search-bar-header-layout">ค้นหาแบบละเอียด</h5>
+                </div>
+                <div className="card-body">
+                        <div id="search" className="input-group search-input-margin">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">
+                                    <i className="fa fa-search"></i>
+                                </span>
+                            </div>
+                            <input 
+                                className="form-control" 
+                                type="text" 
+                                placeholder="ค้นหาทั่วไป" 
+                                value={this.props.tags.pkname}
+                                onChange={this.props.onPNameChange}
+                                />
+                        </div>
+                        <div className="search-input-title">ราคาแพ็คเกจ</div>
+                        <div id="price" className="input-group search-input-margin mx-auto row">
+                            <input 
+                                className="form-control col-6" 
+                                type="number" 
+                                placeholder="ต่ำสุด" 
+                                value={this.props.tags.minp}
+                                onChange={this.props.onMinPriceChange} />
+                            <input 
+                                id="max_price"
+                                className="form-control col-6" 
+                                type="number" 
+                                placeholder="สูงสุด" 
+                                value={this.props.tags.maxp}
+                                onChange={this.props.onMaxPriceChange}/>
+                        </div>     
+                        <div className="search-input-title">วันเดินทางไป</div>
+                        <input 
+                            id="arrival-date"
+                            className="form-control search-input-margin" 
+                            type="date" 
+                            placeholder="วันเดินทางไป"   
+                            onChange={this.props.onArrivalChange} />
+                        <div className="search-input-title">วันเดินทางกลับ</div>
+                        <input 
+                            id="departure-date"
+                            className="form-control search-input-margin" 
+                            type="date" 
+                            placeholder="วันเดินทางกลับ"                    
+                            onChange={this.props.onDepartureChange}/>                  
+                        
+                        <div className="search-input-title">ภูมิภาค/จังหวัด</div>
+                        <input className="form-control search-input-margin" type="search" placeholder="ภูมิภาค/จังหวัด"/>
+                        <div className="search-input-title">คะแนน</div>
+                        <input className="form-control search-input-margin" type="search" placeholder="คะแนน"/>
+                        <div className="search-input-title">คำค้นหาพิเศษ</div>
+                        <input className="form-control search-input-margin" type="search" placeholder="special tags"/>
+
+                </div>
+                {this.renderBTN()}
             </div>
-            <div className="card-footer">
-                <button className="btn btn-outline-success btn-block" type="submit" 
-                    onClick={onSearchSubmit} >ค้นหาเลย</button>
-            </div>
-        </div>
-    )
+        )
+    }
 }
-
-export default SearchBar

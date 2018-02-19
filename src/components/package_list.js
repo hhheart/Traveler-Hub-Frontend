@@ -20,29 +20,16 @@ export default class PackageList extends Component {
             this.setState({ packages: res.data });
         });
     }
-    /*render_package_list_items(){
-        const PackageItem = this.state.packages;
-        return (
-            <div>
-                { PackageItem.map(( (package_item,i) => 
-                    
-                    <PackageListItem 
-                        key={package_item.package_id}
-                        package_item={package_item} />
-                    
-                   ))}
-            </div>
-        )
-    }*/
     render_package_list_row(){
         const PackageItem = this.state.packages;
         const rowContent = [];
         for(var i = 0; i < PackageItem.length; i+=4) {
             const oneRow = [];
             oneRow.push(PackageItem.slice(i, i+4).map(item => {
+            console.log(item._id)
             return (
                 <PackageListItem 
-                        key={item.package_id}
+                        key={item._id}
                         package_item={item} />      
             )}))
         rowContent.push(oneRow.map(itm => {return <div className="row mx-auto justify-content-center">{itm}</div>}))
@@ -50,7 +37,7 @@ export default class PackageList extends Component {
         return rowContent;
     }
     render(){ 
-        return ( 
+        return (  
             <div>
                 <div className="jumbotron text-center bg-white">
                     <div className="container">

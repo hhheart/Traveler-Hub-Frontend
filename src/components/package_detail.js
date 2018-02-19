@@ -31,15 +31,6 @@ const Timeline = ({data}) => {
         </ul>
     )
 }
-
-const renderPackageHeader = (props) => {
-    if ("(max-device-width: 1024px)"){
-        return console.log('yes baby')
-    }
-    else {
-        return console.log('no sir')
-    }
-}
 const PackageDetail = (props) => {
     const {package_item} = props.location.state;
     return (  
@@ -78,7 +69,7 @@ const PackageDetail = (props) => {
                 <hr/>
                     <Timeline data={package_item.timeline}/>
                 <hr/>
-                <div className="page-return"><Link to="/">go back</Link></div>
+                <div className="page-return"><Link to="/root">go back</Link></div>
             </div>
             <footer className="test-home-footer">
             </footer>

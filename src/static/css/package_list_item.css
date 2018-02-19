@@ -16,6 +16,7 @@
 .package-list-card {
   height: 50vh;
   margin: 5px 5px 5px 5px;
+  
 }
 .package-list-card:hover {
   border-width: 1px;

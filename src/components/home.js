@@ -81,19 +81,19 @@ export default class HomePage extends Component {
     }
     render_banner(quote){
         return (
-            <div class="banner one">
-                <div class="bk l">
-                    <div class="arrow top"></div> 
-                    <div class="arrow bottom"></div>
+            <div className="banner one">
+                <div className="bk l">
+                    <div className="arrow top"></div> 
+                    <div className="arrow bottom"></div>
                 </div>
-                <div class="skew l"></div>
-                <div class="main">
+                <div className="skew l"></div>
+                <div className="main">
                     <div>{quote}</div>   
                 </div>
-                <div class="skew r"></div>                      
-                <div class="bk r">
-                    <div class="arrow top"></div> 
-                    <div class="arrow bottom"></div>
+                <div className="skew r"></div>                      
+                <div className="bk r">
+                    <div className="arrow top"></div> 
+                    <div className="arrow bottom"></div>
                 </div>
             </div>
         )
@@ -130,19 +130,19 @@ export default class HomePage extends Component {
                     <hr/>
                     {this.render_banner("New Release")}
                     <div className="card home-body-card"> 
-                        <div class="ribbon ribbon-top-left"><span className="red">New Release</span></div>
+                        <div className="ribbon ribbon-top-left"><span className="red">New Release</span></div>
                         {this.render_package_list_row("N")}
                     </div>
                     <hr/>
                     {this.render_banner("Popular")}
                     <div className="card home-body-card"> 
-                        <div class="ribbon ribbon-top-left"><span className="green">Popular</span></div>
+                        <div className="ribbon ribbon-top-left"><span className="green">Popular</span></div>
                         {this.render_package_list_row("P")}
                     </div>
                     <hr/>
                     {this.render_banner("ForYOU.")}
                     <div className="card home-body-card"> 
-                        <div class="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
+                        <div className="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
                         {this.render_package_list_row("D")}
                     </div>
                     <hr/>

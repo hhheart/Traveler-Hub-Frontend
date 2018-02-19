@@ -4,6 +4,7 @@ import {
     SEARCH_REQUEST,
     SEARCH_SUCCESS,
     SEARCH_FAILURE,
+    SET_MINP
 } from '../constants/actions_types';
 
 import { 
@@ -20,3 +21,10 @@ export const onRequestPackage = (rq) =>({
             SEARCH_FAILURE,]
     }
 })
+
+export function onSetminp(value) {
+    return {
+        type: SET_MINP,
+        payload: value
+    }
+}

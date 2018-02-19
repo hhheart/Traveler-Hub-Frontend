@@ -1,38 +1,91 @@
 import React , {Component} from 'react';
 
 import PackageListItem from './package_list_item';
+
 import '../static/css/package_list.css'; 
 
 import data from '../static/js/provinces.json';
 
 export default class PackageList extends Component {
+    renderTag(){
+        //console.log(this.props.tags)
+        const tagsContent = [];
+        const test = this.props.tags;
+        //console.log(Object.getOwnPropertyNames(test));
+        for (var key in test){
+            //console.log("foo["+ key +"]="+ test[key]);
+            if (test[key] !== ''){
+                tagsContent.push(
+                    <button 
+                        className="btn btn-dark tagbtn-layout"
+                        onClick={this.onClickTags(key)}
+                        >
+                        {this.renderTagText(key,test[key])}
+                        <i className="fa fa-close" style={{fontSize:2+'vh', marginLeft:1+'vw'}} ></i>
+                    </button>                
+                )
+            }
+        }
+        return <div className="row mx-auto justify-content-center">{tagsContent}</div>
+       
+    }
+    renderTagText(key,value){
+        switch (key){
+            case "pkname":{
+                return "ค้นหา \"" +value +"\""
+            }
+            case "minp":{
+                return "ราคาต่ำสุด "+value+" บาท"
+            }
+            case "maxp":{
+                return "ราคาสูงสุด "+value+" บาท"
+            }
+            default: {
+                return console.log("renderTagText error !")
+            }
+        }
+    }
+    onClickTags(key){
+        return () => this.props.onReset(key.toString())
+    }
     renderContent(){
-        if(this.props.packages){
+        if (this.props.loading){
             return(
-                <div>
-                    <div className="jumbotron" style={{marginTop:10+'vh'}}>
-                        "ผลลัพธ์การค้นหา"
-                    </div>
-                    {this.render_package_list_row()}
-                </div>
+                <div class="loader mx-auto"></div>
             )
         }
-        else{
-            return (
-                <div>
-                    <div className="jumbotron" style={{marginTop:5+'vh'}}>
-                        "ค้นหาอย่างรวดเร็ว"
+        else {
+            if(this.props.packages){
+                return(
+                    <div>
+    
+                            <div>"ผลลัพธ์การค้นหา"</div>
+                            <div className="card tagbox-body-layout" >
+                                <div classNmae="card-body ">
+                                    {this.renderTag()}
+                                </div>
+                            </div>
+                        
+                        {this.render_package_list_row()}
                     </div>
-                    <div>ค้นหาจากภูมิภาค/จังหวัด</div>
-                    {this.renderQuickSearchRegion()}
-                    <div>ค้นหาจากประเภท</div>
-                    {this.renderQuickSearchTag()}
-                </div>
-            )
+                )
+            }
+            else{
+                return (
+                    <div>
+                        <div className="jumbotron">
+                            "ค้นหาอย่างรวดเร็ว"
+                        </div>
+                        <div>ค้นหาจากภูมิภาค/จังหวัด</div>
+                        {this.renderQuickSearchRegion()}
+                        <div>ค้นหาจากประเภท</div>
+                        {this.renderQuickSearchTag()}
+                    </div>
+                )
+            }
         }
     }
     renderQuickSearchRegion(){
-        console.log(data[1].provinces[1])
         const rowContent = [];
         for(var i = 0; i < 6; i+=1) {
             const oneRow = [];
@@ -72,7 +125,6 @@ export default class PackageList extends Component {
         return rowContent;
     }
     renderProvinces(num){
-        console.log(data[num].provinces.length)
         const rowContent = [];
         for(var i = 0; i < data[num].provinces.length; i+=1) {
             const oneRow = [];
@@ -122,7 +174,7 @@ export default class PackageList extends Component {
             oneRow.push(PackageItem.slice(i, i+3).map(item => {
             return (
                 <PackageListItem 
-                        key={item.package_id}
+                        key={item._id}
                         package_item={item} />      
             )}))
         rowContent.push(oneRow.map(itm => {return <div className="row mx-auto justify-content-center">{itm}</div>}))
@@ -130,14 +182,12 @@ export default class PackageList extends Component {
         return rowContent;
     }
     render(){
-        console.log(this.props.packages)
+        //console.log(this.props.packages)
         return(
             <div>
-                <div className=" bg-light">
-                    <div className="container-fluid">
-                                                     
+                <div className="bg-light">
+                    <div className="container-fluid">                                          
                             {this.renderContent()}
-                        
                     </div>
                 </div>
             </div>

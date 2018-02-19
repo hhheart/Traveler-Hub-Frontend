@@ -4,8 +4,8 @@ import ReactStars from 'react-stars'
 
 import '../static/css/package_list_item.css'; 
 
-const PackageListItem = ({package_item, match}) => {
-    const ID = package_item.package_id;
+const PackageListItem = ({package_item}) => {
+    const ID = package_item._id;
     const titleUrl = package_item.package_name;
     const imageUrl = package_item.image;
     //const companyUrl = package_item.company_name;

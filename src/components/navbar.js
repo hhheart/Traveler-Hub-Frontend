@@ -61,8 +61,7 @@ export class NavbarView extends Component{
                         <a className="nav-link" href="" data-toggle="modal" data-target="#loginModal">ลงชื่อเข้าใช้</a>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>
-                        
+                        <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>      
                     </li>
                 </ul>
             )
@@ -93,10 +92,10 @@ export class NavbarView extends Component{
                                 <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
+                                <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="/package/search">ค้นหาแพ็คเกจ</Link>
+                                <Link className="nav-link" to="/package/search">ค้นหาแพ็คเกจ</Link>
                             </li>
                         </ul>
                         {this.renderUserContent()}
