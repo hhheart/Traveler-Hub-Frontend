@@ -1,15 +1,11 @@
 import {  
     SEARCH_SUCCESS,
     SEARCH_FAILURE,
-    SET_MINP,
 } from '../constants/actions_types';
 
 const initialState = {
     packages: null,
     loading: true,
-
-    minp:'',
-    maxp:'',
 }
 const package_search = (state = initialState, action) => {
     switch(action.type) {
@@ -25,13 +21,6 @@ const package_search = (state = initialState, action) => {
             return ({
                 loading: false,
             }) 
-
-        case SET_MINP:
-            console.log('payload '+ action.payload)
-            return ({
-                ...state,
-                minp: action.payload
-            })
         default:
             return state
 

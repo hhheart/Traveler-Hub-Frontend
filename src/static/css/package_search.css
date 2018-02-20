@@ -10,9 +10,11 @@
 .search-bar-style {
     box-shadow: 1px 1px 10px grey;
     width: 22vw;
+    height: 88vh;
     position: fixed;
-    top:15vh;
-    left: 2.5vw;
+    top:12vh;
+    left: 0.1vw;
+    
 }
 .search-bar-header-layout {
     text-align: center;

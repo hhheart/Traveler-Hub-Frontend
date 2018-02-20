@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import SearchBar from '../components/search_bar';
 import SearchContent from '../components/search_content';
 
-import {onRequestPackage, onSetminp} from '../actions/package_search';
+import {onRequestPackage} from '../actions/package_search';
 
 import '../static/css/package_search.css';
 class PackageSearch extends Component{
@@ -39,7 +39,6 @@ class PackageSearch extends Component{
         })  
     }
     onMinPriceChange(event){
-        //this.props.onSetminp(event.target.value)
         this.setState({
             minp_request: '&minPrice='+event.target.value,
             tags: {...this.state.tags,minp: event.target.value},
@@ -124,13 +123,12 @@ class PackageSearch extends Component{
                             onDepartureChange={this.onDepartureChange.bind(this)}
 
                             tags={this.state.tags}
-                            
-                            onReset={this.onReset.bind(this)}
                         />
                     </div>
                     <div className="col-9 ">
                         <SearchContent 
                             loading={this.state.loading}
+                            
                             packages={this.props.packages}
 
                             tags={this.state.tags}
@@ -147,13 +145,11 @@ class PackageSearch extends Component{
 function mapStateToProps(state){
     return {
         packages: state.package_search.packages,
-        minp: state.package_search.minp,
     };
 }
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         onRequestPackage,
-        onSetminp,
     }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PackageSearch);
