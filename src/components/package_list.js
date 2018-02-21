@@ -17,7 +17,7 @@ export default class PackageList extends Component {
         axios.get('http://supertam.xyz:5000/package')
         .then(res => {
             console.log(res)
-            this.setState({ packages: res.data });
+            this.setState({ packages: res.data.packages });
         });
     }
     render_package_list_row(){

@@ -57,7 +57,6 @@ const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage
                                 <i className="fa fa-facebook-official"></i>
                                 Sign in with Facebook
                             </button>
-                            <a href='http://supertam.xyz:5000/auth/facebook' onClick={test} className='btn btn-primary'>facebook</a>
                         </div> 
                     </div>
                     <div className="modal-footer">

@@ -18,6 +18,7 @@ const initialState = {
     email: '',
     errorMsg: '',
     isLoggedIn: false,
+    profile_image: '',
     detail: {}
 }
 const user = (state = initialState, action) => {
@@ -44,11 +45,23 @@ const user = (state = initialState, action) => {
 
         case LOGIN_FACEBOOK_SUCCESS:
             console.log('facebook success')
+            //console.log(action)
+            //console.log(action.payload)
+            localStorage.setItem('login_token', 'test_key')
             return ({
+                isLoggedIn: true,
+                email: action.payload.email,
+                profile_image: action.payload.picture.data.url,
+                role: 'c',
+                errorMsg: '',
             })
         case LOGIN_FACEBOOK_FAILURE:
             console.log('facebook failure')
             return ({
+                role: 'guest',
+                email: '',
+                errorMsg: 'error',
+                isLoggedIn: false
             })
 
         case LOGOUT: 

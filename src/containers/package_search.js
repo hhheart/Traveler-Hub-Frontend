@@ -19,15 +19,15 @@ class PackageSearch extends Component{
             pname_request: '',
             minp_request: '',
             maxp_request: '',
-            arrival: '',
-            departure: '',
+            arrival_request: '',
+            departure_request: '',
 
             tags: {
                 pkname: '',
                 minp: '',
                 maxp: '',
-                avl: '',
-                dpt: '',
+                arrive: '',
+                depart: '',
             }
         }
     }    
@@ -51,19 +51,19 @@ class PackageSearch extends Component{
         })  
     }
     onArrivalChange(event){
-        this.setState({arrival: '&Arrival='+event.target.value})  
+        this.setState({arrival_request: '&Arrival='+event.target.value})  
     }
     onDepartureChange(event){
-        this.setState({departure: '&Departure='+event.target.value})  
+        this.setState({departure_request: '&Departure='+event.target.value})  
     }
-    onSearchSubmit(event){
+    onSearchSubmit(){
         this.setState({
             request: 
             this.state.pname_request+
             this.state.minp_request+
             this.state.maxp_request+
-            this.state.arrival+
-            this.state.departure
+            this.state.arrival_request+
+            this.state.departure_request
             ,
             loading:true,
         },() => this.getRequestLink())
@@ -91,14 +91,28 @@ class PackageSearch extends Component{
                 this.setState({
                     minp_request: '',
                     tags: {...this.state.tags,minp: ''},
-                }) 
+                },() => this.onSearchSubmit()) 
                 break;
             }
             case "maxp":{
                 this.setState({
                     maxp_request: '',
                     tags: {...this.state.tags,maxp: ''},
-                }) 
+                },() => this.onSearchSubmit()) 
+                break;               
+            }
+            case "arrive":{
+                this.setState({
+                    arrival_request: '',
+                    tags: {...this.state.tags,arrive: ''},
+                },() => this.onSearchSubmit()) 
+                break;               
+            }
+            case "depart":{
+                this.setState({
+                    departure_request: '',
+                    tags: {...this.state.tags,depart: ''},
+                },() => this.onSearchSubmit()) 
                 break;               
             }
             default: {

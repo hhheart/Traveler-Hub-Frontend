@@ -10,13 +10,17 @@ import {
     onLogin_facebook,
     check_token,
  } from '../actions/user';
-
+ import { 
+    FACEBOOK_GRAPH_API,
+} from '../constants/endpoints';
+import { resolve } from 'path';
 class Login extends Component{
     constructor() {
         super()
         this.state = {
             email:  '',
             password: '',
+            fb_graph_api_rq: '',
         }
     }    
     onEmailChange(event) {
@@ -35,11 +39,47 @@ class Login extends Component{
             console.log(response);
         })
     }
+    getFacebook_API_request(){
+
+    }
+
     onSubmit_facebook() {
-        this.props.onLogin_facebook()
-        .then(function(response){
-            console.log(response)
+        /*window.FB.logout(function(response) {
+            //console.log(response)
+            //alert('logged out')
+            // user is now logged out
+        });*/
+
+        const fb_rq_root = FACEBOOK_GRAPH_API
+        let fb_rq = "rq"
+        window.FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                console.log(response)
+                alert('logged in A')
+                let fb_rq_tk = fb_rq_root.replace("[id]", response.authResponse.userID) 
+                fb_rq = fb_rq_tk.replace("[key]", (response.authResponse.accessToken)) 
+                console.log('test-inside: '+ fb_rq)
+
+                this.props.onLogin_facebook(fb_rq,)
+            }
+            else {
+                window.FB.login(function(response) {
+                    alert('logged in B')
+                    var fb_rq_tk = fb_rq_root.replace("[id]", response.authResponse.userID) 
+                    fb_rq = fb_rq_tk.replace("[key]", (response.authResponse.accessToken)) 
+                }, {scope: 'email, public_profile'})
+            }
         })
+
+         setTimeout(() => {
+            console.log('test-outside: '+ fb_rq)
+            this.props.onLogin_facebook(fb_rq,)
+            .then(function(response){
+                console.log(response)
+            })
+         }, 3000); 
+        //console.log('test-outside: '+ this.getFacebook_API_request())
+        //window.FB.getAuthResponse()
     }
     render(){
         return (     

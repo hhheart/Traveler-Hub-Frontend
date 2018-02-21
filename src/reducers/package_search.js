@@ -13,7 +13,7 @@ const package_search = (state = initialState, action) => {
             console.log('search success')
             console.log(action.payload)
             return ({
-                packages: action.payload,
+                packages: action.payload.packages,
                 loading: false,
             })
         case SEARCH_FAILURE:

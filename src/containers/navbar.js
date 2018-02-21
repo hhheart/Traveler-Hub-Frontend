@@ -8,6 +8,7 @@ import { NavbarView } from '../components/navbar';
 class Navbar extends Component{
     componentWillMount(){
         this.props.check_token()
+        console.log(this.props.image)
     }
     handleLogout(){
         this.props.onLogout()
@@ -19,6 +20,7 @@ class Navbar extends Component{
             <NavbarView 
                 isLoggedIn={this.props.isLoggedIn}
                 email={this.props.email}
+                image={this.props.image}
                 handleLogout={this.handleLogout.bind(this)}
             />
         ) 
@@ -28,6 +30,7 @@ function mapStateToProps(state){
     return {
         isLoggedIn: state.user.isLoggedIn,
         email: state.user.email,
+        image: state.user.profile_image
     };
 }
 function mapDispatchToProps(dispatch){

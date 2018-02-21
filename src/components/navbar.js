@@ -34,7 +34,7 @@ export class NavbarView extends Component{
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                    <img src={require("../static/images/user.png")} alt="user" className="" style={{width:50+'px',height:50+'px'}}/>
+                    <img src={this.props.image} alt={require("../static/images/user.png")} className="" style={{width:50+'px',height:50+'px'}}/>
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
