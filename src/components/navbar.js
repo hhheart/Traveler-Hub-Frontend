@@ -29,12 +29,22 @@ export class NavbarView extends Component{
             </div>
         )
     }
+    renderImageProfile(){
+        if (this.props.image){
+            return <img src={this.props.image} alt="ProfileImage" 
+                className="" style={{width:50+'px',height:50+'px'}}/>
+        }
+        else {
+            return <img src={require("../static/images/user.png")} alt="ProfileImage" 
+                className="" style={{width:50+'px',height:50+'px'}}/>
+        }
+    }
     renderUserContent(){
         if (localStorage.getItem("login_token")){
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                    <img src={this.props.image} alt={require("../static/images/user.png")} className="" style={{width:50+'px',height:50+'px'}}/>
+                    {this.renderImageProfile()}
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

@@ -16,7 +16,7 @@ export default class PackageList extends Component {
     componentWillMount(){
         axios.get('http://supertam.xyz:5000/package')
         .then(res => {
-            console.log(res)
+            //console.log(res)
             this.setState({ packages: res.data.packages });
         });
     }
@@ -26,7 +26,6 @@ export default class PackageList extends Component {
         for(var i = 0; i < PackageItem.length; i+=4) {
             const oneRow = [];
             oneRow.push(PackageItem.slice(i, i+4).map(item => {
-            console.log(item._id)
             return (
                 <PackageListItem 
                         key={item._id}

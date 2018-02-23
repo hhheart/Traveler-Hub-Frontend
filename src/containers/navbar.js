@@ -1,24 +1,39 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { onLogout, check_token } from '../actions/user';
+import { 
+    onLogout, 
+    onLogoutFB,
+    delete_fb_app_permission, 
+    check_token 
+} from '../actions/user';
 
 import { NavbarView } from '../components/navbar';
 
 class Navbar extends Component{
     componentWillMount(){
         this.props.check_token()
-        console.log(this.props.image)
+        .then(()=>{
+            console.log('isLoggedIn: '+this.props.isLoggedIn)
+            console.log('fbLoggedIn: '+this.props.fbLoggedIn)
+        })
     }
     handleLogout(){
-        this.props.onLogout()
-        window.location.reload();
-        console.log('logout pass ')
+        if (this.props.fbLoggedIn && this.props.isLoggedIn){
+            this.props.delete_fb_app_permission()
+            .then(Response => {
+                console.log('fb deleted permission && logout apps')
+            })
+        }
+        else {
+            this.props.onLogout()
+            console.log('normal logout')
+            window.location.reload();
+        }
     }
     render(){
         return (
             <NavbarView 
-                isLoggedIn={this.props.isLoggedIn}
                 email={this.props.email}
                 image={this.props.image}
                 handleLogout={this.handleLogout.bind(this)}
@@ -29,6 +44,7 @@ class Navbar extends Component{
 function mapStateToProps(state){
     return {
         isLoggedIn: state.user.isLoggedIn,
+        fbLoggedIn: state.user.fbLoggedIn,
         email: state.user.email,
         image: state.user.profile_image
     };
@@ -36,6 +52,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         onLogout,
+        onLogoutFB,
+        delete_fb_app_permission,
         check_token,
     }, dispatch)
 }

@@ -73,13 +73,15 @@ export default class SearchBar extends Component {
                             className="form-control search-input-margin" 
                             type="date" 
                             placeholder="วันเดินทางไป"   
+                            value={this.props.tags.arrive}
                             onChange={this.props.onArrivalChange} />
                         <div className="search-input-title">วันเดินทางกลับ</div>
                         <input 
                             id="departure-date"
                             className="form-control search-input-margin" 
                             type="date" 
-                            placeholder="วันเดินทางกลับ"                    
+                            placeholder="วันเดินทางกลับ"    
+                            value={this.props.tags.depart}                
                             onChange={this.props.onDepartureChange}/>                  
                         
                         <div className="search-input-title">ภูมิภาค/จังหวัด</div>

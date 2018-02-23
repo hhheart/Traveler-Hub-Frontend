@@ -35,7 +35,6 @@ class PackageSearch extends Component{
         this.setState({
             pname_request: '&name='+event.target.value,
             tags: {...this.state.tags,pkname: event.target.value},
-
         })  
     }
     onMinPriceChange(event){
@@ -51,10 +50,16 @@ class PackageSearch extends Component{
         })  
     }
     onArrivalChange(event){
-        this.setState({arrival_request: '&Arrival='+event.target.value})  
+        this.setState({
+            arrival_request: '&Arrival='+event.target.value,
+            tags: {...this.state.tags,arrive: event.target.value},
+        })  
     }
     onDepartureChange(event){
-        this.setState({departure_request: '&Departure='+event.target.value})  
+        this.setState({
+            departure_request: '&Departure='+event.target.value,
+            tags: {...this.state.tags,depart: event.target.value},
+        })  
     }
     onSearchSubmit(){
         this.setState({

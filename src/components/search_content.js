@@ -40,6 +40,12 @@ export default class PackageList extends Component {
             case "maxp":{
                 return "ราคาสูงสุด "+value+" บาท"
             }
+            case "arrive":{
+                return "วันเดินทางไป \""+ value +"\""
+            }
+            case "depart":{
+                return "วันเดินทางกลับ \""+ value +"\""
+            }
             default: {
                 return console.log("renderTagText error !")
             }
@@ -51,7 +57,7 @@ export default class PackageList extends Component {
     renderContent(){
         if (this.props.loading){
             return(
-                <div class="loader mx-auto"></div>
+                <div className="loader mx-auto"></div>
             )
         }
         else {
@@ -106,12 +112,12 @@ export default class PackageList extends Component {
                                     className="card-img"
                                     style={{ height:120+'px'}}  
                                 />
-                                <div class="card-img-overlay">
-                                    <h5 class="card-title">{data[i].region}</h5>
+                                <div className="card-img-overlay">
+                                    <h5 className="card-title">{data[i].region}</h5>
                                 </div>
                             </div>
-                            <div class="collapse" id={String(i+j)}>
-                                <div class="card card-body">
+                            <div className="collapse" id={String(i+j)}>
+                                <div className="card card-body">
                                     {this.renderProvinces(i)}
                                 </div>
                             </div>
@@ -153,8 +159,8 @@ export default class PackageList extends Component {
                                 className="card-img"
                                 style={{ height:90+'px'}} 
                             />
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">ประเภท</h5>
+                            <div className="card-img-overlay">
+                                <h5 className="card-title">ประเภท</h5>
                             </div>
                         </div>
                     </div> 
