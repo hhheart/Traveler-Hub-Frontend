@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import PackageListItem from './package_list_item';
-//import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {onRequestPackage} from '../actions/packages_get';
 import axios from 'axios';
+
+import Pagination from './pagination';
+import PackageListItem from './package_list_item';
+
 import '../static/css/package_list.css'; 
 
-export default class PackageList extends Component {
+class PackageList extends Component {
     constructor(props){
         super(props);
             this.state = {  
@@ -55,9 +60,20 @@ export default class PackageList extends Component {
                     </div>
                 </div>
                 <footer className="footer">
-                    <div className="text-center align-middle test">pagination</div>
+                    <Pagination />
                 </footer>
             </div>
         )
     }    
 }
+function mapStateToProps(state){
+    return {
+        packages: state.package_search.packages,
+    };
+}
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        //onRequestPackage,
+    }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PackageList);

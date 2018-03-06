@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 
 import PackageListItem from './package_list_item';
+import Pagination from './pagination';
 
 import '../static/css/package_list.css'; 
 
@@ -64,15 +65,14 @@ export default class PackageList extends Component {
             if(this.props.packages){
                 return(
                     <div>
-    
-                            <div>"ผลลัพธ์การค้นหา"</div>
-                            <div className="card tagbox-body-layout" >
-                                <div classNmae="card-body ">
-                                    {this.renderTag()}
-                                </div>
+                        <div>"ผลลัพธ์การค้นหา"</div>
+                        <div className="card tagbox-body-layout" >
+                            <div classNmae="card-body ">
+                                {this.renderTag()}
                             </div>
-                        
+                        </div>    
                         {this.render_package_list_row()}
+                        <Pagination />
                     </div>
                 )
             }

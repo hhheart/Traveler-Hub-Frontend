@@ -16,13 +16,10 @@ import {
 
 const initialState = {
     role: 'guest',
-
     isLoggedIn: false,
     fbLoggedIn: false,
-    
     email: '',
     profile_image: '',
-
     errorMsg: '',
 }
 const user = (state = initialState, action) => {

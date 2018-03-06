@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { 
     onLogout, 
-    onLogoutFB,
     delete_fb_app_permission, 
     check_token 
 } from '../actions/user';
@@ -13,10 +12,6 @@ import { NavbarView } from '../components/navbar';
 class Navbar extends Component{
     componentWillMount(){
         this.props.check_token()
-        .then(()=>{
-            console.log('isLoggedIn: '+this.props.isLoggedIn)
-            console.log('fbLoggedIn: '+this.props.fbLoggedIn)
-        })
     }
     handleLogout(){
         if (this.props.fbLoggedIn && this.props.isLoggedIn){
@@ -52,7 +47,6 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         onLogout,
-        onLogoutFB,
         delete_fb_app_permission,
         check_token,
     }, dispatch)

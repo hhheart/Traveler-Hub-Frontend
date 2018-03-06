@@ -89,7 +89,7 @@ class PackageSearch extends Component{
                 this.setState({
                     pname_request: '',
                     tags: {...this.state.tags,pkname: ''},
-                }) 
+                },() => this.onSearchSubmit()) 
                 break;
             }
             case "minp":{

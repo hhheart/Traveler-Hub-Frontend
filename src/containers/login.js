@@ -14,7 +14,6 @@ import {
  import { 
     FACEBOOK_GRAPH_API,
 } from '../constants/endpoints';
-//import { resolve } from 'path';
 class Login extends Component{
     constructor() {
         super()
@@ -42,23 +41,14 @@ class Login extends Component{
         })
     }
     getFacebook_API_request = (response) =>{
+        const fb_rq_template = FACEBOOK_GRAPH_API
         localStorage.setItem('fb_userID',response.authResponse.userID)
         localStorage.setItem('fb_accessToken',response.authResponse.accessToken)
-        const fb_rq_template = FACEBOOK_GRAPH_API
+
         var fb_rq_tk = fb_rq_template.replace("[id]", response.authResponse.userID) 
         var fb_rq = fb_rq_tk.replace("[key]", (response.authResponse.accessToken)) 
         return fb_rq
     }
-    /*callbackFB = (response) => {
-        if (response.status === 'connected') {
-            this.setState({fb_graph_api_rq: this.getFacebook_API_request(response)},
-                () => this.props.onLogin_facebook(this.state.fb_graph_api_rq))
-            alert('You are loggedIn with Facebook !')
-        }
-        else {
-            window.FB.login((loginResponse)=>this.callbackFB(loginResponse),{scope: 'email, public_profile'})
-        }
-    }*/
     onSubmit_facebook() {
         function asyncTest(){
             return new Promise(function(resolve,reject){
@@ -88,7 +78,7 @@ class Login extends Component{
             .then((result) =>{
                 this.props.onLogin_facebook(this.getFacebook_API_request(result))
                 .then( userData => {
-                    console.log(userData)
+                    //console.log(userData)
                     this.props.postFB_dataToServer({
                         email: userData.payload.email,
                         userID: localStorage.getItem('fb_userID'),
@@ -97,7 +87,7 @@ class Login extends Component{
                         img: userData.payload.picture.data.url,
                     })
                     .then(response => {
-                        console.log(response.payload)
+                        //console.log(response.payload)
                         localStorage.setItem('login_token', response.payload.token)
                     })
                 })
@@ -105,7 +95,6 @@ class Login extends Component{
             .catch((error) => {
                 alert(error)
             })
-        //window.FB.getLoginStatus(this.callbackFB)
     }
     render(){
         return (     
@@ -118,7 +107,6 @@ class Login extends Component{
         )
     }
 }
-
 function mapStateToProps(state){
     return {
         email: state.user.email,

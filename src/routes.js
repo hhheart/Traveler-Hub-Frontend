@@ -8,7 +8,7 @@ import {
 import App from './components/App';
 import HomePage from './components/home';
 import PackageList from './components/package_list';
-import PackageDetail from './components/package_detail';
+import PackageDetail from './containers/package_detail';
 import PackageSearch from './containers/package_search';
 import Register from './components/register';
 import Login from './containers/login';
@@ -22,7 +22,13 @@ export default (
         <div>
             <Switch>  
                     <Route exact path={`${URL_ROOT}`} component={HomePage} />
-                    <Route path={'/package/detail/:id'} component={PackageDetail} />
+                    <Route path={'/package/detail/:id'} exact
+                        render={(props) => (
+                            <PackageDetail 
+                                test="hi" 
+                                {...props}/>
+                        )}
+                    />
                     <Route path={'/package/search/'} component={PackageSearch} />
                     <Route path={'/package'} component={PackageList} />      
                     <Route path={'/member/register'} component={Register}/>

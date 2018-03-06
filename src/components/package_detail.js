@@ -31,8 +31,8 @@ const Timeline = ({data}) => {
         </ul>
     )
 }
-const PackageDetail = (props) => {
-    const {package_item} = props.location.state;
+const PackageDetail = ({package_itm}) => {
+    const package_item = package_itm;
     return (  
         <div>         
             <div className="container">
@@ -62,7 +62,7 @@ const PackageDetail = (props) => {
                             </div>
                         </div>
                         <div className="row-md-2 text-center">
-                            <button className="btn btn-primary btn-block ">จองเลย !</button>
+                            <a className="btn btn-primary btn-block " href={package_item.url}>จองเลย !</a>
                         </div>
                     </div>
                 </div>
