@@ -4,7 +4,7 @@
 .jumbotron-btn {
     margin: 5px;
 }
-.footer {
-    height: var(--footer_height);
-    width: auto;
+
+.set-bottom {
+    margin-bottom: 0;
 }

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PackageListItem from './package_list_item';
 import axios from 'axios';
 
+import Footer from '../components/footer';
+
 import '../static/css/home.css';
 import '../static/css/ribbon.css';
 
@@ -147,9 +149,7 @@ export default class HomePage extends Component {
                     </div>
                     <hr/>
                 </div>             
-                <footer className="test-home-footer">
-                    
-                </footer>
+                <Footer />
             </div>
         )
     }    

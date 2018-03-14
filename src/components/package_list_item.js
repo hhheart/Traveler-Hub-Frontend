@@ -42,8 +42,7 @@ const PackageListItem = ({package_item}) => {
                         className="btn btn-detail"
                         to={{
                             pathname: `/package/detail/${ID}`, 
-                            state: {package_item: package_item, 
-                        }}}>
+                            }}>
                         ดูรายละเอียด
                     </Link>                                                       
                 </div>                 

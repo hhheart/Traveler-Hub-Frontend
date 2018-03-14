@@ -19,6 +19,9 @@
         
     }
 }
+.detail-layout {
+    padding-top: 5vh;
+}
 .package-detail-header {
     min-height: 40vh;
     max-height: auto;

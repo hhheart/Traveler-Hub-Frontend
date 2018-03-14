@@ -1,30 +1,42 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {onRequestPackage} from '../actions/packages_get';
+//import {onRequestPackage} from '../actions/packages_get';
 import axios from 'axios';
 
 import Pagination from './pagination';
 import PackageListItem from './package_list_item';
+import Footer from './footer';
 
-import '../static/css/package_list.css'; 
+//import '../static/css/package_list.css'; 
 
 class PackageList extends Component {
     constructor(props){
         super(props);
             this.state = {  
                 packages: [],
+                total_page: 1,
+                page: 1,
             };  
 
     }    
     // run before component rendered
     componentWillMount(){
-        axios.get('http://supertam.xyz:5000/package')
-        .then(res => {
-            //console.log(res)
-            this.setState({ packages: res.data.packages });
-        });
+        this.fetch_packages_page(this.props.match.params.page_id)
     }
+    fetch_packages_page(num){
+        axios.get(`http://supertam.xyz:5000/package?page=${num}`)
+        .then(res => {
+            this.setState({ 
+                packages: res.data.packages,  
+                total_pages: res.data.totalPage,
+                current_page: res.data.currentPage,
+            });
+        })
+    }
+    /*onChangePage(num){
+        console.log(num)
+    }*/
     render_package_list_row(){
         const PackageItem = this.state.packages;
         const rowContent = [];
@@ -52,23 +64,23 @@ class PackageList extends Component {
                         </p>
                     </div>
                 </div>
-                <div className=" bg-light">
-                    <div className="container-fluid">
-                                                     
-                            {this.render_package_list_row()}
-                        
+                <div className="bg-light">
+                    <div className="container-fluid">                         
+                        {this.render_package_list_row()} 
                     </div>
+                    <Pagination 
+                        total_pages={this.state.total_pages} 
+                        current_page={this.state.current_page}
+                        />
                 </div>
-                <footer className="footer">
-                    <Pagination />
-                </footer>
+                <Footer />
             </div>
         )
     }    
 }
 function mapStateToProps(state){
     return {
-        packages: state.package_search.packages,
+        //packages: state.package_search.packages,
     };
 }
 function mapDispatchToProps(dispatch){

@@ -64,3 +64,16 @@
 .layout {
     margin-top: 5vh;
 }
+
+.form-margin {
+    margin-bottom: 2vh;
+}
+
+
+.btn-custom {
+    width: 20vw !important;
+}
+
+.btn-custom:hover {
+    color: #fff;
+}

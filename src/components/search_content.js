@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-
+import { Redirect } from 'react-router';
 import PackageListItem from './package_list_item';
 import Pagination from './pagination';
 
@@ -8,6 +8,16 @@ import '../static/css/package_list.css';
 import data from '../static/js/provinces.json';
 
 export default class PackageList extends Component {
+    constructor(props){
+        super(props);
+            this.state = {  
+                regions : [],
+            };  
+
+    }    
+    componentWillMount(){
+        this.setState({regions:this.props.regions})
+    }
     renderTag(){
         //console.log(this.props.tags)
         const tagsContent = [];
@@ -55,41 +65,10 @@ export default class PackageList extends Component {
     onClickTags(key){
         return () => this.props.onReset(key.toString())
     }
-    renderContent(){
-        if (this.props.loading){
-            return(
-                <div className="loader mx-auto"></div>
-            )
-        }
-        else {
-            if(this.props.packages){
-                return(
-                    <div>
-                        <div>"ผลลัพธ์การค้นหา"</div>
-                        <div className="card tagbox-body-layout" >
-                            <div classNmae="card-body ">
-                                {this.renderTag()}
-                            </div>
-                        </div>    
-                        {this.render_package_list_row()}
-                        <Pagination />
-                    </div>
-                )
-            }
-            else{
-                return (
-                    <div>
-                        <div className="jumbotron">
-                            "ค้นหาอย่างรวดเร็ว"
-                        </div>
-                        <div>ค้นหาจากภูมิภาค/จังหวัด</div>
-                        {this.renderQuickSearchRegion()}
-                        <div>ค้นหาจากประเภท</div>
-                        {this.renderQuickSearchTag()}
-                    </div>
-                )
-            }
-        }
+    onChangePage(num){
+        return (
+            <Redirect to={`/package/page=${num}`} push={true} />
+        )
     }
     renderQuickSearchRegion(){
         const rowContent = [];
@@ -151,19 +130,19 @@ export default class PackageList extends Component {
             for (var j=0; j<3 ;j++) {
                 RowItm.push(      
                     <div className="col-4" style={{padding:5}}>
-                    <div className="card" style={{marginTop:10+'px'}}>
-                        <div className="card-body btn" style={{padding:0+'px'}}>
-                           <img 
-                                alt="regionIMG" 
-                                src={require('../static/images/test.jpeg')} 
-                                className="card-img"
-                                style={{ height:90+'px'}} 
-                            />
-                            <div className="card-img-overlay">
-                                <h5 className="card-title">ประเภท</h5>
+                        <div className="card" style={{marginTop:10+'px'}}>
+                            <div className="card-body btn" style={{padding:0+'px'}}>
+                            <img 
+                                    alt="regionIMG" 
+                                    src={require('../static/images/test.jpeg')} 
+                                    className="card-img"
+                                    style={{ height:90+'px'}} 
+                                />
+                                <div className="card-img-overlay">
+                                    <h5 className="card-title">ประเภท</h5>
+                                </div>
                             </div>
-                        </div>
-                    </div> 
+                        </div> 
                     </div>     
                 )
             }
@@ -173,6 +152,7 @@ export default class PackageList extends Component {
         return rowContent;
     }
     render_package_list_row(){
+        console.log(this.props.packages[0])
         const PackageItem = this.props.packages;
         const rowContent = [];
         for(var i = 0; i < PackageItem.length; i+=3) {
@@ -187,12 +167,54 @@ export default class PackageList extends Component {
         }
         return rowContent;
     }
+    renderContent(){
+        if (this.props.loading){
+            return(
+                <div className="loader mx-auto"></div>
+            )
+        }
+        else {
+            if(this.props.packages){
+                return(
+                    <div>
+                        <div>"ผลลัพธ์การค้นหา"</div>
+                        <div className="card tagbox-body-layout" >
+                            <div classNmae="card-body ">
+                                {this.renderTag()}
+                            </div>
+                        </div>    
+                        {this.render_package_list_row()}
+                        <Pagination  
+                            total_pages={this.props.total_pages} 
+                            current_page={this.props.current_page}
+                            onChangePage={this.onChangePage.bind(this)}/>
+                    </div>
+                )
+            }
+            else{
+                return (
+                    <div>
+                        <div className="jumbotron">
+                            "ค้นหาอย่างรวดเร็ว"
+                        </div>
+                        <div>ค้นหาจากภูมิภาค/จังหวัด</div>
+                        {this.renderQuickSearchRegion()}
+                        <div>ค้นหาจากประเภท</div>
+                        {this.renderQuickSearchTag()}
+                    </div>
+                )
+            }
+        }
+    }
     render(){
-        //console.log(this.props.packages)
+        //console.log( data[0])
+        console.log(this.props.dictionary.regions)
+        //const data = JSON.parse(this.props.dictionary.regions[0])
+        //console.log(data)
         return(
             <div>
                 <div className="bg-light">
-                    <div className="container-fluid">                                          
+                    <div className="container-fluid">    
                             {this.renderContent()}
                     </div>
                 </div>

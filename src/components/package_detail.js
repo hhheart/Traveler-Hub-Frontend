@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import Footer from '../components/footer';
+
 import '../static/css/package_detail.css'; 
 import '../static/css/test_timeline.css'; 
 
@@ -35,7 +37,7 @@ const PackageDetail = ({package_itm}) => {
     const package_item = package_itm;
     return (  
         <div>         
-            <div className="container">
+            <div className="container detail-layout">
                 <div id="header-content" className="row">           
                     <img className="col-md-5 package-detail-image img-fluid text-center" 
                         alt="package_detail_image" 
@@ -69,10 +71,9 @@ const PackageDetail = ({package_itm}) => {
                 <hr/>
                     <Timeline data={package_item.timeline}/>
                 <hr/>
-                <div className="page-return"><Link to="/root">go back</Link></div>
+                <div className="page-return"><Link to="/">go back</Link></div>
             </div>
-            <footer className="test-home-footer">
-            </footer>
+            <Footer />
         </div>
     )
 }

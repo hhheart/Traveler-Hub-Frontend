@@ -8,9 +8,9 @@
     margin: 0;
 }
 .search-bar-style {
-    box-shadow: 1px 1px 10px grey;
+    box-shadow: 1px 1px 5px grey;
     width: 22vw;
-    height: 88vh;
+    height: auto;
     position: fixed;
     top:12vh;
     left: 0.1vw;

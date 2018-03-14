@@ -51,8 +51,7 @@ export class NavbarView extends Component{
                         {this.props.email}
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="#">ข้อมูลผู้ใช้งาน</a>
-                        <a className="dropdown-item" href="#">ประวัติ</a>
+                            <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
                         <div className="dropdown-divider text-center"></div>
                             <button
                                 className="btn btn-outline-danger btn-logout-layout"
@@ -102,10 +101,13 @@ export class NavbarView extends Component{
                                 <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/package">แพ็คเกจทั้งหมด</Link>
+                                <Link className="nav-link" to={`/package/page=${1}`}>แพ็คเกจทั้งหมด</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/package/search">ค้นหาแพ็คเกจ</Link>
+                                <Link className="nav-link" to={`/package/search/page=${1}`}>ค้นหาแพ็คเกจ</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={`/`}>เกี่ยวกับเรา</Link>
                             </li>
                         </ul>
                         {this.renderUserContent()}

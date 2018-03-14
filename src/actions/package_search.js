@@ -4,10 +4,15 @@ import {
     SEARCH_REQUEST,
     SEARCH_SUCCESS,
     SEARCH_FAILURE,
+
+    DICTIONARY_REQUEST,
+    DICTIONARY_SUCCESS,
+    DICTIONARY_FAILURE,
 } from '../constants/actions_types';
 
 import { 
-    SEARCH_PACKAGE_ROOT
+    SEARCH_PACKAGE_ROOT,
+    SEARCH_DICTIONARY
 } from '../constants/endpoints';
 
 export const onRequestPackage = (rq) =>({
@@ -17,6 +22,19 @@ export const onRequestPackage = (rq) =>({
         types: [    
             SEARCH_REQUEST,
             SEARCH_SUCCESS,
-            SEARCH_FAILURE,]
+            SEARCH_FAILURE,
+        ]
+    }
+})
+
+export const onRequestDictionary = () =>({
+    [RSAA]: {
+        endpoint: SEARCH_DICTIONARY,
+        method: 'GET',
+        types: [    
+            DICTIONARY_REQUEST,
+            DICTIONARY_SUCCESS,
+            DICTIONARY_FAILURE,
+        ]
     }
 })

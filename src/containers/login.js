@@ -1,7 +1,7 @@
 import React, {Component} from 'react'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { withRouter } from 'react-router-dom';
 import LoginModal from '../components/login';
 
 import '../static/css/social-button.css';
@@ -84,7 +84,7 @@ class Login extends Component{
                         userID: localStorage.getItem('fb_userID'),
                         firstname: userData.payload.first_name,
                         lastname: userData.payload.last_name,
-                        img: userData.payload.picture.data.url,
+                        profileImage: userData.payload.picture.data.url,
                     })
                     .then(response => {
                         //console.log(response.payload)
@@ -97,6 +97,7 @@ class Login extends Component{
             })
     }
     render(){
+        
         return (     
             <LoginModal  
                 onEmailChange={this.onEmailChange.bind(this)}
@@ -121,4 +122,4 @@ function mapDispatchToProps(dispatch){
         check_token,
     }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

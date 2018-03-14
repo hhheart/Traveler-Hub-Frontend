@@ -1,0 +1,14 @@
+.footer-layout {
+    height: 10vh;
+    background-color: #ddd;  
+}
+.footer-layout-dis {
+    position: absolute;
+    bottom: 0;
+}
+
+.footer-text-layout {
+    font-size: 1vw;
+    margin-left: 1vw;
+    line-height: 10vh;
+}

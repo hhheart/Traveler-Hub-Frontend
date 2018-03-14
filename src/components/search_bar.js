@@ -86,8 +86,8 @@ export default class SearchBar extends Component {
                         
                         <div className="search-input-title">ภูมิภาค/จังหวัด</div>
                         <input className="form-control search-input-margin" type="search" placeholder="ภูมิภาค/จังหวัด"/>
-                        <div className="search-input-title">คะแนน</div>
-                        <input className="form-control search-input-margin" type="search" placeholder="คะแนน"/>
+                        <div className="search-input-title">บริษัท</div>
+                        <input className="form-control search-input-margin" type="search" placeholder="บริษัท"/>
                         <div className="search-input-title">คำค้นหาพิเศษ</div>
                         <input className="form-control search-input-margin" type="search" placeholder="special tags"/>
 

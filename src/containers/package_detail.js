@@ -10,7 +10,6 @@ class PackageList extends Component {
         super(props);
             this.state = {  
                 packages: '',
-                loading: true,
             };  
 
     }    
@@ -18,7 +17,7 @@ class PackageList extends Component {
     componentWillMount(){
         axios.get(`http://supertam.xyz:5000/package/${this.props.match.params.id}`)
         .then(res => {
-            console.log(res.data)
+            //console.log(res.data)
             this.setState({ packages: res.data });
         });
     }
@@ -35,10 +34,6 @@ class PackageList extends Component {
         }
     }
     render(){ 
-        console.log(this.props.test)
-        console.log(this.props.match.params.id)
-        console.log(this.props.location.state)
-        console.log(this.state.packages)
         return (
             this.IsLoading()
         )

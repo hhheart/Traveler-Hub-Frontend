@@ -23,7 +23,7 @@ a,button{
     box-shadow: 1px 1px 5px grey;
 }
 
-.nav-link {color: #f00;}
+.nav-link {color: #000;}
 .nav-link:focus {color: #fcb034 !important;}
 
 .dropdown-menu { 

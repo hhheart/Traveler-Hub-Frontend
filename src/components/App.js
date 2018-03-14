@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../containers/navbar';
-
+import {withRouter} from 'react-router-dom';
 import '../static/css/App.css';
 
 const App = ( {children} ) => (
@@ -11,4 +11,4 @@ const App = ( {children} ) => (
     </div>
 )
 
-export default App
+export default withRouter(App)

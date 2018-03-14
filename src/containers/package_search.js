@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 
 import SearchBar from '../components/search_bar';
 import SearchContent from '../components/search_content';
+import Footer from '../components/footer';
 
-import {onRequestPackage} from '../actions/package_search';
+import {
+    onRequestPackage, 
+    onRequestDictionary
+} from '../actions/package_search';
 
 import '../static/css/package_search.css';
 class PackageSearch extends Component{
@@ -21,6 +25,7 @@ class PackageSearch extends Component{
             maxp_request: '',
             arrival_request: '',
             departure_request: '',
+            page: 1,
 
             tags: {
                 pkname: '',
@@ -31,6 +36,12 @@ class PackageSearch extends Component{
             }
         }
     }    
+    componentWillMount(){
+        this.props.onRequestDictionary()
+        .then(function (response) {
+            console.log(response);
+        })
+    }
     onPNameChange(event){   
         this.setState({
             pname_request: '&name='+event.target.value,
@@ -68,8 +79,7 @@ class PackageSearch extends Component{
             this.state.minp_request+
             this.state.maxp_request+
             this.state.arrival_request+
-            this.state.departure_request
-            ,
+            this.state.departure_request,
             loading:true,
         },() => this.getRequestLink())
     }
@@ -147,16 +157,17 @@ class PackageSearch extends Component{
                     <div className="col-9 ">
                         <SearchContent 
                             loading={this.state.loading}
-                            
                             packages={this.props.packages}
-
+                            total_pages={this.props.total_pages}
+                            current_page={this.props.current_page}
                             tags={this.state.tags}
                             onReset={this.onReset.bind(this)}
+
+                            dictionary={this.props.dictionary}
                         /> 
                     </div>                  
                 </div>
-                <footer className="test-home-footer">
-                </footer>
+                <Footer />
         </div>
         )
     }
@@ -164,11 +175,15 @@ class PackageSearch extends Component{
 function mapStateToProps(state){
     return {
         packages: state.package_search.packages,
+        total_pages: state.package_search.total_pages,
+        current_page: state.package_search.current_page,
+        dictionary: state.package_search.dictionary,
     };
 }
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         onRequestPackage,
+        onRequestDictionary,
     }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PackageSearch);

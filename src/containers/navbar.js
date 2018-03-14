@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
     onLogout, 
@@ -18,12 +19,13 @@ class Navbar extends Component{
             this.props.delete_fb_app_permission()
             .then(Response => {
                 console.log('fb deleted permission && logout apps')
+                this.props.history.push('/')
             })
         }
         else {
             this.props.onLogout()
             console.log('normal logout')
-            window.location.reload();
+            this.props.history.push('/')
         }
     }
     render(){
@@ -51,4 +53,4 @@ function mapDispatchToProps(dispatch){
         check_token,
     }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

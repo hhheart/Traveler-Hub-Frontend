@@ -25,16 +25,18 @@ const initialState = {
 const user = (state = initialState, action) => {
     switch(action.type) {
         case AUTHENTICATION_SUCCESS:
-            console.log('authentication success')
-            if (localStorage.getItem('fb_userID')){  
+            if (localStorage.getItem('fb_userID') !== null){  
+                console.log('authentication facebook success')
                 return ({
                     fbLoggedIn: true,
                     isLoggedIn: true,
                     email: action.payload.email,
+                    profile_image: action.payload.profileImage,
                     role: action.payload.usertype,              
                 })
             }
             else {
+                console.log('authentication success')
                 return ({
                     fbLoggedIn: false,
                     isLoggedIn: true,

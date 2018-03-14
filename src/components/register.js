@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import  Footer from '../components/footer';
 import '../static/css/register.css';
 
 import $ from 'jquery';
@@ -97,28 +98,28 @@ export default class Register extends Component{
     render(){
         return(    
             <div className="layout">          
-                <div class="row bs-wizard setup-panel">     
-                    <div class="col-4 bs-wizard-step first-child active">
-                        <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#step-1" class="first-child bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center">รายละเอียดเบื้องต้น</div>
+                <div className="row bs-wizard setup-panel">     
+                    <div className="col-4 bs-wizard-step first-child active">
+                        <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
+                        <div className="progress"><div className="progress-bar"></div></div>
+                        <a href="#step-1" className="first-child bs-wizard-dot"></a>
+                        <div className="bs-wizard-info text-center">รายละเอียดเบื้องต้น</div>
                     </div>                 
-                    <div class="col-4 bs-wizard-step disabled">
-                        <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 2</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#step-2" class="bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center">รายละเอียดทั่วไป</div>
+                    <div className="col-4 bs-wizard-step disabled">
+                        <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 2</div>
+                        <div className="progress"><div className="progress-bar"></div></div>
+                        <a href="#step-2" className="bs-wizard-dot"></a>
+                        <div className="bs-wizard-info text-center">รายละเอียดทั่วไป</div>
                     </div>
                     
-                    <div class="col-4 bs-wizard-step last-child disabled">
-                        <div class="text-center bs-wizard-stepnum">ขั้นตอนที่ 3</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#step-3" class="bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center">เสร็จสิ้น!</div>
+                    <div className="col-4 bs-wizard-step last-child disabled">
+                        <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 3</div>
+                        <div className="progress"><div className="progress-bar"></div></div>
+                        <a href="#step-3" className="bs-wizard-dot"></a>
+                        <div className="bs-wizard-info text-center">เสร็จสิ้น!</div>
                     </div>
                 </div>   
-                <form class="was-validated" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:5000/user" method="post" noValidate>
+                <form className="was-validated form-margin" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:5000/user" method="post" noValidate>
                     <div className="row setup-content" id="step-1">
                         <div className="col-8 offset-2 col-md-6 offset-md-3">                           
                             <h3>รายละเอียดเบื้องต้น</h3>
@@ -136,19 +137,6 @@ export default class Register extends Component{
                                 <div className="invalid-feedback">กรุณาระบุ อีเมลล์</div>
                             </div>
                             <div className="form-group">
-                                <label className="control-label">ชื่อผู้ใช้งาน</label>
-                                <input 
-                                    name="username"
-                                    maxLength="100" 
-                                    type="text" 
-                                    className="form-control" 
-                                    placeholder="Enter Username" 
-                                    onChange={this.onChange}
-                                    value={this.state.POST_DATA.username}
-                                    required/>
-                                <div className="invalid-feedback">กรุณาระบุ ชื่อผู้ใช้งาน</div>
-                            </div>
-                            <div className="form-group">
                                 <label className="control-label">รหัสผ่าน</label>
                                 <input 
                                     name="password"
@@ -161,7 +149,22 @@ export default class Register extends Component{
                                     required/>
                                 <div className="invalid-feedback">กรุณาระบุ รหัสผ่าน</div>
                             </div>
-                            <button className="btn btn-primary nextBtn btn-lg pull-left" type="button" >ถัดไป</button>                        
+                            <div className="form-group">
+                                <label className="control-label">ยืนยันรหัสผ่าน</label>
+                                <input 
+                                    name="password"
+                                    maxLength="100" 
+                                    type="password" 
+                                    className="form-control" 
+                                    placeholder="Enter Password" 
+                                    onChange={this.onChange}
+                                    value={this.state.POST_DATA.password}
+                                    required/>
+                                <div className="invalid-feedback">กรุณาระบุ รหัสผ่าน</div>
+                            </div>
+                            <div className="text-center" >
+                                <button className="btn btn-outline-warning nextBtn btn-custom" type="button" >ถัดไป</button>
+                            </div>                        
                         </div>
                     </div>
                     <div className="row setup-content" id="step-2">
@@ -194,8 +197,8 @@ export default class Register extends Component{
                                             required/>
                                         <div className="invalid-feedback">กรุณาระบุ นามสกุล</div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label">วัน/เดือน/ปี เกิด</label>
+                                    <div className="form-group">
+                                        <label className="control-label">วัน/เดือน/ปี เกิด</label>
                                         <input 
                                             type="date" 
                                             id="example-date-input" 
@@ -204,44 +207,50 @@ export default class Register extends Component{
                                         <div className="invalid-feedback">กรุณาระบุ วัน/เดือน/ปี เกิด</div>
                                     </div>
                                     <div className="form-group">
-                                        <div class="custom-control custom-radio">
+                                        <div className="custom-control custom-radio">
                                             <input 
                                                 name="gender" 
                                                 type="radio" 
-                                                class="form-check-input" 
+                                                className="form-check-input" 
                                                 id="gender_male" 
                                                 onChange={this.onChange}
                                                 value="male" 
                                                 required/>
-                                            <label class="control-label" for="gender_male" >ชาย</label>
+                                            <label className="control-label" for="gender_male" >ชาย</label>
                                         </div>
-                                        <div class="custom-control custom-radio mb-3">
+                                        <div className="custom-control custom-radio mb-3">
                                             <input 
                                                 name="gender"
                                                 type="radio" 
-                                                class="form-check-input" 
+                                                className="form-check-input" 
                                                 id="gender_female" 
                                                 onChange={this.onChange} 
                                                 value="female" 
                                                 required/>
-                                            <label class="control-label" for="gender_female">หญิง</label>
+                                            <label className="control-label" for="gender_female">หญิง</label>
                                         </div>
                                     </div>
-                                    <button className="btn btn-primary nextBtn" type="button" >ถัดไป</button>
+                                    <div className="text-center" >
+                                        <button className="btn btn-outline-warning nextBtn btn-custom" type="button" >ถัดไป</button>
+                                    </div> 
                             </div>
                         </div>
                     </div>
                     <div className="row setup-content" id="step-3">
                         <div className="col-6 offset-md-3">
                             <div className="col-md-12">
-                            <h3>เสร็จสิ้น!</h3>
-                            <button className="btn btn-success" type="submit" value="submit">ยืนยัน</button>
+                                <h3 className="text-center">ยืนยันเพื่อเสร็จสิ้น!</h3>
+                                <div className="text-center" >
+                                    <button 
+                                        className="btn btn-outline-success nextBtn btn-custom" 
+                                        type="submit" 
+                                        value="submit">ยืนยัน</button>
+                                </div> 
                             </div>
                         </div>
                     </div>
                 </form> 
-                <footer className="test-home-footer">
-                </footer>  
+                <Footer />
             </div>       
         )
     }
