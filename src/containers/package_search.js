@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { scaleRotate as Menu } from 'react-burger-menu'
 import SearchBar from '../components/search_bar';
 import SearchContent from '../components/search_content';
 import Footer from '../components/footer';
@@ -17,15 +18,21 @@ class PackageSearch extends Component{
         super()
         this.state = {
             loading: false,
+            sidebarIsOpen: false,
 
             request:'',
-
             pname_request: '',
             minp_request: '',
             maxp_request: '',
             arrival_request: '',
             departure_request: '',
-            page: 1,
+            region_request: '',
+            province_request: '',
+            company_request: '',
+            tags_request: '',
+            page_request: '&page=1',
+
+            Qtag_request: '',
 
             tags: {
                 pkname: '',
@@ -33,14 +40,30 @@ class PackageSearch extends Component{
                 maxp: '',
                 arrive: '',
                 depart: '',
-            }
+                region: '',
+                provinces: '',
+                company: '',
+                tags: '',
+                Qtag: '',
+            },
+
+            dict_regions: '',
+            dict_tags: '',
+            dict_Qtags: '',
         }
     }    
     componentWillMount(){
         this.props.onRequestDictionary()
-        .then(function (response) {
-            console.log(response);
+        .then((response) => {
+            this.setState({
+                dict_regions : response.payload.regions,
+                dict_tags: response.payload.keywords,
+                dict_Qtags: response.payload.travel_types,
+            })
         })
+    }
+    handleOpenSidebar(){
+        this.setState({sidebarIsOpen: true})
     }
     onPNameChange(event){   
         this.setState({
@@ -72,32 +95,41 @@ class PackageSearch extends Component{
             tags: {...this.state.tags,depart: event.target.value},
         })  
     }
-    onSearchSubmit(){
+    onTagsSelected(val){
         this.setState({
-            request: 
-            this.state.pname_request+
-            this.state.minp_request+
-            this.state.maxp_request+
-            this.state.arrival_request+
-            this.state.departure_request,
-            loading:true,
-        },() => this.getRequestLink())
+            tags_request: '&specialTag='+val,
+            tags: {...this.state.tags,tags: val},
+        }) 
     }
-    getRequestLink(){
-        console.log(this.state.request)
-        this.props.onRequestPackage(this.state.request)
-        .then(function (response) {
-            console.log(response);
-        })
-        .then (()=> {
-            this.setState({loading:false})
-        })
+    onProvincesSelected(val){
+        console.log(val)
+        this.setState({
+            province_request: '&province='+val,
+            tags: {...this.state.tags,provinces: val},
+        })        
+    }
+    onQRegionClick(e){
+        console.log(e)
+        this.setState({
+            province_request: '&province='+e,
+            tags: {...this.state.tags,provinces: e},
+            //loading:true
+        },() => this.onSearchSubmit()) 
+    }
+    onQTagClick(e){
+        console.log(e)
+        this.setState({
+            Qtag_request: '&travelType='+e,
+            tags: {...this.state.tags,Qtag: e},
+            //loading:true
+        },() => this.onSearchSubmit()) 
     }
     onReset(e){
         switch (e){
             case "pkname":{
                 this.setState({
                     pname_request: '',
+                    page_request: '&page=1',
                     tags: {...this.state.tags,pkname: ''},
                 },() => this.onSearchSubmit()) 
                 break;
@@ -105,6 +137,7 @@ class PackageSearch extends Component{
             case "minp":{
                 this.setState({
                     minp_request: '',
+                    page_request: '&page=1',
                     tags: {...this.state.tags,minp: ''},
                 },() => this.onSearchSubmit()) 
                 break;
@@ -112,6 +145,7 @@ class PackageSearch extends Component{
             case "maxp":{
                 this.setState({
                     maxp_request: '',
+                    page_request: '&page=1',
                     tags: {...this.state.tags,maxp: ''},
                 },() => this.onSearchSubmit()) 
                 break;               
@@ -119,6 +153,7 @@ class PackageSearch extends Component{
             case "arrive":{
                 this.setState({
                     arrival_request: '',
+                    page_request: '&page=1',
                     tags: {...this.state.tags,arrive: ''},
                 },() => this.onSearchSubmit()) 
                 break;               
@@ -126,7 +161,32 @@ class PackageSearch extends Component{
             case "depart":{
                 this.setState({
                     departure_request: '',
+                    page_request: '&page=1',
                     tags: {...this.state.tags,depart: ''},
+                },() => this.onSearchSubmit()) 
+                break;               
+            }
+            case "provinces":{
+                this.setState({
+                    province_request: '',
+                    page_request: '&page=1',
+                    tags: {...this.state.tags,provinces: ''},
+                },() => this.onSearchSubmit()) 
+                break;               
+            }
+            case "tags":{
+                this.setState({
+                    tags_request: '',
+                    page_request: '&page=1',
+                    tags: {...this.state.tags,tags: ''},
+                },() => this.onSearchSubmit()) 
+                break;               
+            }
+            case "Qtag":{
+                this.setState({
+                    Qtag_request: '',
+                    page_request: '&page=1',
+                    tags: {...this.state.tags,Qtag: ''},
                 },() => this.onSearchSubmit()) 
                 break;               
             }
@@ -136,34 +196,80 @@ class PackageSearch extends Component{
 
         }        
     }
+    onChangePage(e){
+        console.log(this.state.request)
+        this.setState({
+            page_request: '&page='+e,
+        },() => this.onSearchSubmit())        
+    }
+    onSearchSubmit(){
+        this.setState({
+            request: 
+                this.state.pname_request+
+                this.state.minp_request+
+                this.state.maxp_request+
+                this.state.arrival_request+
+                this.state.departure_request+
+                this.state.province_request+
+                this.state.tags_request+
+                this.state.Qtag_request+
+                this.state.page_request,
+                loading:true,
+        },() => this.getRequestLink())
+    }
+    getRequestLink(){
+        console.log(this.state.request)
+        this.props.onRequestPackage(this.state.request)
+        .then(function (response) {
+            console.log(response);
+        })
+        .then (()=> {
+            this.setState({
+                sidebarIsOpen: false,
+                loading:false,
+            })
+        })
+    }
     render(){
         return (    
             <div>         
-                <div className="container-fluid layout-main row bg-color-custom">     
-                    <div className="col-3 ">
-                        <SearchBar
-                            loading={this.state.loading}
+                <Menu 
+                    pageWrapId={ "page-wrap" }
+                    isOpen={ this.state.sidebarIsOpen }
+                    >
+                    <SearchBar
+                        loading={this.state.loading}
+                        tags={this.state.tags}
+                        dict_regions={this.state.dict_regions}
+                        dict_tags={this.state.dict_tags}
 
-                            onPNameChange={this.onPNameChange.bind(this)}
-                            onMinPriceChange={this.onMinPriceChange.bind(this)}
-                            onMaxPriceChange={this.onMaxPriceChange.bind(this)}
-                            onSearchSubmit={this.onSearchSubmit.bind(this)}   
-                            onArrivalChange={this.onArrivalChange.bind(this)}
-                            onDepartureChange={this.onDepartureChange.bind(this)}
-
-                            tags={this.state.tags}
-                        />
-                    </div>
-                    <div className="col-9 ">
+                        onPNameChange={this.onPNameChange.bind(this)}
+                        onMinPriceChange={this.onMinPriceChange.bind(this)}
+                        onMaxPriceChange={this.onMaxPriceChange.bind(this)}
+                        onSearchSubmit={this.onSearchSubmit.bind(this)}   
+                        onArrivalChange={this.onArrivalChange.bind(this)}
+                        onDepartureChange={this.onDepartureChange.bind(this)}
+                        onTagsSelected={this.onTagsSelected.bind(this)}
+                        onProvincesSelected={this.onProvincesSelected.bind(this)}
+                    />
+                </Menu>
+                <div id="page-wrap" className="container-fluid row layout-main bg-color-custom">     
+                    <div className="col-md-8 offset-md-2">
                         <SearchContent 
                             loading={this.state.loading}
                             packages={this.props.packages}
                             total_pages={this.props.total_pages}
                             current_page={this.props.current_page}
                             tags={this.state.tags}
-                            onReset={this.onReset.bind(this)}
+                            //dictionary={this.props.dictionary}
+                            dict_regions={this.state.dict_regions}
+                            dict_Qtags={this.state.dict_Qtags}   
 
-                            dictionary={this.props.dictionary}
+                            onOpenSidebar={this.handleOpenSidebar.bind(this)}
+                            onReset={this.onReset.bind(this)}
+                            handleQTagClick={this.onQTagClick.bind(this)}
+                            handleQRegionClick={this.onQRegionClick.bind(this)}
+                            handlePageChange={this.onChangePage.bind(this)}
                         /> 
                     </div>                  
                 </div>
@@ -177,7 +283,7 @@ function mapStateToProps(state){
         packages: state.package_search.packages,
         total_pages: state.package_search.total_pages,
         current_page: state.package_search.current_page,
-        dictionary: state.package_search.dictionary,
+        //dictionary: state.package_search.dictionary,
     };
 }
 function mapDispatchToProps(dispatch){

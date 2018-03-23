@@ -11,7 +11,6 @@ const packages_get = (state = initialState, action) => {
     switch(action.type) {
         case GET_PACKAGE_SUCCESS:
             console.log('get packages success')
-            console.log(action.payload)
             return ({
                 packages: action.payload.packages,
                 loading: false,

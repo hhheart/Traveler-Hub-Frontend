@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import PackageDetail from '../components/package_detail';
+import { GET_Package } from '../actions/packages_get';
 import axios from 'axios';
 
 class PackageList extends Component {
@@ -20,6 +20,11 @@ class PackageList extends Component {
             //console.log(res.data)
             this.setState({ packages: res.data });
         });
+        this.props.GET_Package(this.props.match.params.id)
+        .then(res => {
+            console.log(res)
+        });
+        console.log(this.props.match.params.id)
     }
     IsLoading(){
         if (this.state.packages !== ''){
@@ -46,7 +51,7 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        //onRequestPackage,
+        GET_Package,
     }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PackageList);

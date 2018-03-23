@@ -11,16 +11,16 @@ const initialState = {
     packages: null,
     total_pages: '',
     curent_page: '',
-    dictionary: [],
+    dictionary: null,
     
 }
 const package_search = (state = initialState, action) => {
     switch(action.type) {
         case DICTIONARY_SUCCESS:
             console.log('get_dictionary_success')
-            //console.log(action.payload)
             return ({
-                dictionary: action.payload,
+                dictionary: action.payload.regions,
+                loading: false,
             })
         case DICTIONARY_FAILURE:
             console.log('get_dictionary_failure')

@@ -1,7 +1,6 @@
 .bg-color-custom {
     background-color: #f9f9f9;
 }
-
 .layout-main {
     padding-top: 1vh;
     padding-bottom: 3vh;
@@ -9,12 +8,8 @@
 }
 .search-bar-style {
     box-shadow: 1px 1px 5px grey;
-    width: 22vw;
-    height: auto;
-    position: fixed;
-    top:12vh;
-    left: 0.1vw;
-    
+    min-width: 23vw;
+    height: 88vh;
 }
 .search-bar-header-layout {
     text-align: center;
@@ -37,6 +32,18 @@
     margin-left: 0.5vw;
     font-size: 1.5vh;
 }
+.select-input-style {
+    width: 22vw;
+    border-width: 0.1vw;
+    border-style: solid;
+    border-radius: 0.3vw;
+    border-color: #e0e0e0;
+    background-color: white;
+}
+.select-input-style:hover {
+   
+}
+
 .tagbox-layout {
     margin-top: 1vh;
     height: 15vh;
@@ -54,3 +61,79 @@
     border-width: 0;
     border-radius: 1vw;
 }
+
+.btn-sidebar {
+    height: 10vh;
+    position: fixed;
+    left: 0%;
+    top: 50%;
+
+    text-align: center;
+    justify-content: center;
+
+    align-content: center;
+    align-items: center;
+}
+.btn-sidebar:hover {
+    box-shadow: 1px 1px 10px grey;   
+}
+.icon-center {
+    line-height: 8vh;
+}
+
+
+
+
+
+.Qcard-custom {
+   
+    border-width: 1px;
+    border-radius: 0px !important;
+    border-color: white;
+}
+.Qcard-custom:hover {
+    border-width: 1px;
+    box-shadow: 1px 1px 20px grey;
+    border-color: white;
+}
+.Qcard-body-custom {
+    padding: 0;
+    border-width: 0px;
+}
+.Qcard-collasp-custom {
+    border-width: 1px;
+    border-color: grey;
+}
+.Qcard-text-custom1 {
+    color: white;
+    vertical-align: center;
+}
+.QRegion-img {
+    height: 20vh;
+}
+.QTag-img {
+    height: 12vh;
+}
+.Qtitle-region {
+    color: white;
+    font-size: 2vw;    
+    line-height: 14vh;  
+}
+.Qtitle-tag {
+    color: white;
+    font-size: 2vw;    
+    line-height: 6vh;  
+}
+.Qprovince-text {
+    font-size: 1vw;    
+    background-color: white;
+}
+.Qprovince-text:hover {
+    color: #fcb034;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #fcb034;
+
+}
+

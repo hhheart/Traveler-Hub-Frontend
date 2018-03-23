@@ -2,6 +2,7 @@
 export const URL_ROOT = '/';
 
 //server
+export const REQUEST_ROOT = 'http://supertam.xyz:5000/'; 
 export const SERVER_LOGIN = 'http://supertam.xyz:5000/login';
 export const FACEBOOK_GRAPH_API = 'https://graph.facebook.com/[id]?fields=email,id,first_name,last_name,picture&access_token=[key]';
 
@@ -14,3 +15,5 @@ export const SEARCH_DICTIONARY = 'http://supertam.xyz:5000/dictionary';
 
 export const GET_PACKAGE_TEMPLATE = 'http://supertam.xyz:5000/package?page=[val1]&limit=[val2]'
 
+//feedback
+export const FEEDBACK_ENDPOINT = 'http://supertam.xyz:5000/favorite';

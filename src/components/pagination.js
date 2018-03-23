@@ -1,21 +1,19 @@
 import React , {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
+//import { Redirect } from 'react-router';
 import '../static/css/pagination.css'; 
 
 export default class Pagination extends Component {
-    onChangePage(num){
-        return (
-            <Redirect to={`/package/page=${num}`} push={true} />
-        )
+    onChangePage(val){
+        return () => this.props.onChangePage(val)
     }
     renderPages(){   
         const oneRow = [];    
         for(var i = 1; i <= this.props.total_pages; i++) {
             oneRow.push(
                 <li className="page-item" >
-                    <Link className="page-link" to={`/package/page=${i}`} 
-                    onClick={this.onChangePage(i)}>{i}</Link>
+                    <button className="page-link"
+                    onClick={this.onChangePage(i)}>{i}</button>
                 </li>    
             )
         }

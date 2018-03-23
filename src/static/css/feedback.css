@@ -1,0 +1,16 @@
+.like-style {
+
+}
+.like-style:hover {
+    cursor: pointer;
+    color: green;
+
+}
+.dislike-style {
+
+}
+.dislike-style:hover {
+    cursor: pointer;
+    color: red;
+
+}

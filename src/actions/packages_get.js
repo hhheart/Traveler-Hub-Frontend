@@ -10,10 +10,11 @@ import {
     GET_PACKAGE_TEMPLATE
 } from '../constants/endpoints';
 
-export const onRequestPackage = (val1,val2) =>({
+export const GET_Package = (pkID) =>({
     [RSAA]: {
-        endpoint: GET_PACKAGE_TEMPLATE,
+        endpoint: `http://supertam.xyz:5000/package/${pkID}`,
         method: 'GET',
+        headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
         types: [    
             GET_PACKAGE_REQUEST,
             GET_PACKAGE_SUCCESS,

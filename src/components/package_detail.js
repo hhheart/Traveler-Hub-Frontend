@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Footer from '../components/footer';
+import FeedbackModal from '../containers/feedback_modal';
 
 import '../static/css/package_detail.css'; 
 import '../static/css/test_timeline.css'; 
@@ -37,6 +38,7 @@ const PackageDetail = ({package_itm}) => {
     const package_item = package_itm;
     return (  
         <div>         
+            <FeedbackModal PackageID={package_item._id} />
             <div className="container detail-layout">
                 <div id="header-content" className="row">           
                     <img className="col-md-5 package-detail-image img-fluid text-center" 
@@ -64,7 +66,7 @@ const PackageDetail = ({package_itm}) => {
                             </div>
                         </div>
                         <div className="row-md-2 text-center">
-                            <a className="btn btn-primary btn-block " href={package_item.url}>จองเลย !</a>
+                        <a className="btn btn-primary btn-block" href="" data-toggle="modal" data-target="#feedbackModal">จองเลย!</a>
                         </div>
                     </div>
                 </div>
