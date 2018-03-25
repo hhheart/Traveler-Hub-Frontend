@@ -51,6 +51,7 @@ const user = (state = initialState, action) => {
             })   
         case LOGIN_SUCCESS:
             console.log('login success')
+            localStorage.setItem('tk_refresh', 'tk_refresh_value')
             localStorage.setItem('login_token', action.payload.token)
             return ({
                 isLoggedIn: true,

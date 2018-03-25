@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {URL_ROOT} from '../constants/endpoints';
-import LoginModal from '../containers/login';
+//import LoginModal from '../containers/login';
 import '../static/css/nav.css'
 
 export class NavbarView extends Component{ 
@@ -44,15 +44,15 @@ export class NavbarView extends Component{
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                    {this.renderImageProfile()}
+                        {this.renderImageProfile()}
                     </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        {this.props.email}
+                    <li className="nav-item dropdown" >
+                        <a className="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                            {this.props.email}
                         </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div className="dropdown-menu">
                             <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
-                        <div className="dropdown-divider text-center"></div>
+                            <div className="dropdown-divider text-center"></div>
                             <button
                                 className="btn btn-outline-danger btn-logout-layout"
                                 data-toggle="modal" 
@@ -63,7 +63,7 @@ export class NavbarView extends Component{
                 </ul>
             )
         }
-        else {
+        /*else {
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item ">
@@ -74,12 +74,12 @@ export class NavbarView extends Component{
                     </li>
                 </ul>
             )
-        }
+        }*/
     }
     render(){
         return (
             <div>
-                <LoginModal />
+                
                 {this.renderLogoutModal()}
                 <nav className="navbar navbar-expand-lg navbar-light bg-white">
                     <img className="navbar-brand navbar-logo-size" 
@@ -107,7 +107,7 @@ export class NavbarView extends Component{
                                 <Link className="nav-link" to={`/package/search/page=${1}`}>ค้นหาแพ็คเกจ</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={`/`}>เกี่ยวกับเรา</Link>
+                                <Link className="nav-link" to={`/AboutUS`}>เกี่ยวกับเรา</Link>
                             </li>
                         </ul>
                         {this.renderUserContent()}

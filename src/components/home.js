@@ -7,7 +7,7 @@ import Footer from '../components/footer';
 import '../static/css/home.css';
 import '../static/css/ribbon.css';
 
-export default class HomePage extends Component {
+export default class HomeView extends Component {
     constructor(props){
         super(props);
             this.state = {  

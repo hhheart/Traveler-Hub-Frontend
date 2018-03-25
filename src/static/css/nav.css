@@ -3,7 +3,9 @@ a,button{
     box-shadow:none !important;
     
     }
-
+a:hover {
+    cursor: pointer;
+}
 .navbar-logo-size{
     height: 10vh;
     width: auto;

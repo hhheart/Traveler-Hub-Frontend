@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import LoginModal from '../components/login';
 
-import '../static/css/social-button.css';
+import jQuery from 'jquery';
 import { 
     onLogin, 
     onLogin_facebook,
@@ -14,6 +14,7 @@ import {
  import { 
     FACEBOOK_GRAPH_API,
 } from '../constants/endpoints';
+import '../static/css/social-button.css';
 class Login extends Component{
     constructor() {
         super()
@@ -35,9 +36,16 @@ class Login extends Component{
             email: this.state.email,
             password: this.state.password,
         })
-        .then(function (response) {
-            alert('You are loggedIn!')
-            console.log(response);
+        .then((res) => {
+            if(res.type === 'LOGIN_SUCCESS'){
+                window.jQuery = jQuery;
+                require('bootstrap')
+                jQuery('#loginModal').modal('hide')
+                alert('login successful')      
+            }
+            else (
+                alert('Error: '+res.type)
+            )
         })
     }
     getFacebook_API_request = (response) =>{
@@ -97,7 +105,6 @@ class Login extends Component{
             })
     }
     render(){
-        
         return (     
             <LoginModal  
                 onEmailChange={this.onEmailChange.bind(this)}

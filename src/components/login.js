@@ -3,14 +3,11 @@ import '../static/css/social-button.css';
 
 const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage, closeModal, test}) => {
     return (
-        <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog">
+        <div className="modal fade" id="loginModal" data-backdrop="static" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">ลงชื่อเข้าใช้งาน</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div className="modal-body">
                         <div className="row">
@@ -60,11 +57,13 @@ const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage
                         </div> 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <a className="mr-auto" 
+                            data-toggle="modal"
+                            data-target="#RegisterModal"
+                            href=''>สมัครใช้งาน?</a>
                         <button 
                             type="button" 
                             className="btn btn-warning"
-                            data-dismiss="modal"
                             onClick={onSubmit}
                             >เข้าสู่ระบบ</button>
                     </div>

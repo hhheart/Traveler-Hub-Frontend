@@ -177,7 +177,6 @@ export default class SearchBar extends Component {
                             className="selectpicker select-input-style" 
                             data-actions-box="true"
                             data-size="5"
-                            data-live-search="true"
                             onChange={()=>this.onProvincesChange()}
                             multiple>
                             <option data-hidden="true"></option>
@@ -204,7 +203,6 @@ export default class SearchBar extends Component {
                             className="selectpicker select-input-style" 
                             data-actions-box="true"
                             data-size="5"
-                            data-live-search="true"
                             onChange={() => this.onTagsChange()}
                             multiple>
                             <option data-hidden="true"></option>
