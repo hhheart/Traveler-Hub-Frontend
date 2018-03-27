@@ -8,17 +8,21 @@ import '../static/css/feedback.css';
 
 class FeedbackModal extends Component{
     onClickLike(){
+        console.log(this.props.PackageURL)
         console.log('like & '+this.props.PackageID)
         this.props.sent_feedback({like:true,packageId:this.props.PackageID})
         .then(function (response) {
-            alert(response + ' thank you!')
+            alert(' thank you!')
+            //console.log(this.props.PackageURL)
+            //window.location.href = this.props.PakageURL;
         })
     }
     onClickDislike(){
         console.log('dislike & '+this.props.PackageID)
         this.props.sent_feedback({like:false,packageId:this.props.PackageID})
         .then(function (response) {
-            alert(response + ' thank you!')
+            alert(' thank you!')
+            window.location.href = this.props.PakageURL;
         })
     }
     render(){

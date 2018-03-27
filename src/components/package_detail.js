@@ -38,7 +38,7 @@ const PackageDetail = ({package_itm}) => {
     const package_item = package_itm;
     return (  
         <div>         
-            <FeedbackModal PackageID={package_item._id} />
+            <FeedbackModal PackageID={package_item._id} PackageURL={package_item.url}/>
             <div className="container detail-layout">
                 <div id="header-content" className="row">           
                     <img className="col-md-5 package-detail-image img-fluid text-center" 

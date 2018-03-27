@@ -82,9 +82,12 @@ export class NavbarView extends Component{
                 
                 {this.renderLogoutModal()}
                 <nav className="navbar navbar-expand-lg navbar-light bg-white">
-                    <img className="navbar-brand navbar-logo-size" 
-                        alt="_LOGO_" 
-                        src={require('../static/images/logo_2.png')} />
+                    <Link to={`${URL_ROOT}`}>
+                        <img className="navbar-brand navbar-logo-size" 
+                            alt="_LOGO_" 
+                            src={require('../static/images/logo_2.png')}
+                        />
+                    </Link>
                     <button 
                         className="navbar-toggler" 
                         type="button" 

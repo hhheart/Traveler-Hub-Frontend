@@ -14,6 +14,7 @@ export const sent_feedback = (bodyVal) =>({
             endpoint: FEEDBACK_ENDPOINT,
             method: 'PUT',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': 'Bearer '+localStorage.getItem("login_token")},
             body: JSON.stringify(bodyVal),
             types: [    
