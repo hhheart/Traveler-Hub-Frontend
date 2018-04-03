@@ -228,15 +228,7 @@ export default class PackageList extends Component {
     }
     render(){
         if (this.props.dict_regions.length > 0 && this.props.dict_Qtags.length > 0){
-            return(
-                <div>
-                    <div className="bg-light">
-                        <div className="container-fluid">    
-                                {this.renderContent()}
-                        </div>
-                    </div>
-                </div>
-            )
+            return this.renderContent()
         }
         else {
             return(

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import LoginModal from '../components/login';
-
+import $ from 'jquery';
 import jQuery from 'jquery';
 import { 
     onLogin, 
@@ -37,15 +37,21 @@ class Login extends Component{
             password: this.state.password,
         })
         .then((res) => {
+            console.log(res)
             if(res.type === 'LOGIN_SUCCESS'){
                 window.jQuery = jQuery;
                 require('bootstrap')
                 jQuery('#loginModal').modal('hide')
-                alert('login successful')      
+                alert('login successful')   
             }
             else (
-                alert('Error: '+res.type)
+                //console.log(res.payload.response.user)
+                alert('Error: '+res.payload.response.user)
             )
+            this.setState({
+                email: '',
+                password: '',
+            })
         })
     }
     getFacebook_API_request = (response) =>{
@@ -104,6 +110,9 @@ class Login extends Component{
                 alert(error)
             })
     }
+    handleClickRegister(){
+        jQuery('#RegisterModal').modal('show')
+    }
     render(){
         return (     
             <LoginModal  
@@ -111,6 +120,9 @@ class Login extends Component{
                 onPasswordChage={this.onPasswordChange.bind(this)}
                 onSubmit={this.onSubmit.bind(this)}
                 onSubmit_facebook={this.onSubmit_facebook.bind(this)}
+                onClickRegister={this.handleClickRegister.bind(this)}
+                email={this.state.email}
+                password={this.state.password}
             />
         )
     }

@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { check_token, } from '../actions/user';
 
+import $ from 'jquery';
 import jQuery from 'jquery';
 
-//import modal from 'bootstrap';
 import HomeView from '../components/home';
 import LoginModal from '../containers/login';
 import RegisterModal from '../containers/register';
@@ -36,6 +36,7 @@ class Home extends Component{
         })
     }
     render(){
+        $('html, body').scrollTop(0);
         return (
             <div>
                 {this.IsReRenderNeeded()}

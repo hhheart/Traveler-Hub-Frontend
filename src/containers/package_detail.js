@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PackageDetail from '../components/package_detail';
 import { GET_Package } from '../actions/packages_get';
+import $ from 'jquery';
 import axios from 'axios';
 
 class PackageList extends Component {
@@ -15,6 +16,7 @@ class PackageList extends Component {
     }    
     // run before component rendered
     componentWillMount(){
+        $('html, body').scrollTop(0);
         axios.get(`http://supertam.xyz:5000/package/${this.props.match.params.id}`)
         .then(res => {
             //console.log(res.data)
@@ -24,9 +26,8 @@ class PackageList extends Component {
         .then(res => {
             console.log(res)
         });
-        console.log(this.props.match.params.id)
     }
-    IsLoading(){
+    render(){ 
         if (this.state.packages !== ''){
             return (  
                 <PackageDetail package_itm={this.state.packages}/>
@@ -37,11 +38,6 @@ class PackageList extends Component {
                 <div className="loader mx-auto"></div>
             )
         }
-    }
-    render(){ 
-        return (
-            this.IsLoading()
-        )
     }    
 }
 function mapStateToProps(state){

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 //import {onRequestPackage} from '../actions/packages_get';
 import axios from 'axios';
-
+//import $ from 'jquery';
 import Pagination from './pagination';
 import PackageListItem from './package_list_item';
 import Footer from './footer';
@@ -14,29 +14,31 @@ class PackageList extends Component {
     constructor(props){
         super(props);
             this.state = {  
+                loading: true,
                 packages: [],
                 total_page: 1,
                 page: 1,
             };  
 
     }    
-    // run before component rendered
     componentWillMount(){
         this.fetch_packages_page(this.props.match.params.page_id)
     }
+    handlePageChange(page_num){
+        this.fetch_packages_page(page_num)
+    }
     fetch_packages_page(num){
+        this.setState({loading:true})
         axios.get(`http://supertam.xyz:5000/package?page=${num}`)
         .then(res => {
             this.setState({ 
+                loading: false,
                 packages: res.data.packages,  
                 total_pages: res.data.totalPage,
                 current_page: res.data.currentPage,
             });
         })
     }
-    /*onChangePage(num){
-        console.log(num)
-    }*/
     render_package_list_row(){
         const PackageItem = this.state.packages;
         const rowContent = [];
@@ -52,28 +54,43 @@ class PackageList extends Component {
         }
         return rowContent;
     }
+    renderContent(){
+        if(this.state.loading) {
+            return (
+                 <div className="loader mx-auto"></div>
+            )
+        }
+        else {
+            return (
+                <div>
+                    <div className="jumbotron text-center bg-white">
+                        <div className="container">
+                            <h3>ไปเที่ยวไหนดีนะ ???</h3>
+                            <p>
+                                <button className="btn btn-primary jumbotron-btn">Ask Ours Expert</button>
+                                <button className="btn btn-success jumbotron-btn">Search & Go!</button>
+                            </p>
+                        </div>
+                    </div>
+                    <div className="bg-light">
+                        <div className="container-fluid">                         
+                            {this.render_package_list_row()} 
+                        </div>
+                        <Pagination 
+                            total_pages={this.state.total_pages} 
+                            current_page={this.state.current_page}
+                            onChangePage={this.handlePageChange.bind(this)}
+                            />
+                    </div>
+                    <Footer />
+                </div>
+            )
+        }
+    }
     render(){ 
         return (  
             <div>
-                <div className="jumbotron text-center bg-white">
-                    <div className="container">
-                        <h3>ไปเที่ยวไหนดีนะ ???</h3>
-                        <p>
-                            <button className="btn btn-primary jumbotron-btn">Ask Ours Expert</button>
-                            <button className="btn btn-success jumbotron-btn">Search & Go!</button>
-                        </p>
-                    </div>
-                </div>
-                <div className="bg-light">
-                    <div className="container-fluid">                         
-                        {this.render_package_list_row()} 
-                    </div>
-                    <Pagination 
-                        total_pages={this.state.total_pages} 
-                        current_page={this.state.current_page}
-                        />
-                </div>
-                <Footer />
+                {this.renderContent()}
             </div>
         )
     }    

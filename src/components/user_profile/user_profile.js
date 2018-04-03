@@ -1,77 +1,97 @@
-import React from 'react'
+import React, {Component} from 'react'
+import axios from 'axios';
+
+import UserHistory from './user_history';
+import UserEdit from './user_edit';
 import Footer from '../../components/footer';
-
-
 import '../../static/css/user_profile.css';
 
-const RenderAppendInput = () => {
-    return (
-        <div class="input-group-append">
-            <span class="input-group-text btn btn-secondary" id="basic-addon2">
-                <i className="fa fa-pencil" />
-            </span>
-        </div>        
-    )
+export default class User_Profile extends Component {  
+    constructor(props){
+        super(props);
+            this.state = {  
+                usr_data: '',
+                new_usr_data: {
+                    email: "",
+                    firstname: "",
+                    lastname: "",
+                    password: "",
+                    password_confirm: "",
+                    gender: "",
+                    age: "",
+                },
+            };  
+    }    
+componentWillMount(){
+    this.FetchUser()
 }
-
-const Profile = () => {
-    return (
-        <div className="usr-profile-content-mx">
-            <img src={require("../../static/images/user.png")} className="usr-profile-img img-fluid" alt="ProfileImage"/>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <input type="text" className="form-control" placeholder="อีเมลล์" />
-                <RenderAppendInput />
-            </div>           
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <input type="password" className="form-control" placeholder="รหัสผ่านใหม่"/>
-                <input type="password" className="form-control" placeholder="ยืนยันรหัสผ่าน"/>
-                <RenderAppendInput />  
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <input type="text" className="form-control" placeholder="ชื่อ"/>
-                <RenderAppendInput />
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <input type="text" className="form-control" placeholder="นามสกุล"/>
-                <RenderAppendInput />
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <select className="custom-select">
-                    <option value="1" selected>ชาย</option>
-                    <option value="2">หญิง</option>
-                </select>
-                <RenderAppendInput />
-                <input type="text" className="form-control" placeholder="อายุ"/>
-                <RenderAppendInput />
-            </div>
-            <button type="button" className="btn btn-outline-warning btn-custom">ยืนยันแก้ไข</button>
-        </div>
-    )
+FetchUser(){
+    axios({
+        method: 'get',
+        url: 'http://supertam.xyz:5000/user',
+        headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+      })
+      .then(res =>  {
+        this.setState({
+            usr_data : res.data,
+            new_usr_data: {
+                email: res.data.email,
+                firstname: res.data.firstname,
+                lastname: res.data.lastname,
+                gender: res.data.gender,
+                age: res.data.age,
+            },
+        })
+        console.log(res)
+      });
 }
-const Statistic = () => {
-    return (
-        <div>สถิติการใช้งาน</div>
-    )
+handleInputChange(event,id){
+    var token = this.state.new_usr_data;
+    token[event.target.id] = event.target.value;
+    this.setState( {new_usr_data:token},console.log(this.state.new_usr_data))
 }
-const User_Profile = () => {
-    return (
-        <div className="" style={{backgroundColor:'#f9f9f9'}}>
-            <div className="usr-profile-layout mx-auto justify-content-center">
-                <nav>
-                <div className="nav nav-tabs" role="tablist">
-                <a className="nav-item nav-link active" data-toggle="tab" href="#usr-profile" role="tab">แก้ข้อมูลผู้ใช้งาน</a>
-                <a className="nav-item nav-link" data-toggle="tab" href="#usr-stat" role="tab">สถิติการใช้งาน</a>
+handleSubmitEdit(){
+    axios({
+        method: 'put',
+        url: 'http://supertam.xyz:5000/user',
+        headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+        body: JSON.stringify(this.state.new_usr_data)
+      })
+      .then(res =>  {
+        this.setState({usr_data : res.data})
+        console.log(res)
+      });
+}
+render(){
+        return (
+            <div className="" style={{backgroundColor:'#f9f9f9'}}>
+                <div className="usr-profile-layout mx-auto justify-content-center">
+                    <nav>
+                        <div className="nav nav-tabs" role="tablist">
+                            <a  className="nav-item nav-link active" 
+                                data-toggle="tab" 
+                                href="#usr-profile" 
+                                role="tab">แก้ข้อมูลผู้ใช้งาน</a>
+                            <a  className="nav-item nav-link" 
+                                data-toggle="tab" 
+                                href="#usr-hist" 
+                                role="tab">ค้นหาล่าสุด</a>
+                        </div>
+                    </nav>
+                    <div className="tab-content">
+                        <div id="usr-profile" className="tab-pane fade show active usr-profile-content-layout text-center">
+                            <UserEdit 
+                                UserData={this.state.usr_data}
+                                OnInputChange={this.handleInputChange.bind(this)}
+                                OnSubmitEdit={this.handleSubmitEdit.bind(this)} />
+                        </div>
+                        <div id="usr-hist" className="tab-pane fade usr-profile-content-layout text-center">
+                            <UserHistory />
+                        </div>
+                    </div>
                 </div>
-                </nav>
-                <div className="tab-content">
-                <div id="usr-profile" className="tab-pane fade show active usr-profile-content-layout text-center" role="tabpanel">
-                    <Profile/></div>
-                <div id="usr-stat" className="tab-pane fade usr-profile-content-layout text-center" role="tabpanel">
-                    <Statistic/></div>
-                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
-    )
+        )
+    }
 }
-export default User_Profile

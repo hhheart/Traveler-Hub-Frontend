@@ -108,6 +108,13 @@ class PackageSearch extends Component{
             tags: {...this.state.tags,provinces: val},
         })        
     }
+    onCompanysSelected(val){
+        console.log(val)
+        this.setState({
+            province_request: '&province='+val,
+            tags: {...this.state.tags,provinces: val},
+        })        
+    }
     onQRegionClick(e){
         console.log(e)
         this.setState({
@@ -197,7 +204,8 @@ class PackageSearch extends Component{
         }        
     }
     onChangePage(e){
-        console.log(this.state.request)
+        //console.log(e)
+        //console.log(this.state.request)
         this.setState({
             page_request: '&page='+e,
         },() => this.onSearchSubmit())        
@@ -231,6 +239,7 @@ class PackageSearch extends Component{
         })
     }
     render(){
+        console.log('container: '+this.props.current_page)
         return (    
             <div>         
                 <Menu 
@@ -251,17 +260,18 @@ class PackageSearch extends Component{
                         onDepartureChange={this.onDepartureChange.bind(this)}
                         onTagsSelected={this.onTagsSelected.bind(this)}
                         onProvincesSelected={this.onProvincesSelected.bind(this)}
+                        onCompanysSelected={this.onCompanysSelected.bind(this)}
                     />
                 </Menu>
-                <div id="page-wrap" className="container-fluid row layout-main bg-color-custom">     
-                    <div className="col-md-8 offset-md-2">
+                <div id="page-wrap" className="container-fluid row layout-main bg-color-custom">   
+                    <div className="col-md-2"></div>
+                    <div className="col-md-8">
                         <SearchContent 
                             loading={this.state.loading}
                             packages={this.props.packages}
                             total_pages={this.props.total_pages}
                             current_page={this.props.current_page}
                             tags={this.state.tags}
-                            //dictionary={this.props.dictionary}
                             dict_regions={this.state.dict_regions}
                             dict_Qtags={this.state.dict_Qtags}   
 
@@ -271,7 +281,8 @@ class PackageSearch extends Component{
                             handleQRegionClick={this.onQRegionClick.bind(this)}
                             handlePageChange={this.onChangePage.bind(this)}
                         /> 
-                    </div>                  
+                    </div>   
+                    <div className="col-md-2"></div>          
                 </div>
                 <Footer />
         </div>

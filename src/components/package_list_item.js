@@ -13,7 +13,7 @@ const PackageListItem = ({package_item}) => {
     const travel_date = package_item.travel_date;
 
     const logo = package_item.logo;
-    const ratingChanged = (newRating) => {console.log(newRating)}
+    //const ratingChanged = (newRating) => {console.log(newRating)}
     return (
         <div>
             <div className="card package-list-card">

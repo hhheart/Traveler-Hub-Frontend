@@ -1,7 +1,15 @@
 import React from 'react';
 import '../static/css/social-button.css'; 
 
-const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage, closeModal, test}) => {
+const LoginModal = ({
+    onSubmit ,
+    onSubmit_facebook, 
+    onEmailChange, 
+    onPasswordChage, 
+    //closeModal, 
+    onClickRegister,
+    email, 
+    password}) => {
     return (
         <div className="modal fade" id="loginModal" data-backdrop="static" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
@@ -23,6 +31,7 @@ const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage
                                         className="form-control" 
                                         placeholder="@email.com"
                                         onChange={onEmailChange}
+                                        value={email}
                                         />
                                 </div>
                             </div>
@@ -38,6 +47,7 @@ const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage
                                         className="form-control" 
                                         placeholder="password"
                                         onChange={onPasswordChage}
+                                        value={password}
                                         />
                                 </div>
                             </div>
@@ -60,6 +70,7 @@ const LoginModal = ({onSubmit ,onSubmit_facebook, onEmailChange, onPasswordChage
                         <a className="mr-auto" 
                             data-toggle="modal"
                             data-target="#RegisterModal"
+                            onClick={onClickRegister}
                             href=''>สมัครใช้งาน?</a>
                         <button 
                             type="button" 

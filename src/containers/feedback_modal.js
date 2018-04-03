@@ -7,22 +7,21 @@ import '../static/css/feedback.css';
 
 
 class FeedbackModal extends Component{
-    onClickLike(){
+    onClickLike(url){
         console.log(this.props.PackageURL)
-        console.log('like & '+this.props.PackageID)
+        //console.log('like & '+this.props.PackageID)
         this.props.sent_feedback({like:true,packageId:this.props.PackageID})
         .then(function (response) {
             alert(' thank you!')
-            //console.log(this.props.PackageURL)
-            //window.location.href = this.props.PakageURL;
+            window.open(url,'_blank');
         })
     }
-    onClickDislike(){
-        console.log('dislike & '+this.props.PackageID)
+    onClickDislike(url){
+        //console.log('dislike & '+this.props.PackageID)
         this.props.sent_feedback({like:false,packageId:this.props.PackageID})
         .then(function (response) {
             alert(' thank you!')
-            window.location.href = this.props.PakageURL;
+            window.open(url,'_blank');
         })
     }
     render(){
@@ -42,7 +41,7 @@ class FeedbackModal extends Component{
                                     <i className="fa fa-thumbs-o-up" 
                                         style={{fontSize: 5+'vw'}}
                                         data-dismiss="modal"
-                                        onClick={() => this.onClickLike()}
+                                        onClick={() => this.onClickLike(this.props.PackageURL)}
                                     ></i>
                                     <div style={{lineHeight: 5+'vw'}}>ตรงกับที่ต้องการ</div>
                                 </div> 
@@ -50,7 +49,7 @@ class FeedbackModal extends Component{
                                     <i className="fa fa-thumbs-o-down" 
                                         style={{fontSize: 5+'vw'}}
                                         data-dismiss="modal"
-                                        onClick={() => this.onClickDislike()}
+                                        onClick={() => this.onClickDislike(this.props.PackageURL)}
                                     ></i>
                                     <div style={{lineHeight: 5+'vw'}}>ไม่ตรงกับที่ต้องการ</div>
                                 </div> 

@@ -10,7 +10,7 @@ const initialState = {
     loading: true,
     packages: null,
     total_pages: '',
-    curent_page: '',
+    current_page: '',
     dictionary: null,
     
 }
@@ -30,10 +30,11 @@ const package_search = (state = initialState, action) => {
             })
         case SEARCH_SUCCESS:
             console.log('search success')
+            console.log('reducer: '+ action.payload.currentPage)
             return ({
                 packages: action.payload.packages,
                 total_pages: action.payload.totalPage,
-                curent_page: action.payload.currentPage,
+                current_page: action.payload.currentPage,
                 loading: false,
             })
         case SEARCH_FAILURE:

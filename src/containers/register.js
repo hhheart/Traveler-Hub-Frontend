@@ -3,12 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import RegisterModal from '../components/register';
-import { 
-    //onLogin, 
-    //onLogin_facebook,
-    //check_token,
-    //postFB_dataToServer,
- } from '../actions/user';
+//import { } from '../actions/user';
 class Register extends Component{
     constructor() {
         super()

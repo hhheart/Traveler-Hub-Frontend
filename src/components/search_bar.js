@@ -98,7 +98,22 @@ export default class SearchBar extends Component {
             );          
         }))
         .then(() => {
-            return this.props.onProvincesSelected(selectedTags)
+            return this.props.onCompanysSelected(selectedTags)
+        });
+    }
+    onCompanyChange(){
+        var selectedCompanys = "";
+        $.when(        
+            $(document).ready(function () {       
+                $("#CompanysID option:selected").each(function(){
+                    if ($(this).text() !== ""){
+                        selectedCompanys += $(this).text() + " ";
+                    }
+                }
+            );          
+        }))
+        .then(() => {
+            return this.props.onProvincesSelected(selectedCompanys)
         });
     }
     onTagsChange(){
@@ -153,12 +168,13 @@ export default class SearchBar extends Component {
                             value={this.props.tags.maxp}
                             onChange={this.props.onMaxPriceChange}/>
                     </div>     
+                    
                     <div className="search-input-title">วันเดินทางไป</div>
                     <input 
                         id="arrival-date"
-                        className="form-control search-input-margin" 
+                        className="form-control" 
                         type="date" 
-                        placeholder="วันเดินทางไป"   
+                        //placeholder="วันเดินทางไป"   
                         value={this.props.tags.arrive}
                         onChange={this.props.onArrivalChange} />
                     <div className="search-input-title">วันเดินทางกลับ</div>
@@ -166,13 +182,14 @@ export default class SearchBar extends Component {
                         id="departure-date"
                         className="form-control search-input-margin" 
                         type="date" 
-                        placeholder="วันเดินทางกลับ"    
+                        //placeholder="วันเดินทางกลับ"    
                         value={this.props.tags.depart}                
                         onChange={this.props.onDepartureChange}/>                  
                     <div className="search-input-title">ภูมิภาค/จังหวัด</div>
                     <div className="input-group mb-3 search-input-margin">
                         <select 
                             id="ProvincesID"
+                            data-width="auto"
                             title="ภูมิภาค/จังหวัด"
                             className="selectpicker select-input-style" 
                             data-actions-box="true"
@@ -186,7 +203,14 @@ export default class SearchBar extends Component {
                     <div className="search-input-title">บริษัท</div>
                     <div className="input-group mb-3 search-input-margin">
                         <select 
-                            className="selectpicker select-input-style" title="บริษัท" multiple>
+                            id="CompanysID"
+                            data-width="auto"
+                            className="selectpicker select-input-style" 
+                            title="บริษัท" 
+                            data-actions-box="true"
+                            data-size="5"
+                            onChange={()=>this.CompanyChange()}
+                            multiple>
                                 <option data-hidden="true"></option>
                                 <option data-content={`<span class="badge badge-info">noomsaotour</span>`}>
                                     noomsaotours
@@ -200,6 +224,7 @@ export default class SearchBar extends Component {
                     <div className="input-group mb-3 search-input-margin">
                         <select 
                             id="tagsID"
+                            data-width="auto"
                             className="selectpicker select-input-style" 
                             data-actions-box="true"
                             data-size="5"
