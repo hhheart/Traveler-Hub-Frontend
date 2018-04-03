@@ -40,34 +40,51 @@ const PackageDetail = ({package_itm}) => {
         <div>         
             <FeedbackModal PackageID={package_item._id} PackageURL={package_item.url}/>
             <div className="container detail-layout">
-                <div id="header-content" className="row">           
-                    <img className="col-md-5 package-detail-image img-fluid text-center" 
-                        alt="package_detail_image" 
-                    src={package_item.image} />               
+                <div id="header-content" className="row">    
+                    <div className="col-md-5 ">
+                        <img className="package-detail-image img-fluid text-center" 
+                            alt="package_detail_image" 
+                        src={package_item.image} />                       
+                    </div>                 
                     
                     <div id="detail" className="col-md-7 package-detail-header">
                         <h4 className="package-card-title-margin text-padding">{package_item.package_name}</h4>
-                        <div id="package-datail" className="row-md-5"> 
+                        <div id="package-datail" className="row-md-6"> 
                             <div><span className="package-detail-highlight">Hightlight.</span></div>
                             <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{package_item.detail}</p>
                         </div>          
-                        <div id="package-highlight" className="row-md-5 card package-card-margin bg-light">
+                        <div id="package-highlight" className="row-md-4 card package-card-margin bg-light">
                             
                             <div><span className="package-detail-highlight">รายละเอียด.</span></div>
                             <div className="row card-text">
-                                <ul className="col test-padding">
+                                <ul className="col-6 test-padding">
                                     <li>สถานที่: {package_item.location}</li>
                                     <li>ช่วงเวลาเดินทาง: {package_item.travel_date}</li>
                                 </ul>
-                                <ul className="col test-padding">
+                                <ul className="col-6 test-padding">
                                     <li>ระยะเวลา: {package_item.travel_duration} วัน</li>
                                     <li>ราคา: {package_item.human_price}</li>
                                 </ul>
                             </div>
                         </div>
-                        <div className="row-md-2 text-center">
-                        <a className="btn btn-primary btn-block" href="" data-toggle="modal" data-target="#feedbackModal">จองเลย!</a>
+                        <div className="row text-center no-gutters">
+                            <div className="col-8">
+                            <button className="btn btn-primary btn-block" 
+                                data-toggle="modal" 
+                                data-target="#feedbackModal">จองเลย!</button>
+                            </div>
+                            <div className="col-2">
+                            <button className="btn btn-secondary rounded-circle" >
+                                <i className="fa fa-thumbs-o-up" ></i>
+                            </button>
+                            </div >
+                            <div className="col-2">
+                            <button className="btn btn-secondary rounded-circle float-left" >
+                                <i className="fa fa-thumbs-o-down" ></i>
+                            </button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <hr/>

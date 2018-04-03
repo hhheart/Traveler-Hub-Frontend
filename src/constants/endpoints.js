@@ -17,3 +17,6 @@ export const GET_PACKAGE_TEMPLATE = 'http://supertam.xyz:5000/package?page=[val1
 
 //feedback
 export const FEEDBACK_ENDPOINT = 'http://supertam.xyz:5000/favorite';
+
+//user
+export const USER_ENDPOINT = 'http://supertam.xyz:5000/user';

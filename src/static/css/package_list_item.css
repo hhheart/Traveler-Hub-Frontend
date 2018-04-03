@@ -38,7 +38,7 @@
   
 }
 .package-item-star {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   position: absolute;
   padding: 5px;

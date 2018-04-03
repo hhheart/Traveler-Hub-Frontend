@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { 
+    onEditUser
+ } from '../../actions/user';
 
 import UserHistory from './user_history';
 import UserEdit from './user_edit';
 import Footer from '../../components/footer';
 import '../../static/css/user_profile.css';
 
-export default class User_Profile extends Component {  
+class User_Profile extends Component {  
     constructor(props){
         super(props);
             this.state = {  
@@ -29,7 +34,8 @@ FetchUser(){
     axios({
         method: 'get',
         url: 'http://supertam.xyz:5000/user',
-        headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+        headers: {
+            'Authorization': 'Bearer '+localStorage.getItem("login_token")},
       })
       .then(res =>  {
         this.setState({
@@ -48,19 +54,14 @@ FetchUser(){
 handleInputChange(event,id){
     var token = this.state.new_usr_data;
     token[event.target.id] = event.target.value;
-    this.setState( {new_usr_data:token},console.log(this.state.new_usr_data))
+    this.setState( {new_usr_data:token},/*console.log(this.state.new_usr_data)*/)
 }
 handleSubmitEdit(){
-    axios({
-        method: 'put',
-        url: 'http://supertam.xyz:5000/user',
-        headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
-        body: JSON.stringify(this.state.new_usr_data)
-      })
-      .then(res =>  {
-        this.setState({usr_data : res.data})
-        console.log(res)
-      });
+    this.props.onEditUser(this.state.new_usr_data)
+    .then(function (response) {
+        console.log(response)
+        alert('save changes!')
+    })
 }
 render(){
         return (
@@ -95,3 +96,13 @@ render(){
         )
     }
 }
+function mapStateToProps(state){
+    return {
+    };
+}
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        onEditUser
+    }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(User_Profile);

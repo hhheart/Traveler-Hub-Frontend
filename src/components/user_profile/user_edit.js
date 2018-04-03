@@ -9,23 +9,48 @@ const AppendInput = () => {
         </div>        
     )
 }
-const Gender = ({UserData}) => {
+const Gender = ({UserData,OnInputChange}) => {
     if (UserData.gender === 'male'){
         return (
-            <select className="custom-select">
-            <option value="1" selected>ชาย</option>
-            <option value="2">หญิง</option>
+            <select id="gender" onChange={OnInputChange} className="custom-select">
+            <option value="male" selected>ชาย</option>
+            <option value="female">หญิง</option>
             </select>
         )
     }
     else {
         return (
-            <select className="custom-select">
-            <option value="1">ชาย</option>
-            <option value="2" selected>หญิง</option>
+            <select id="gender" className="custom-select">
+            <option value="male">ชาย</option>
+            <option value="female" selected>หญิง</option>
             </select>
         )
     }
+}
+const UploadImgModal = () => {
+    return (
+        <div className="modal fade" id="UploadImgModal">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLongTitle">อัพโหลดรูปโปรไฟล์</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="input-group mb-3">
+                            <input type="file" name="Image"/>
+                        </div>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="button" className="btn btn-primary">เปลี่ยน</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    )
 }
 const UserEdit = ({
     UserData, 
@@ -33,8 +58,18 @@ const UserEdit = ({
     OnSubmitEdit}) => {
     return (
         <div className="usr-profile-content-mx">
-            <img src={require("../../static/images/user.png")} className="usr-profile-img img-fluid" alt="ProfileImage"/>
+            <UploadImgModal />
+            <img src={require("../../static/images/user.png")} 
+                
+                alt="ProfileImage"
+                className="usr-profile-img img-fluid"
+                data-toggle="modal" 
+                data-target="#UploadImgModal" />
+            
             <div className="input-group usr-profile-input-mx mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">อีเมลล์</span>
+                </div>
                 <input type="text" 
                     id="email"
                     className="form-control" 
@@ -43,6 +78,9 @@ const UserEdit = ({
                 <AppendInput />
             </div>           
             <div className="input-group usr-profile-input-mx mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">ชื่อจริง</span>
+                </div>
                 <input type="text" 
                     id="firstname"
                     className="form-control" 
@@ -51,6 +89,9 @@ const UserEdit = ({
                 <AppendInput />
             </div>
             <div className="input-group usr-profile-input-mx mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">นามสกุล</span>
+                </div>
                 <input type="text" 
                     id="lastname"
                     className="form-control" 
@@ -59,13 +100,21 @@ const UserEdit = ({
                 <AppendInput />
             </div>
             <div className="input-group usr-profile-input-mx mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">เพศ</span>
+                </div>
                 <Gender UserData={UserData}/>
                 <AppendInput />
+            </div>
+            <div className="input-group usr-profile-input-mx mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">อายุ</span>
+                </div>
                 <input type="text" 
-                    id="age"
-                    className="form-control" 
-                    placeholder={UserData.age}
-                    onChange={OnInputChange}/>
+                        id="age"
+                        className="form-control" 
+                        placeholder={UserData.age}
+                        onChange={OnInputChange}/>
                 <AppendInput />
             </div>
             <div className="input-group usr-profile-input-mx mx-auto">
@@ -83,7 +132,7 @@ const UserEdit = ({
             </div>
             <button
                 className="btn btn-outline-warning btn-custom" 
-                onClick={OnSubmitEdit} >ยืนยันแก้ไข</button>
+                onClick={OnSubmitEdit} >บันทึก</button>
         </div>
     )
 }

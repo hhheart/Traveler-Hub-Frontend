@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import LoginModal from '../components/login';
-import $ from 'jquery';
 import jQuery from 'jquery';
 import { 
     onLogin, 

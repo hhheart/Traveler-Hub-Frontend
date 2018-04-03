@@ -12,6 +12,9 @@ import {
     POST_FB_DATA_FAILURE,
     DELETE_FB_PERMISSION_SUCCESS,
     DELETE_FB_PERMISSION_FAILURE,
+    //EDIT
+    USER_EDIT_SUCCESS,
+    USER_EDIT_FAILURE,
 } from '../constants/actions_types';
 
 const initialState = {
@@ -119,6 +122,12 @@ const user = (state = initialState, action) => {
                 email: '',
                 isLoggedIn: false,
             })
+        case USER_EDIT_SUCCESS:
+            console.log('edit user success')        
+            return ({...state}) 
+        case USER_EDIT_FAILURE:
+            console.log('edit user failure')
+            return ({...state}) 
         default:
             return state
     }

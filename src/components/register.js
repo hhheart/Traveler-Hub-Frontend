@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-//import  Footer from '../components/footer';
 import '../static/css/register.css';
 
 import $ from 'jquery';
@@ -104,7 +103,6 @@ export default class RegisterModal extends Component{
           });
     }
     onChange(event,id){
-        //console.log(event.target.value)
         var tk_POST_DATA = this.state.POST_DATA;
         tk_POST_DATA[event.target.name] = event.target.value;
         this.setState( {POST_DATA:tk_POST_DATA} )

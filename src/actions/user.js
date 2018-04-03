@@ -18,12 +18,17 @@ import {
     DELETE_FB_PERMISSION_REQUEST,
     DELETE_FB_PERMISSION_SUCCESS,
     DELETE_FB_PERMISSION_FAILURE,
+    //EDIT
+    USER_EDIT_REQUEST,
+    USER_EDIT_SUCCESS,
+    USER_EDIT_FAILURE,
 } from '../constants/actions_types';
 
 import { 
     SERVER_LOGIN, 
     POST_FACEBOOK_DATA,
     TOKEN_CHECK,
+    USER_ENDPOINT,
 } from '../constants/endpoints';
 
 export const check_token = () =>({
@@ -39,7 +44,6 @@ export const check_token = () =>({
         ]
     }
 })
-
 export const onLogin = (values) =>({
     [RSAA]: {
         endpoint: SERVER_LOGIN,
@@ -94,4 +98,19 @@ export const delete_fb_app_permission = () =>({
             DELETE_FB_PERMISSION_FAILURE,
         ]
     }
+})
+export const onEditUser = (bodyVal) => ({
+    [RSAA]: {
+        endpoint: USER_ENDPOINT,
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+        body: JSON.stringify(bodyVal),
+        types: [    
+            USER_EDIT_REQUEST,
+            USER_EDIT_SUCCESS,
+            USER_EDIT_FAILURE,
+        ]
+    }  
 })
