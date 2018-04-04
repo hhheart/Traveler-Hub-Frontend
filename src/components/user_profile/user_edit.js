@@ -73,9 +73,8 @@ const UserEdit = ({
                 <input type="text" 
                     id="email"
                     className="form-control" 
-                    placeholder={UserData.email}
-                    onChange={OnInputChange} />
-                <AppendInput />
+                    value={UserData.email}
+                    />
             </div>           
             <div className="input-group usr-profile-input-mx mx-auto">
                 <div class="input-group-prepend">
@@ -86,9 +85,6 @@ const UserEdit = ({
                     className="form-control" 
                     placeholder={UserData.firstname}
                     onChange={OnInputChange}/>
-                <AppendInput />
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">นามสกุล</span>
                 </div>
@@ -110,7 +106,7 @@ const UserEdit = ({
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">อายุ</span>
                 </div>
-                <input type="text" 
+                <input type="date" 
                         id="age"
                         className="form-control" 
                         placeholder={UserData.age}

@@ -41,7 +41,6 @@ FetchUser(){
         this.setState({
             usr_data : res.data,
             new_usr_data: {
-                email: res.data.email,
                 firstname: res.data.firstname,
                 lastname: res.data.lastname,
                 gender: res.data.gender,

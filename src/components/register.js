@@ -109,6 +109,7 @@ export default class RegisterModal extends Component{
     }
     onSubmit(event){
         event.preventDefault();
+        console.log(this.state.POST_DATA)
         axios.post('http://supertam.xyz:5000/user', this.state.POST_DATA)
         .then((res) => {
             if (res.data.message === 'Register Successfully'){
@@ -249,6 +250,7 @@ export default class RegisterModal extends Component{
                                             <label className="control-label">วัน/เดือน/ปี เกิด</label>
                                             <input 
                                                 type="date" 
+                                                name="age"
                                                 id="birth_date" 
                                                 className="form-control"
                                                 onChange={this.onChange}

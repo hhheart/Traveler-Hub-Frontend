@@ -14,7 +14,7 @@ const UserHistory = () => {
                         alt="Package_Image"/>
                     <div className="col-7" >
                         <div className="card-body" >
-                            <h5 className="card-title" style={{textAlign:'left'}}>สมุย-เกาะเต่า-เกาะนางยวน กินหอยนางรม ชมขนำกลางทะเล@สินมานะฟาร์ม</h5>
+                            <h5 className="card-title" style={{fontSize:2+'vh' ,textAlign:'left'}}>สมุย-เกาะเต่า-เกาะนางยวน กินหอยนางรม ชมขนำกลางทะเล@สินมานะฟาร์ม</h5>
                             <div className="row no-gutters">
                                 <div className="col-10 mx-2" 
                                     style={{
