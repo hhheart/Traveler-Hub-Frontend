@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import ReactStars from 'react-stars'
+//import ReactStars from 'react-stars'
 
 import '../static/css/package_list_item.css'; 
 
@@ -10,7 +10,9 @@ const PackageListItem = ({package_item}) => {
     const imageUrl = package_item.image;
     const price = package_item.human_price;
     const travel_date = package_item.travel_date;
-
+    const numLike = package_item.like;
+    const numDislike = package_item.dislike;
+    const view = package_item.number_of_views;
     const logo = package_item.logo;
     return (
         <div>
@@ -18,12 +20,15 @@ const PackageListItem = ({package_item}) => {
                 <div className="package-list-image card-img-top">
                     <img alt="package-list-img" className="card-img-top image-layout" src={imageUrl}/>
                     <div className="package-item-star"> 
+                    <i className="fa fa-eye"
+                            style={{color:'white', fontSize:1+'vw'}} >
+                                <label style={{marginLeft:5+'px',marginRight:5+'px'}} >{view}</label></i> 
                         <i className="fa fa-thumbs-o-up"
                             style={{color:'#74d600', fontSize:1+'vw'}} >
-                                <label style={{marginLeft:5+'px',marginRight:5+'px'}} >99</label></i> 
+                                <label style={{marginLeft:5+'px',marginRight:5+'px'}} >{numLike}</label></i> 
                         <i className="fa fa-thumbs-o-down" 
-                            style={{color:'white', fontSize:1+'vw'}} >
-                                <label style={{marginLeft:5+'px',marginRight:5+'px'}}>99</label></i> 
+                            style={{color:'red', fontSize:1+'vw'}} >
+                                <label style={{marginLeft:5+'px',marginRight:5+'px'}}>{numDislike}</label></i> 
                     </div>
                 </div>
                 <div className="test-layout-title bg-light">{titleUrl}</div>

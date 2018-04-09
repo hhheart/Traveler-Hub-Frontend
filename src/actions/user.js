@@ -22,6 +22,10 @@ import {
     USER_EDIT_REQUEST,
     USER_EDIT_SUCCESS,
     USER_EDIT_FAILURE,
+    //HISTORY
+    USER_HISTORY_REQUEST,
+    USER_HISTORY_SUCCESS,
+    USER_HISTORY_FAILURE,
 } from '../constants/actions_types';
 
 import { 
@@ -29,6 +33,7 @@ import {
     POST_FACEBOOK_DATA,
     TOKEN_CHECK,
     USER_ENDPOINT,
+    USER_HISTORY,
 } from '../constants/endpoints';
 
 export const check_token = () =>({
@@ -81,15 +86,10 @@ export const postFB_dataToServer = (values) =>({
         ]
     }
 })
-export function onLogout() {
-    return {
-        type: LOGOUT,
-    }
-}
 export const delete_fb_app_permission = () =>({
     [RSAA]: {
         endpoint: 'https://graph.facebook.com/'+
-            localStorage.getItem("fb_userID")+'/permissions/'+'?access_token='+
+            localStorage.getItem("fb_userID")+'/permissions/?access_token='+
             localStorage.getItem("fb_accessToken"),
         method: 'DELETE',
         types: [    
@@ -114,3 +114,23 @@ export const onEditUser = (bodyVal) => ({
         ]
     }  
 })
+export const getUserHistory = () => ({
+    [RSAA]: {
+        endpoint: USER_HISTORY,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+        types: [    
+            USER_HISTORY_REQUEST,
+            USER_HISTORY_SUCCESS,
+            USER_HISTORY_FAILURE,
+        ]
+    }  
+})
+export function onLogout() {
+    return {
+        type: LOGOUT,
+    }
+}
+

@@ -34,7 +34,7 @@ const Timeline = ({data}) => {
         </ul>
     )
 }
-const PackageDetail = ({package_itm}) => {
+const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark}) => {
     const package_item = package_itm;
     return (  
         <div>         
@@ -68,20 +68,28 @@ const PackageDetail = ({package_itm}) => {
                             </div>
                         </div>
                         <div className="row text-center no-gutters">
-                            <div className="col-8">
+                            <div className="col-9">
                             <button className="btn btn-primary btn-block" 
                                 data-toggle="modal" 
                                 data-target="#feedbackModal">จองเลย!</button>
                             </div>
-                            <div className="col-2">
-                            <button className="btn btn-secondary rounded-circle" >
-                                <i className="fa fa-thumbs-o-up" ></i>
-                            </button>
+                            <div className="col-1">
+                                <button className="btn btn-secondary rounded-circle" 
+                                    onClick={onClickLike} >
+                                    <i className="fa fa-thumbs-o-up" ></i>
+                                </button>
                             </div >
-                            <div className="col-2">
-                            <button className="btn btn-secondary rounded-circle float-left" >
-                                <i className="fa fa-thumbs-o-down" ></i>
-                            </button>
+                            <div className="col-1">
+                                <button className="btn btn-secondary rounded-circle" 
+                                    onClick={onClickDislike}>
+                                    <i className="fa fa-thumbs-o-down" ></i>
+                                </button>
+                            </div>
+                            <div className="col-1">
+                                <button className="btn btn-secondary rounded-circle"
+                                    onClick={onClickBookmark}>
+                                    <i className="fa fa-star" ></i>
+                                </button>
                             </div>
                         </div>
 

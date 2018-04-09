@@ -18,17 +18,17 @@ export default class HomeView extends Component {
     }    
     // run before component rendered
     componentWillMount(){
-        axios.get('http://supertam.xyz:5000/package')
+        axios.get('http://travelerhub.xyz:5000/package')
         .then(res => {
             //console.log(res)
             this.setState({ packages: res.data.packages });
         });
-        axios.get('http://supertam.xyz:5000/package/latest')
+        axios.get('http://travelerhub.xyz:5000/package/latest')
         .then(res => {
             //console.log(res)
             this.setState({ NewRelease_packages: res.data });
         });
-        axios.get('http://supertam.xyz:5000/package/popular')
+        axios.get('http://travelerhub.xyz:5000/package/popular')
         .then(res => {
             //console.log(res)
             this.setState({ Hot_packages: res.data });

@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import { Redirect } from 'react-router';
+//import { Redirect } from 'react-router';
 import PackageListItem from './package_list_item';
 import Pagination from './pagination';
 import {REQUEST_ROOT} from '../constants/endpoints';

@@ -29,7 +29,7 @@ class PackageList extends Component {
     }
     fetch_packages_page(num){
         this.setState({loading:true})
-        axios.get(`http://supertam.xyz:5000/package?page=${num}`)
+        axios.get(`http://35.185.184.193:5000/package?page=${num}`)
         .then(res => {
             this.setState({ 
                 loading: false,

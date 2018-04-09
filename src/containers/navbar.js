@@ -33,6 +33,7 @@ class Navbar extends Component{
             <NavbarView 
                 email={this.props.email}
                 image={this.props.image}
+                usertype={this.props.usertype}
                 handleLogout={this.handleLogout.bind(this)}
             />
         ) 
@@ -43,7 +44,8 @@ function mapStateToProps(state){
         isLoggedIn: state.user.isLoggedIn,
         fbLoggedIn: state.user.fbLoggedIn,
         email: state.user.email,
-        image: state.user.profile_image
+        image: state.user.profile_image,
+        usertype: state.user.role,
     };
 }
 function mapDispatchToProps(dispatch){

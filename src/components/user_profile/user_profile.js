@@ -3,7 +3,8 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { 
-    onEditUser
+    onEditUser,
+    getUserHistory
  } from '../../actions/user';
 
 import UserHistory from './user_history';
@@ -25,12 +26,14 @@ class User_Profile extends Component {
                     gender: "",
                     age: "",
                 },
+                history: []
             };  
     }    
 componentWillMount(){
-    this.FetchUser()
+    this.FetchUserProfile()
+    this.FetchUserHistory()
 }
-FetchUser(){
+FetchUserProfile(){
     axios({
         method: 'get',
         url: 'http://supertam.xyz:5000/user',
@@ -47,8 +50,15 @@ FetchUser(){
                 age: res.data.age,
             },
         })
-        console.log(res)
+        //console.log(res)
       });
+}
+FetchUserHistory(){
+    this.props.getUserHistory()
+    .then((res) => {
+        console.log(res)
+        this.setState({history:res.payload})
+    })   
 }
 handleInputChange(event,id){
     var token = this.state.new_usr_data;
@@ -75,7 +85,7 @@ render(){
                             <a  className="nav-item nav-link" 
                                 data-toggle="tab" 
                                 href="#usr-hist" 
-                                role="tab">ค้นหาล่าสุด</a>
+                                role="tab">บุ๊คมาร์ค</a>
                         </div>
                     </nav>
                     <div className="tab-content">
@@ -86,7 +96,8 @@ render(){
                                 OnSubmitEdit={this.handleSubmitEdit.bind(this)} />
                         </div>
                         <div id="usr-hist" className="tab-pane fade usr-profile-content-layout text-center">
-                            <UserHistory />
+                            <UserHistory 
+                                HistoryPackages={this.state.history}/>
                         </div>
                     </div>
                 </div>
@@ -101,7 +112,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        onEditUser
+        onEditUser,
+        getUserHistory
     }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(User_Profile);

@@ -2,8 +2,8 @@ import React from 'react'
 
 const AppendInput = () => {
     return (
-        <div class="input-group-append">
-            <span class="input-group-text btn btn-secondary" id="basic-addon2">
+        <div className="input-group-append">
+            <span className="input-group-text btn btn-secondary" id="basic-addon2">
                 <i className="fa fa-pencil" />
             </span>
         </div>        
@@ -67,8 +67,8 @@ const UserEdit = ({
                 data-target="#UploadImgModal" />
             
             <div className="input-group usr-profile-input-mx mx-auto">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">อีเมลล์</span>
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">อีเมลล์</span>
                 </div>
                 <input type="text" 
                     id="email"
@@ -77,16 +77,16 @@ const UserEdit = ({
                     />
             </div>           
             <div className="input-group usr-profile-input-mx mx-auto">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">ชื่อจริง</span>
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">ชื่อจริง</span>
                 </div>
                 <input type="text" 
                     id="firstname"
                     className="form-control" 
                     placeholder={UserData.firstname}
                     onChange={OnInputChange}/>
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">นามสกุล</span>
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">นามสกุล</span>
                 </div>
                 <input type="text" 
                     id="lastname"
@@ -96,15 +96,15 @@ const UserEdit = ({
                 <AppendInput />
             </div>
             <div className="input-group usr-profile-input-mx mx-auto">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">เพศ</span>
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">เพศ</span>
                 </div>
                 <Gender UserData={UserData}/>
                 <AppendInput />
             </div>
             <div className="input-group usr-profile-input-mx mx-auto">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">อายุ</span>
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-default">อายุ</span>
                 </div>
                 <input type="date" 
                         id="age"

@@ -10,22 +10,22 @@ import Register from './components/register';
 import Login from './containers/login';
 import User_Profile from './components/user_profile/user_profile';
 import AboutUS from './components/about_us';
+//agency
+//import LoginAgency from './containers/agency/login';
 
 export default (
     <App>
         <div>
             <Switch>  
-                    <Route exact path={`/`} component={Home} />
-                    
+                    <Route exact path={`/`} component={Home} />         
                     <Route path={'/package/detail/:id'} component={PackageDetail} />
                     <Route path={'/package/search/page=:page_id'} component={PackageSearch} />
-                    <Route path={'/package/page=:page_id'} component={PackageList} />      
-                    
+                    <Route path={'/package/page=:page_id'} component={PackageList} />                         
                     <Route path={'/member/register'} component={Register}/>
                     <Route path={'/member/login'} component={Login}/>
                     <Route path={'/member/profile'} component={User_Profile}/>
-                    
                     <Route path={'/AboutUS'} component={AboutUS}/>
+
             </Switch>
         </div>
     </App>

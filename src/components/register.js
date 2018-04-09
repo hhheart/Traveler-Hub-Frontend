@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import '../static/css/register.css';
-
 import $ from 'jquery';
 import jQuery from 'jquery';
 import axios from 'axios';
+import '../static/css/register.css';
 
 export default class RegisterModal extends Component{
     constructor (props) {
@@ -16,16 +15,18 @@ export default class RegisterModal extends Component{
                 firstname: "",
                 lastname: "",
                 gender: "",
-                age: "",
+                birthdate: "",
+                usertype: "customer",
             },
         };
         this.onChange = this.onChange.bind(this);
     }  
+    // (re-script) progress panel
     componentDidMount() {
         $(document).ready(function () { 
             //initials
             var navListItems = $('div.setup-panel div a'),
-                    step1 = $('div.setup-panel div a #step-1'),
+                    //step1 = $('div.setup-panel div a #step-1'),
                     allWells = $('.setup-content'),
                     allNextBtn = $('.nextBtn'),
                     CloseBtn= $('.closeBtn');
@@ -45,9 +46,9 @@ export default class RegisterModal extends Component{
             //function a
             navListItems.click(function (e) {
                 e.preventDefault();
-                console.log(this)
-                console.log($($(this).attr('href')))
-                console.log($(this).attr('href'))
+                //console.log(this)
+                //console.log($($(this).attr('href')))
+                //console.log($(this).attr('href'))
                 
                 var $target = $($(this).attr('href')),
                         $item = $(this);
@@ -102,7 +103,31 @@ export default class RegisterModal extends Component{
             $('div.setup-panel a.first-child').trigger('click');
           });
     }
-    onChange(event,id){
+    renderPanel(){
+        return (
+            <div className="row bs-wizard setup-panel">     
+                <div className="col-4 bs-wizard-step first-child active">
+                    <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
+                    <div className="progress"><div className="progress-bar"></div></div>
+                    <a href="#step-1" className="first-child bs-wizard-dot">{null}</a>
+                    <div className="bs-wizard-info text-center">รายละเอียดเบื้องต้น</div>
+                </div>                 
+                <div className="col-4 bs-wizard-step disabled">
+                    <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 2</div>
+                    <div className="progress"><div className="progress-bar"></div></div>
+                    <a href="#step-2" className="bs-wizard-dot">{null}</a>
+                    <div className="bs-wizard-info text-center">รายละเอียดทั่วไป</div>
+                </div>    
+                <div className="col-4 bs-wizard-step last-child disabled">
+                    <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 3</div>
+                    <div className="progress"><div className="progress-bar"></div></div>
+                    <a href="#step-3" className="bs-wizard-dot">{null}</a>
+                    <div className="bs-wizard-info text-center">เสร็จสิ้น!</div>
+                </div>
+            </div>  
+        )
+    }
+    onChange(event){
         var tk_POST_DATA = this.state.POST_DATA;
         tk_POST_DATA[event.target.name] = event.target.value;
         this.setState( {POST_DATA:tk_POST_DATA} )
@@ -110,11 +135,11 @@ export default class RegisterModal extends Component{
     onSubmit(event){
         event.preventDefault();
         console.log(this.state.POST_DATA)
-        axios.post('http://supertam.xyz:5000/user', this.state.POST_DATA)
+        axios.post('http://travelerhub.xyz:5000/user', this.state.POST_DATA)
         .then((res) => {
             if (res.data.message === 'Register Successfully'){
-                window.jQuery = jQuery;
-                require('bootstrap')
+                //window.jQuery = jQuery;
+                //require('bootstrap')
                 jQuery('#RegisterModal').modal('hide')
                 alert('register successfully')   
             }
@@ -122,30 +147,6 @@ export default class RegisterModal extends Component{
         .catch(function (error) {
             alert(error)
         });
-    }
-    renderPanel(){
-        return (
-            <div className="row bs-wizard setup-panel">     
-                <div className="col-4 bs-wizard-step first-child active">
-                    <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 1</div>
-                    <div className="progress"><div className="progress-bar"></div></div>
-                    <a href="#step-1" className="first-child bs-wizard-dot"></a>
-                    <div className="bs-wizard-info text-center">รายละเอียดเบื้องต้น</div>
-                </div>                 
-                <div className="col-4 bs-wizard-step disabled">
-                    <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 2</div>
-                    <div className="progress"><div className="progress-bar"></div></div>
-                    <a href="#step-2" className="bs-wizard-dot"></a>
-                    <div className="bs-wizard-info text-center">รายละเอียดทั่วไป</div>
-                </div>    
-                <div className="col-4 bs-wizard-step last-child disabled">
-                    <div className="text-center bs-wizard-stepnum">ขั้นตอนที่ 3</div>
-                    <div className="progress"><div className="progress-bar"></div></div>
-                    <a href="#step-3" className="bs-wizard-dot"></a>
-                    <div className="bs-wizard-info text-center">เสร็จสิ้น!</div>
-                </div>
-            </div>  
-        )
     }
     render(){
         return(    
@@ -163,7 +164,11 @@ export default class RegisterModal extends Component{
                         </div>
                         <div className="modal-body">
                             {this.renderPanel()}
-                            <form className="was-validated form-margin" onSubmit={this.onSubmit.bind(this)} action="http://supertam.xyz:5000/user" method="post" noValidate>
+                            <form className="was-validated form-margin" 
+                                onSubmit={this.onSubmit.bind(this)} 
+                                action="http://travelerhub.xyz:5000/user" 
+                                method="post" 
+                                noValidate>
                                 <div className="row setup-content" id="step-1">
                                     <div className="col-8 offset-2 col-md-8 offset-md-2">                           
                                         <div className="form-group">
@@ -250,8 +255,8 @@ export default class RegisterModal extends Component{
                                             <label className="control-label">วัน/เดือน/ปี เกิด</label>
                                             <input 
                                                 type="date" 
-                                                name="age"
-                                                id="birth_date" 
+                                                id="birthdate" 
+                                                name="birthdate"
                                                 className="form-control"
                                                 onChange={this.onChange}
                                                 required/>

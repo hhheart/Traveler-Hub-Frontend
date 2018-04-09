@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PackageDetail from '../components/package_detail';
-import { GET_Package } from '../actions/packages_get';
 import $ from 'jquery';
 import axios from 'axios';
+
+import PackageDetail from '../components/package_detail';
+import { GET_Package } from '../actions/packages_get';
+import { sent_feedback, sent_bookmark } from '../actions/feedback';
 
 class PackageList extends Component {
     constructor(props){
@@ -17,7 +19,7 @@ class PackageList extends Component {
     // run before component rendered
     componentWillMount(){
         $('html, body').scrollTop(0);
-        axios.get(`http://supertam.xyz:5000/package/${this.props.match.params.id}`)
+        axios.get(`http://travelerhub.xyz:5000/package/${this.props.match.params.id}`)
         .then(res => {
             //console.log(res.data)
             this.setState({ packages: res.data });
@@ -27,10 +29,34 @@ class PackageList extends Component {
             console.log(res)
         });
     }
+    handleLike(){
+        //console.log('like & '+this.props.match.params.id)
+        this.props.sent_feedback({like:true,packageId:this.props.match.params.id})
+        .then(function (response) {
+            alert('thank you! for like')
+        })
+    }
+    handleDislike(){
+        //console.log('dislike & '+this.props.match.params.id)
+        this.props.sent_feedback({like:false,packageId:this.props.match.params.id})
+        .then(function (response) {
+            alert(' thank you! for dislike')
+        })
+    }
+    handleBookmark(){
+        this.props.sent_bookmark({bookmark:true,packageId:this.props.match.params.id})
+        .then(function (response) {
+            alert(' thank you! for bookmark')
+        })
+    }
     render(){ 
         if (this.state.packages !== ''){
             return (  
-                <PackageDetail package_itm={this.state.packages}/>
+                <PackageDetail 
+                    onClickLike={this.handleLike.bind(this)}
+                    onClickDislike={this.handleDislike.bind(this)}
+                    onClickBookmark={this.handleBookmark.bind(this)}
+                    package_itm={this.state.packages}/>
             )
         }
         else {
@@ -48,6 +74,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         GET_Package,
+        sent_feedback,
+        sent_bookmark,
     }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PackageList);

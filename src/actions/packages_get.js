@@ -12,7 +12,7 @@ import {
 
 export const GET_Package = (pkID) =>({
     [RSAA]: {
-        endpoint: `http://supertam.xyz:5000/package/${pkID}`,
+        endpoint: `${GET_PACKAGE_TEMPLATE}${pkID}`,
         method: 'GET',
         headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
         types: [    

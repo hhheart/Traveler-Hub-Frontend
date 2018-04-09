@@ -2,16 +2,16 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { check_token, } from '../actions/user';
-
 import $ from 'jquery';
 import jQuery from 'jquery';
 
 import HomeView from '../components/home';
+import Chart from '../containers/agency/chart';
 import LoginModal from '../containers/login';
 import RegisterModal from '../containers/register';
-import '../static/css/feedback.css'; 
+import RegisAgencyModal from '../containers/agency/register';
 
-
+//import '../static/css/feedback.css'; 
 
 class Home extends Component{
     constructor(props){
@@ -19,6 +19,7 @@ class Home extends Component{
         this.state = {  
         }; 
     }  
+    //fix user edit
     IsReRenderNeeded(){
         if (localStorage.getItem('tk_refresh') !== null){
             localStorage.removeItem('tk_refresh')
@@ -35,6 +36,14 @@ class Home extends Component{
             }
         })
     }
+    ChooseHomeContent(){
+        if (this.props.usertype === 'customer'){
+            return <HomeView />
+        }
+        else if (this.props.usertype === 'agency'){
+            return <Chart />
+        }
+    }
     render(){
         $('html, body').scrollTop(0);
         return (
@@ -43,7 +52,8 @@ class Home extends Component{
                 {this.IsUserLoggedIn()}
                 <LoginModal />
                 <RegisterModal />
-                <HomeView />
+                <RegisAgencyModal />
+                {this.ChooseHomeContent()}
             </div>
         )
     }
@@ -51,6 +61,7 @@ class Home extends Component{
 function mapStateToProps(state){
     return {
         isLoggedIn: state.user.isLoggedIn,
+        usertype: state.user.role,
     };
 }
 function mapDispatchToProps(dispatch){

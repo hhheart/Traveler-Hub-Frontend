@@ -15,15 +15,18 @@ import {
     //EDIT
     USER_EDIT_SUCCESS,
     USER_EDIT_FAILURE,
+    //HISTORY
+    USER_HISTORY_SUCCESS,
+    USER_HISTORY_FAILURE,   
 } from '../constants/actions_types';
 
 const initialState = {
     role: 'guest',
     isLoggedIn: false,
     fbLoggedIn: false,
-    email: '',
-    profile_image: '',
-    errorMsg: '',
+    email: 'empty',
+    profile_image: 'empty',
+    errorMsg: 'empty',
 }
 const user = (state = initialState, action) => {
     switch(action.type) {
@@ -35,11 +38,12 @@ const user = (state = initialState, action) => {
                     isLoggedIn: true,
                     email: action.payload.email,
                     profile_image: action.payload.profileImage,
-                    role: action.payload.usertype,              
+                    role: 'customer',              
                 })
             }
             else {
                 console.log('authentication success')
+                console.log(action.payload)
                 return ({
                     fbLoggedIn: false,
                     isLoggedIn: true,
@@ -75,7 +79,7 @@ const user = (state = initialState, action) => {
                 fbLoggedIn: true,
                 email: action.payload.email,
                 profile_image: action.payload.picture.data.url,
-                role: 'c',
+                role: 'customer',
             })
         case LOGIN_FACEBOOK_FAILURE:
             console.log('facebook failure')
@@ -127,6 +131,12 @@ const user = (state = initialState, action) => {
             return ({...state}) 
         case USER_EDIT_FAILURE:
             console.log('edit user failure')
+            return ({...state}) 
+        case USER_HISTORY_SUCCESS:
+            console.log('get user history success')        
+            return ({...state}) 
+        case USER_HISTORY_FAILURE:
+            console.log('get user history failure')
             return ({...state}) 
         default:
             return state

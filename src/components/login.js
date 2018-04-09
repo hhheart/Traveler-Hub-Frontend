@@ -6,7 +6,6 @@ const LoginModal = ({
     onSubmit_facebook, 
     onEmailChange, 
     onPasswordChage, 
-    //closeModal, 
     onClickRegister,
     email, 
     password}) => {
@@ -67,11 +66,15 @@ const LoginModal = ({
                         </div> 
                     </div>
                     <div className="modal-footer">
-                        <a className="mr-auto" 
+                        <a className="" 
                             data-toggle="modal"
                             data-target="#RegisterModal"
                             onClick={onClickRegister}
                             href=''>สมัครใช้งาน?</a>
+                        <a className="mr-auto" 
+                            data-toggle="modal"
+                            data-target="#RegisAgencyModal"
+                            href=''>เป็นผู้ดูแล?</a>
                         <button 
                             type="button" 
                             className="btn btn-warning"

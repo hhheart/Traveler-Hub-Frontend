@@ -39,83 +39,124 @@ export class NavbarView extends Component{
                 className="" style={{width:50+'px',height:50+'px'}}/>
         }
     }
-    renderUserContent(){
+    renderUserContent(){   
+        return (
+            <nav className="navbar navbar-expand-lg navbar-light bg-white">
+                <Link to={`${URL_ROOT}`}>
+                    <img className="navbar-brand navbar-logo-size" 
+                        alt="_LOGO_" 
+                        src={require('../static/images/logo_2.png')}
+                    />
+                </Link>
+                <button 
+                    className="navbar-toggler" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span className="navbar-dark navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse bg-white" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`/package/page=${1}`}>แพ็คเกจทั้งหมด</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`/package/search/page=${1}`}>ค้นหาแพ็คเกจ</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`/AboutUS`}>เกี่ยวกับเรา</Link>
+                        </li>
+                    </ul>
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            {this.renderImageProfile()}
+                        </li>
+                        <li className="nav-item dropdown" >
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                                {this.props.email}
+                            </a>
+                            <div className="dropdown-menu">
+                                <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
+                                <div className="dropdown-divider text-center"></div>
+                                <button
+                                    className="btn btn-outline-danger btn-logout-layout"
+                                    data-toggle="modal" 
+                                    data-target="#logoutModal"
+                                >ลงชื่อออก</button>  
+                            </div>
+                        </li>
+                    </ul>
+                </div>     
+            </nav>
+        )   
+    }
+    renderAgencyContent(){  
+        return (
+            <nav className="navbar navbar-expand-lg navbar-light bg-white">
+                <Link to={`${URL_ROOT}`}>
+                    <img className="navbar-brand navbar-logo-size" 
+                        alt="_LOGO_" 
+                        src={require('../static/images/logo_2.png')}
+                    />
+                </Link>
+                <button 
+                    className="navbar-toggler" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span className="navbar-dark navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse bg-white" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`${URL_ROOT}`}>ดูข้อมูล</Link>
+                        </li>
+                    </ul>
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            {this.renderImageProfile()}
+                        </li>
+                        <li className="nav-item dropdown" >
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                                {this.props.email}
+                            </a>
+                            <div className="dropdown-menu">
+                                <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
+                                <div className="dropdown-divider text-center"></div>
+                                <button
+                                    className="btn btn-outline-danger btn-logout-layout"
+                                    data-toggle="modal" 
+                                    data-target="#logoutModal"
+                                >ลงชื่อออก</button>  
+                            </div>
+                        </li>
+                    </ul>
+                </div>     
+            </nav>
+        )
+    }
+    ChooseContent(){
         if (localStorage.getItem("login_token")){
-            return (
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        {this.renderImageProfile()}
-                    </li>
-                    <li className="nav-item dropdown" >
-                        <a className="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
-                            {this.props.email}
-                        </a>
-                        <div className="dropdown-menu">
-                            <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
-                            <div className="dropdown-divider text-center"></div>
-                            <button
-                                className="btn btn-outline-danger btn-logout-layout"
-                                data-toggle="modal" 
-                                data-target="#logoutModal"
-                            >ลงชื่อออก</button>  
-                        </div>
-                    </li>
-                </ul>
-            )
-        }
-        /*else {
-            return (
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item ">
-                        <a className="nav-link" href="" data-toggle="modal" data-target="#loginModal">ลงชื่อเข้าใช้</a>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/member/register">สมัครใช้งาน</Link>      
-                    </li>
-                </ul>
-            )
-        }*/
+            if (this.props.usertype === 'customer')
+                return (this.renderUserContent())
+            else if (this.props.usertype === 'agency')
+                return (this.renderAgencyContent())
+        }        
     }
     render(){
         return (
-            <div>
-                
+            <div>     
                 {this.renderLogoutModal()}
-                <nav className="navbar navbar-expand-lg navbar-light bg-white">
-                    <Link to={`${URL_ROOT}`}>
-                        <img className="navbar-brand navbar-logo-size" 
-                            alt="_LOGO_" 
-                            src={require('../static/images/logo_2.png')}
-                        />
-                    </Link>
-                    <button 
-                        className="navbar-toggler" 
-                        type="button" 
-                        data-toggle="collapse" 
-                        data-target="#navbarNav" 
-                        aria-controls="navbarNav" 
-                        aria-expanded="false" 
-                        aria-label="Toggle navigation">
-                    <span className="navbar-dark navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse bg-white" id="navbarNav">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={`/package/page=${1}`}>แพ็คเกจทั้งหมด</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={`/package/search/page=${1}`}>ค้นหาแพ็คเกจ</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to={`/AboutUS`}>เกี่ยวกับเรา</Link>
-                            </li>
-                        </ul>
-                        {this.renderUserContent()}
-                    </div>     
-                </nav>
+                {this.ChooseContent()}
             </div>
         ) 
     }     
