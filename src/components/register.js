@@ -135,7 +135,7 @@ export default class RegisterModal extends Component{
     onSubmit(event){
         event.preventDefault();
         console.log(this.state.POST_DATA)
-        axios.post('http://travelerhub.xyz:5000/user', this.state.POST_DATA)
+        axios.post('https://api.travelerhub.xyz/user', this.state.POST_DATA)
         .then((res) => {
             if (res.data.message === 'Register Successfully'){
                 //window.jQuery = jQuery;
@@ -166,7 +166,7 @@ export default class RegisterModal extends Component{
                             {this.renderPanel()}
                             <form className="was-validated form-margin" 
                                 onSubmit={this.onSubmit.bind(this)} 
-                                action="http://travelerhub.xyz:5000/user" 
+                                action="https://api.travelerhub.xyz/user" 
                                 method="post" 
                                 noValidate>
                                 <div className="row setup-content" id="step-1">

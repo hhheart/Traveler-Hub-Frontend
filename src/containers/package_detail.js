@@ -19,7 +19,7 @@ class PackageList extends Component {
     // run before component rendered
     componentWillMount(){
         $('html, body').scrollTop(0);
-        axios.get(`http://travelerhub.xyz:5000/package/${this.props.match.params.id}`)
+        axios.get(`https://api.travelerhub.xyz/package/${this.props.match.params.id}`)
         .then(res => {
             //console.log(res.data)
             this.setState({ packages: res.data });
