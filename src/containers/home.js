@@ -6,7 +6,7 @@ import $ from 'jquery';
 import jQuery from 'jquery';
 
 import HomeView from '../components/home';
-import Chart from '../containers/agency/chart';
+import LineChart from '../containers/agency/chart_line';
 import LoginModal from '../containers/login';
 import RegisterModal from '../containers/register';
 import RegisAgencyModal from '../containers/agency/register';
@@ -41,7 +41,7 @@ class Home extends Component{
             return <HomeView />
         }
         else if (this.props.usertype === 'agency'){
-            return <Chart />
+            return <LineChart />
         }
     }
     render(){

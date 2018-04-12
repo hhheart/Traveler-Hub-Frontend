@@ -5,6 +5,7 @@ import {
 
 const initialState = {
     response: "empty",
+    choice: 'a',
 }
 const agency = (state = initialState, action) => {
     switch(action.type) {
@@ -17,6 +18,11 @@ const agency = (state = initialState, action) => {
             console.log('AGENCY-REGISTER-FAILURE')
             return ({
                 response: action.payload.message
+            })
+        case "CHOICE":
+            console.log('choice is change choice is '+action.value)
+            return ({
+                choice: action.value
             })
         default:
             return state

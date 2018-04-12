@@ -22,3 +22,12 @@ export const agency_register = (bodyVal) =>({
             ]
     }
 })
+
+export function select_choice(val) {
+    console.log('choice is coming')
+    console.log(val)
+    return {
+        type: "CHOICE",
+        value: val,
+    }
+}

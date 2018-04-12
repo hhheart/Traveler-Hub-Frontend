@@ -118,7 +118,12 @@ export class NavbarView extends Component{
                 <div className="collapse navbar-collapse bg-white" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to={`${URL_ROOT}`}>ดูข้อมูล</Link>
+                            <Link className="nav-link" to={'/agency/line_chart'}>ข้อมูลเข้าชม</Link>
+                        </li>
+                    </ul>
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link className="nav-link" to={'/agency/bar_chart'}>สรุปผู้ใช้งาน</Link>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">

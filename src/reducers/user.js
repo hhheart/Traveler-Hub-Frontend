@@ -48,6 +48,7 @@ const user = (state = initialState, action) => {
                     fbLoggedIn: false,
                     isLoggedIn: true,
                     email: action.payload.email,
+                    profile_image: action.payload.profileImage,
                     role: action.payload.usertype,              
                 })
             }

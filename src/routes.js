@@ -11,7 +11,8 @@ import Login from './containers/login';
 import User_Profile from './components/user_profile/user_profile';
 import AboutUS from './components/about_us';
 //agency
-//import LoginAgency from './containers/agency/login';
+import LineChart from './containers/agency/chart_line';
+import BarChart from './containers/agency/chart_bar';
 
 export default (
     <App>
@@ -26,6 +27,8 @@ export default (
                     <Route path={'/member/profile'} component={User_Profile}/>
                     <Route path={'/AboutUS'} component={AboutUS}/>
 
+                    <Route path={'/agency/line_chart'} component={LineChart}/>
+                    <Route path={'/agency/bar_chart'} component={BarChart}/>
             </Switch>
         </div>
     </App>
