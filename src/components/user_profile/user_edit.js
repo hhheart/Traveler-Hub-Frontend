@@ -1,4 +1,5 @@
 import React from 'react'
+import { REQUEST_ROOT } from '../../constants/endpoints';
 
 const AppendInput = () => {
     return (
@@ -52,6 +53,25 @@ const UploadImgModal = () => {
         </div>        
     )
 }
+
+const UserProfileModal = ({ userProfile }) => {
+    if (userProfile){
+        return <img src={`${REQUEST_ROOT}`+userProfile} 
+            
+            alt="ProfileImage"
+            className="usr-profile-img img-fluid"
+            data-toggle="modal" 
+            data-target="#UploadImgModal" />
+    }
+    else {
+        return <img src={require("../../static/images/user.png")} 
+            
+            alt="ProfileImage"
+            className="usr-profile-img img-fluid"
+            data-toggle="modal" 
+            data-target="#UploadImgModal" />
+    }
+}
 const UserEdit = ({
     UserData, 
     OnInputChange,
@@ -59,12 +79,9 @@ const UserEdit = ({
     return (
         <div className="usr-profile-content-mx">
             <UploadImgModal />
-            <img src={require("../../static/images/user.png")} 
-                
-                alt="ProfileImage"
-                className="usr-profile-img img-fluid"
-                data-toggle="modal" 
-                data-target="#UploadImgModal" />
+            <UserProfileModal 
+                userProfile={UserData.profileImage}
+            />
             
             <div className="input-group usr-profile-input-mx mx-auto">
                 <div className="input-group-prepend">

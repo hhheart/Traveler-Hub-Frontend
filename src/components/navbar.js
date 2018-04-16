@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import {URL_ROOT} from '../constants/endpoints';
+import { URL_ROOT } from '../constants/endpoints';
+import { REQUEST_ROOT } from '../constants/endpoints';
 //import LoginModal from '../containers/login';
 import '../static/css/nav.css'
 
@@ -31,7 +32,8 @@ export class NavbarView extends Component{
     }
     renderImageProfile(){
         if (this.props.image){
-            return <img src={this.props.image} alt="ProfileImage" 
+            console.log(this.props.image)
+            return <img src={`${REQUEST_ROOT}`+this.props.image} alt="ProfileImage" 
                 className="" style={{width:50+'px',height:50+'px'}}/>
         }
         else {
