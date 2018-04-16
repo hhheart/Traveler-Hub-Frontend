@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Footer from '../components/footer';
 import FeedbackModal from '../containers/feedback_modal';
+import {REQUEST_ROOT} from '../constants/endpoints';
 
 import '../static/css/package_detail.css'; 
 import '../static/css/test_timeline.css'; 
@@ -44,7 +45,7 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                     <div className="col-md-5 ">
                         <img className="package-detail-image img-fluid text-center" 
                             alt="package_detail_image" 
-                        src={package_item.image} />                       
+                        src={`${REQUEST_ROOT}${package_item.images[0]}`} />                       
                     </div>                 
                     
                     <div id="detail" className="col-md-7 package-detail-header">

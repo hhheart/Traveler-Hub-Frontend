@@ -2,7 +2,7 @@
 export const URL_ROOT = '/';
 
 //server
-export const REQUEST_ROOT = 'https://api.travelerhub.xyz/'; 
+export const REQUEST_ROOT = 'https://api.travelerhub.xyz'; 
 export const SERVER_LOGIN = 'https://api.travelerhub.xyz/login';
 export const FACEBOOK_GRAPH_API = 'https://graph.facebook.com/[id]?fields=email,id,first_name,last_name,picture&access_token=[key]';
 
