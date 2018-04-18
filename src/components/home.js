@@ -7,6 +7,8 @@ import Footer from '../components/footer';
 import '../static/css/home.css';
 import '../static/css/ribbon.css';
 
+import {REQUEST_ROOT} from '../constants/endpoints';
+
 export default class HomeView extends Component {
     constructor(props){
         super(props);
@@ -67,13 +69,13 @@ export default class HomeView extends Component {
                 if (i === 0){
                     return (
                         <div className="carousel-item active">
-                            <img className="d-block carousel" src={item.image} alt="active slide"/>
+                            <img className="d-block carousel" src={`${REQUEST_ROOT}${item.images[0]}`} alt="active slide"/>
                         </div>  
                 )}
                 else {
                     return (
                         <div className="carousel-item">
-                            <img className="d-block carousel" src={item.image} alt="item slide"/>
+                            <img className="d-block carousel" src={`${REQUEST_ROOT}${item.images[0]}`} alt="item slide"/>
                         </div>  
                 )}                         
             }

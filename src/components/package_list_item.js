@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 //import ReactStars from 'react-stars'
 
 import '../static/css/package_list_item.css'; 
+import {REQUEST_ROOT} from '../constants/endpoints';
 
 const PackageListItem = ({package_item}) => {
     const ID = package_item._id;
     const titleUrl = package_item.package_name;
-    const imageUrl = package_item.image;
+    const imageUrl = `${REQUEST_ROOT}${package_item.images[0]}`;
     const price = package_item.human_price;
     const travel_date = package_item.travel_date;
     const numLike = package_item.like;

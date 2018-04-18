@@ -19,14 +19,14 @@ class PackageList extends Component {
     // run before component rendered
     componentWillMount(){
         $('html, body').scrollTop(0);
-        axios.get(`https://api.travelerhub.xyz/package/${this.props.match.params.id}`)
-        .then(res => {
-            //console.log(res.data)
-            this.setState({ packages: res.data });
-        });
+        //axios.get(`https://api.travelerhub.xyz/package/${this.props.match.params.id}`)
+        //.then(res => {
+        //    //console.log(res.data)
+        //    this.setState({ packages: res.data });
+        //});
         this.props.GET_Package(this.props.match.params.id)
         .then(res => {
-            console.log(res)
+            this.setState({ packages: res.payload });
         });
     }
     handleLike(){

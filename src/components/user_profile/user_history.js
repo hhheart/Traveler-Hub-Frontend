@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {REQUEST_ROOT} from '../../constants/endpoints';
+
 const LikeOrDislike = ({fact}) => {
     if (fact === true){
         return (
@@ -26,7 +28,7 @@ const UserHistory = ({HistoryPackages}) => {
                 <div className="row no-gutters" > 
                     <img 
                         className="col-3" 
-                        src={HistoryPackages[i].packageId.image} 
+                        src={`${REQUEST_ROOT}${HistoryPackages[i].packageId.images[0]}`} 
                         style={{height:'auto',width:15+'vw'}}
                         alt="Package_Image"/>
                     <div className="col-7" >

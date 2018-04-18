@@ -36,7 +36,7 @@ componentWillMount(){
 FetchUserProfile(){
     axios({
         method: 'get',
-        url: 'https://api.travelerhub.xyz0/user',
+        url: 'https://api.travelerhub.xyz/user',
         headers: {
             'Authorization': 'Bearer '+localStorage.getItem("login_token")},
       })
