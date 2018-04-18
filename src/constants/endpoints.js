@@ -19,3 +19,7 @@ export const GET_PACKAGE_TEMPLATE = 'https://api.travelerhub.xyz/package/'
 export const USER_ENDPOINT = 'https://api.travelerhub.xyz/user';
 export const FEEDBACK_ENDPOINT = 'https://api.travelerhub.xyz/favorite';
 export const USER_HISTORY = 'https://api.travelerhub.xyz/bookmark';
+
+//agency
+export const AGENCY_LINECHART_TEMPLATE = 'https://api.travelerhub.xyz/report/history?';
+export const AGENCY_BARCHART_TEMPLATE = '';

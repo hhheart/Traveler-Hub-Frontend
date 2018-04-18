@@ -111,8 +111,8 @@ class PackageSearch extends Component{
     onCompanysSelected(val){
         console.log(val)
         this.setState({
-            province_request: '&province='+val,
-            tags: {...this.state.tags,provinces: val},
+            company_request: '&company='+val,
+            tags: {...this.state.tags,companys: val},
         })        
     }
     onQRegionClick(e){

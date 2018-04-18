@@ -98,7 +98,7 @@ export default class SearchBar extends Component {
             );          
         }))
         .then(() => {
-            return this.props.onCompanysSelected(selectedTags)
+            return this.props.onProvincesSelected(selectedTags)
         });
     }
     onCompanyChange(){
@@ -113,7 +113,7 @@ export default class SearchBar extends Component {
             );          
         }))
         .then(() => {
-            return this.props.onProvincesSelected(selectedCompanys)
+            return this.props.onCompanysSelected(selectedCompanys)
         });
     }
     onTagsChange(){

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
+import data from '../../static/js/provinces.json';
 export default class ChartSideBar extends Component {
     constructor() {
         super()
@@ -6,30 +8,94 @@ export default class ChartSideBar extends Component {
 
         }
     }
-    renderInput(){
-        console.log('inside input picker '+this.props.choice)
-        if (this.props.choice === "a"){
-            return (
-                <select multiple class="form-control" id="regionChoice">
-                <option>region1</option>
-                <option>region2</option>
-                <option>region3</option>
-                <option>region4</option>
-                <option>region5</option>
-              </select>
-            )
+    renderTagsInput(){
+        const tags = ["ภูเขา", "แม่น้ำ", "ทะเลหมอก", "น้ำตก", "ล่องแก่ง", "ปีนเขา", 
+        "วัด", "หาด", "อุทยาน", "ป่า", "ดอย", "สะพานแขวน", "อ่าง", "พิพิธภัณฑ์", "ห้วย", 
+        "พระธาตุ", "พระเจดีย์", "ดำน้ำ", "ปะการัง", "ทะเล", "ฝาย", "เขื่อน", "ปาย", "พัทยา", "มัลดีฟส์"]
+        if (tags.length > 0){
+            //console.log(tags)
+            const listItem=[];
+            listItem.push(tags.map( item => {
+                return (
+                    <option 
+                        value={item.toString()}
+                        data-content={`<span class="badge badge-success">${item}</span>`}>
+                            {item}
+                    </option>                
+                )
+            }))
+            return listItem
         }
         else {
-            return (
-                <select multiple class="form-control" id="qtagChoice">
-                <option>qtag1</option>
-                <option>qtag2</option>
-                <option>qtag3</option>
-                <option>qtag4</option>
-                <option>qtag5</option>
-                </select>
-            ) 
+           return <option><i className="fa fa-circle-o-notch fa-spin" style={{fontSize:24+'px'}}/></option>
         }
+    }
+    renderRegionInput(){
+        const listItem=[];
+        listItem.push(data.map( (item,i) => {
+            return (
+                <option 
+                    data-content={`<span class="badge badge-dark">${item.region}</span>`}>
+                        {item.region}
+                </option>               
+            )
+        }))
+        return listItem       
+    }
+    renderProvinceInput(){
+        const listItem=[];
+        listItem.push(data.map( (item,i) => {
+            return (
+                <optgroup label={item.region}>
+
+                    {this.ProvincesInput(i)}
+                      
+                </optgroup>               
+            )
+        }))
+        return listItem
+    }
+    ProvincesInput(i){
+        const provinceItem=[];
+        provinceItem.push(data[i].provinces.map( item => {
+            return (
+                <option 
+                    data-content={`<span class="badge badge-dark">${item}</span>`}>
+                        {item}
+                </option>                
+            )
+        }))
+        return provinceItem       
+    }
+    onRegionsChange(){
+        var selectedRegions = "";
+        $.when(        
+            $(document).ready(function () {       
+                $("#regions option:selected").each(function(){
+                    if ($(this).text() !== ""){
+                        selectedRegions += $(this).text() + " ";
+                    }
+                }
+            );          
+        }))
+        .then(() => {
+            return this.props.onRegionsSelected(selectedRegions)
+        });
+    }
+    onTagsChange(){
+        var selectedTags = "";
+        $.when(        
+            $(document).ready(function () {       
+                $("#travel_types option:selected").each(function(){
+                    if ($(this).text() !== ""){
+                        selectedTags += $(this).text() + " ";
+                    }
+                }
+            );          
+        }))
+        .then(() => {
+            return this.props.onTagsSelected(selectedTags)
+        });
     }
     renderBTN(){
         if (this.props.loading){
@@ -71,40 +137,53 @@ export default class ChartSideBar extends Component {
                         id="startDate"
                         type="date" 
                         className="form-control"    
-                        onChange={''} />
+                        onChange={this.props.onChangeDate} />
                     <div className="search-input-title">วันสิ้นสุด</div>
                     <input 
                         id="endDate"
                         type="date"
                         className="form-control search-input-margin"                    
-                        onChange={''}/>                  
-                    
-                    <div className="search-input-title">ประเภทการค้นหา</div>
-                        <div class="form-check form-check-inline">
-                            <input 
-                                
-                                class="form-check-input"
-                                type="radio" 
-                                name="inlineRadioOptions" 
-                                value="a"
-                                onChange={this.props.onChangeChoice.bind(this)}
-                            />
-                            <label class="form-check-label" for="inlineRadio1">ภูมิภาค</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input 
-                                class="form-check-input" 
-                                type="radio" 
-                                name="inlineRadioOptions"  
-                                value="b"
-                                onChange={this.props.onChangeChoice.bind(this)}
-                            />
-                            <label class="form-check-label" for="inlineRadio2">คำค้นหาพิเศษ</label>
-                        </div>
+                        onChange={this.props.onChangeDate}/>                  
                     <div className="input-group mb-3 search-input-margin">
-   
-                            {this.renderInput()}
-                       
+                        <select 
+                            id="regions"
+                            data-width="auto"
+                            title="ภูมิภาค"
+                            className="selectpicker select-input-style" 
+                            data-actions-box="true"
+                            data-size="5"
+                            onChange={()=>this.onRegionsChange()}
+                            multiple>
+                            <option data-hidden="true"></option>
+                            {this.renderRegionInput()}
+                        </select>
+                    </div>  
+                    <div className="input-group mb-3 search-input-margin">
+                        <select 
+                            id="ProvincesID"
+                            data-width="auto"
+                            title="จังหวัด"
+                            className="selectpicker select-input-style" 
+                            data-actions-box="true"
+                            data-size="5"
+                            onChange={()=>this.onProvincesChange()}
+                            multiple>
+                            <option data-hidden="true"></option>
+                            {this.renderProvinceInput()}
+                        </select>
+                    </div>  
+                    <div className="input-group mb-3 search-input-margin">
+                        <select 
+                            id="travel_types"
+                            data-width="auto"
+                            className="selectpicker select-input-style" 
+                            data-actions-box="true"
+                            data-size="5"
+                            onChange={() => this.onTagsChange()}
+                            multiple>
+                            <option data-hidden="true"></option>
+                            {this.renderTagsInput()}
+                        </select>
                     </div>                                         
                 </div>
             {this.renderBTN()}

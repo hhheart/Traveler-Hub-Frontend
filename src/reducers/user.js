@@ -74,6 +74,7 @@ const user = (state = initialState, action) => {
             })
         case LOGIN_FACEBOOK_SUCCESS:
             console.log('facebook success')
+            localStorage.setItem('tk_refresh', 'tk_refresh_value')
             localStorage.setItem('login_token', 'dummy_token')
             return ({
                 isLoggedIn: true,
