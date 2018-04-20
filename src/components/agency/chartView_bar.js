@@ -10,7 +10,6 @@ import {
     ResponsiveContainer,
     PieChart,
     Pie,
-    Legend
 } from 'recharts';
 
 export default class BarChartView extends React.Component {
@@ -82,7 +81,7 @@ export default class BarChartView extends React.Component {
         };
         return (
             <div className="row" style={{backgroundColor:'red',backgroundImage: `url(${Background})`}} >
-                <div className="col-10 mx-auto" style={{backgroundColor:'#fff',marginTop:5+'vh',marginBottom:5+'vh'}} >
+                <div className="col-10 mx-auto" style={{backgroundColor:'#fff',marginTop:0+'vh',marginBottom:0+'vh'}} >
                 <div style={{marginTop:5+'vh'}}>ความคิดเห็นผู้เข้าชมแพ็คเกจรวมในแต่ละภูมิภาค</div>
                 <div className="row">
                     <div className="col-md-3 d-flex justify-content-center align-items-center"

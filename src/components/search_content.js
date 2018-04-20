@@ -1,11 +1,12 @@
 import React , {Component} from 'react';
-//import { Redirect } from 'react-router';
 import PackageListItem from './package_list_item';
+import Loader from '../components/loader';
 import Pagination from './pagination';
 import {REQUEST_ROOT} from '../constants/endpoints';
 
 //import data from '../static/js/provinces.json';
 export default class PackageList extends Component {   
+    
     componentWillMount(){
         //reload for fix bootstrap-select (1.13.0-beta bugs)
         if (localStorage.getItem('dummy_key') !== null){  
@@ -84,39 +85,70 @@ export default class PackageList extends Component {
         for(var i = 0; i < 6; i++) {
             const oneRow = [];
             const RowItm = [];
-            for (var j=0; j<1 ;j++) {
-                RowItm.push(                  
-                    <div className="card Qcard-custom">
-                        <div 
-                            className="card-body btn Qcard-body-custom" 
-                            id="dropdownMenuButton"
-                            data-toggle="collapse" 
-                            href={"#"+String(i+j)}
-                        >       
-                            <img 
-                                alt="regionIMG" 
-                                src={`${REQUEST_ROOT}${regions[i+j].images[0].path}`} 
-                                className="card-img rounded-0 QRegion-img" 
-                            />
-                            <div className="card-img-overlay">
-                                <h5 className="card-title Qtitle-region">
-                                    {regions[i].region}
-                                </h5>
-                            </div>
+          
+            RowItm.push(                  
+                <div className="card Qcard-custom">
+                    <div 
+                        className="btn card-body Qcard-body-custom" 
+                        id="dropdownMenuButton"
+                        data-toggle="collapse" 
+                        href={"#"+String(i)}
+                    >       
+                        <img 
+                            alt="regionIMG" 
+                            src={`${REQUEST_ROOT}${regions[i].images[0].path}`} 
+                            className="btn card-img rounded-0 QRegion-img" 
+                        />
+                        <div id="qregion" class="overlay">ภาค{regions[i].region}</div>
+                    </div>
+                    <div className="collapse" id={String(i)}>
+                        <div className="card card-body no-border">
+                            {this.renderProvinces(i)}
                         </div>
-                        <div className="collapse" id={String(i+j)}>
-                            <div className="card card-body Qcard-collaspe-custom">
-                                {this.renderProvinces(i)}
-                            </div>
-                        </div>
-                    </div>              
-                )
-            }
+                    </div>
+                </div>              
+            )
+            
             oneRow.push(RowItm)
             rowContent.push(oneRow.map(itm => {return <div className="mx-auto justify-content-center">{itm}</div>}))
         }
         return rowContent;
     }
+    /*renderQRegionContent2(){
+        const styles = {
+            fontFamily: 'Menlo-Regular, Menlo, monospace',
+            fontSize: 14,
+            lineHeight: '10px',
+            color: '#000',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }
+        const regions = this.props.dict_regions;
+        const RowItm = [];
+
+        
+        RowItm.push(regions.map((itm,i) => {
+        return (
+            <Parallax.Layer
+                offset={i}
+                speed={0.5}
+                style={styles}
+                onClick={() => {
+                    if (i+1 !== regions.length){
+                        this.refs.parallax.scrollTo(i+1)
+                    }else {
+                        this.refs.parallax.scrollTo(0)
+                    }
+                }}>
+                <img 
+                    alt="regionIMG" 
+                    src={`${REQUEST_ROOT}${itm.images[0].path}`} 
+                    className="QRegion-img" 
+                />
+            </Parallax.Layer>
+        )}))
+        
+        return RowItm
+    }*/
     renderProvinces(num){
         const provinces = this.props.dict_regions[num].provinces;
         const rowContent = [];
@@ -153,9 +185,7 @@ export default class PackageList extends Component {
                                     src={`${REQUEST_ROOT}${item.images[0].path}`} 
                                     className="card-img rounded-0 QTag-img"
                                 />
-                            <div className="card-img-overlay">
-                                <h5 className="card-title Qtitle-tag">{item.travel_type}</h5>
-                            </div>
+                            <div id="qtag" class="overlay">{item.travel_type}</div>
                         </button>
                     </div> 
                 </div> 
@@ -164,6 +194,7 @@ export default class PackageList extends Component {
         }
         return rowContent;
     }
+
     render_package_list_row(){
         const PackageItem = this.props.packages;
         const rowContent = [];
@@ -188,42 +219,44 @@ export default class PackageList extends Component {
         )
     }
     renderContent(){
-        if (this.props.loading){
+        // if search query success render this 
+        if(this.props.packages){
             return(
-                <div className="loader mx-auto"></div>
+                <div>
+                    {this.renderSidebarBtn()}
+                    <div>"ผลลัพธ์การค้นหา"</div>
+                    <div className="card tagbox-body-layout" >
+                        <div classNmae="card-body ">
+                            {this.renderTag()}
+                        </div>
+                    </div>    
+                    {this.render_package_list_row()}
+                    <Pagination  
+                        total_pages={this.props.total_pages} 
+                        current_page={this.props.current_page}
+                        onChangePage={this.props.handlePageChange.bind(this)}/>
+                </div>
             )
         }
-        else {
-            if(this.props.packages){
-                return(
-                    <div>
-                        {this.renderSidebarBtn()}
-                        <div>"ผลลัพธ์การค้นหา"</div>
-                        <div className="card tagbox-body-layout" >
-                            <div classNmae="card-body ">
-                                {this.renderTag()}
-                            </div>
-                        </div>    
-                        {this.render_package_list_row()}
-                        <Pagination  
-                            total_pages={this.props.total_pages} 
-                            current_page={this.props.current_page}
-                            onChangePage={this.props.handlePageChange.bind(this)}/>
-                    </div>
-                )
-            }
-            else{
-                return (
-                    <div>
-                        {this.renderSidebarBtn()}
-                        <div className="jumbotron">
-                            "ค้นหาอย่างรวดเร็ว"
-                        </div>
-                        {this.renderQRegionContent()}
-                        {this.renderQTagsContent()}
-                    </div>
-                )
-            }
+        // initials content 
+        else{
+            /*return (
+                <div>
+                    <Parallax ref="parallax" horizontal scrolling={false} pages={6}>
+                        {this.renderQRegionContent2()}
+                    </Parallax>
+                    <Parallax ref="parallax" horizontal scrolling={false} pages={6}>
+                        {this.renderQRegionContent2()}
+                    </Parallax>
+                </div>
+            )*/
+            return (
+                <div>
+                    {this.renderSidebarBtn()}
+                    {this.renderQRegionContent()}
+                    {this.renderQTagsContent()}
+                </div>
+            )
         }
     }
     render(){
@@ -232,7 +265,7 @@ export default class PackageList extends Component {
         }
         else {
             return(
-                <div className="loader mx-auto"></div>
+                <Loader />
             )
         }
     }

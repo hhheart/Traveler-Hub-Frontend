@@ -32,6 +32,7 @@ const user = (state = initialState, action) => {
     switch(action.type) {
         case AUTHENTICATION_SUCCESS:
             if (localStorage.getItem('fb_userID') !== null){  
+                console.log(action.payload.usertype)
                 console.log('authentication facebook success')
                 return ({
                     fbLoggedIn: true,
@@ -44,6 +45,7 @@ const user = (state = initialState, action) => {
             else {
                 console.log('authentication success')
                 console.log(action.payload)
+                console.log(action.payload.usertype)
                 return ({
                     fbLoggedIn: false,
                     isLoggedIn: true,
@@ -59,6 +61,7 @@ const user = (state = initialState, action) => {
             })   
         case LOGIN_SUCCESS:
             console.log('login success')
+            console.log(action.payload.user.usertype)
             localStorage.setItem('tk_refresh', 'tk_refresh_value')
             localStorage.setItem('login_token', action.payload.token)
             return ({

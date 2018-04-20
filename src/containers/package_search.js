@@ -239,7 +239,8 @@ class PackageSearch extends Component{
         })
     }
     render(){
-        console.log('container: '+this.props.current_page)
+        //console.log('container: '+this.props.current_page)
+        const Background = require('../static/images/bg_user.png')
         return (    
             <div>         
                 <Menu 
@@ -263,29 +264,29 @@ class PackageSearch extends Component{
                         onCompanysSelected={this.onCompanysSelected.bind(this)}
                     />
                 </Menu>
-                <div id="page-wrap" className="container-fluid row layout-main bg-color-custom">   
-                    <div className="col-md-2"></div>
-                    <div className="col-md-8">
-                        <SearchContent 
-                            loading={this.state.loading}
-                            packages={this.props.packages}
-                            total_pages={this.props.total_pages}
-                            current_page={this.props.current_page}
-                            tags={this.state.tags}
-                            dict_regions={this.state.dict_regions}
-                            dict_Qtags={this.state.dict_Qtags}   
+                <div style={{backgroundImage: `url(${Background})`}} >
+                    <div className="row" style={{margin:0}}>
+                        <div id="page-wrap" className="col-10 mx-auto layout-main">       
+                            <SearchContent 
+                                loading={this.state.loading}
+                                packages={this.props.packages}
+                                total_pages={this.props.total_pages}
+                                current_page={this.props.current_page}
+                                tags={this.state.tags}
+                                dict_regions={this.state.dict_regions}
+                                dict_Qtags={this.state.dict_Qtags}   
 
-                            onOpenSidebar={this.handleOpenSidebar.bind(this)}
-                            onReset={this.onReset.bind(this)}
-                            handleQTagClick={this.onQTagClick.bind(this)}
-                            handleQRegionClick={this.onQRegionClick.bind(this)}
-                            handlePageChange={this.onChangePage.bind(this)}
-                        /> 
-                    </div>   
-                    <div className="col-md-2"></div>          
+                                onOpenSidebar={this.handleOpenSidebar.bind(this)}
+                                onReset={this.onReset.bind(this)}
+                                handleQTagClick={this.onQTagClick.bind(this)}
+                                handleQRegionClick={this.onQRegionClick.bind(this)}
+                                handlePageChange={this.onChangePage.bind(this)}
+                            />         
+                        </div>
+                    </div>
                 </div>
                 <Footer />
-        </div>
+            </div>
         )
     }
 }

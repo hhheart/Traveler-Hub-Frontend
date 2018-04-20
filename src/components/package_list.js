@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-//import {onRequestPackage} from '../actions/packages_get';
 import axios from 'axios';
-//import $ from 'jquery';
-import Pagination from './pagination';
+
+
 import PackageListItem from './package_list_item';
+import Loader from '../components/loader';
 import Footer from './footer';
+import Pagination from './pagination';
 
 //import '../static/css/package_list.css'; 
 
@@ -54,45 +55,34 @@ class PackageList extends Component {
         }
         return rowContent;
     }
-    renderContent(){
+    render(){ 
+        const Background = require('../static/images/bg_user.png')
         if(this.state.loading) {
             return (
-                 <div className="loader mx-auto"></div>
+                 <Loader />
             )
         }
         else {
             return (
-                <div>
-                    <div className="jumbotron text-center bg-white">
-                        <div className="container">
-                            <h3>ไปเที่ยวไหนดีนะ ???</h3>
-                            <p>
-                                <button className="btn btn-primary jumbotron-btn">Ask Ours Expert</button>
-                                <button className="btn btn-success jumbotron-btn">Search & Go!</button>
-                            </p>
+                <div style={{backgroundImage: `url(${Background})`}} >
+                    <div className="row" style={{margin:0}}>
+                        <div  className="col-10 mx-auto" style={{backgroundColor:'#f9f9f9'}}>                       
+                            <div className="bg-light" style={{marginTop:5+'vh'}}>
+                                <div className="container-fluid">                         
+                                    {this.render_package_list_row()} 
+                                </div>
+                                <Pagination 
+                                    total_pages={this.state.total_pages} 
+                                    current_page={this.state.current_page}
+                                    onChangePage={this.handlePageChange.bind(this)}
+                                    />
+                            </div>                        
                         </div>
-                    </div>
-                    <div className="bg-light">
-                        <div className="container-fluid">                         
-                            {this.render_package_list_row()} 
-                        </div>
-                        <Pagination 
-                            total_pages={this.state.total_pages} 
-                            current_page={this.state.current_page}
-                            onChangePage={this.handlePageChange.bind(this)}
-                            />
                     </div>
                     <Footer />
                 </div>
             )
         }
-    }
-    render(){ 
-        return (  
-            <div>
-                {this.renderContent()}
-            </div>
-        )
     }    
 }
 function mapStateToProps(state){

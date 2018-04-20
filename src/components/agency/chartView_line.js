@@ -22,7 +22,7 @@ export default class LineChartView extends React.Component {
         const Background = require('../../static/images/bg_agency.png')
         return (
             <div id="chart-wrap" className="row" style={{height:100+'vh',backgroundImage: `url(${Background})`}} >
-                <div  className="col-10 mx-auto" style={{backgroundColor:'#fff',marginTop:5+'vh',marginBottom:5+'vh'}}>
+                <div  className="col-10 mx-auto" style={{backgroundColor:'#fff',marginTop:0+'vh',marginBottom:0+'vh'}}>
                     {this.renderSidebarBtn()}
                     <div className="d-flex justify-content-center align-items-center" style={{marginTop:5+'vh'}}>
                         <ResponsiveContainer width='100%' height='100%' aspect={2.0/1.0}>

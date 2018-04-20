@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import PackageListItem from './package_list_item';
 import axios from 'axios';
+import {REQUEST_ROOT} from '../constants/endpoints';
 
 import Footer from '../components/footer';
+import Loader from '../components/loader';
 
 import '../static/css/home.css';
 import '../static/css/ribbon.css';
-
-import {REQUEST_ROOT} from '../constants/endpoints';
 
 export default class HomeView extends Component {
     constructor(props){
         super(props);
             this.state = {  
+                Isloading: true,
                 packages:[],
                 NewRelease_packages:[],
                 Hot_packages:[],
@@ -22,18 +23,22 @@ export default class HomeView extends Component {
     componentWillMount(){
         axios.get('https://api.travelerhub.xyz/package')
         .then(res => {
-            //console.log(res)
-            this.setState({ packages: res.data.packages });
+            this.setState({ 
+                packages: res.data.packages,
+            });
         });
         axios.get('https://api.travelerhub.xyz/package/latest')
         .then(res => {
-            //console.log(res)
-            this.setState({ NewRelease_packages: res.data });
+            this.setState({ 
+                NewRelease_packages: res.data,
+            });
         });
         axios.get('https://api.travelerhub.xyz/package/popular')
         .then(res => {
-            //console.log(res)
-            this.setState({ Hot_packages: res.data });
+            this.setState({ 
+                Hot_packages: res.data,
+                Isloading: false
+            });
         });
     }
     render_package_list_row(type){
@@ -69,13 +74,19 @@ export default class HomeView extends Component {
                 if (i === 0){
                     return (
                         <div className="carousel-item active">
-                            <img className="d-block carousel" src={`${REQUEST_ROOT}${item.images[0]}`} alt="active slide"/>
+                            <img 
+                                className="d-block carousel" 
+                                src={`${REQUEST_ROOT}${item.images[0]}`} 
+                                alt="active slide"/>
                         </div>  
                 )}
                 else {
                     return (
                         <div className="carousel-item">
-                            <img className="d-block carousel" src={`${REQUEST_ROOT}${item.images[0]}`} alt="item slide"/>
+                            <img 
+                                className="d-block carousel" 
+                                src={`${REQUEST_ROOT}${item.images[0]}`} 
+                                alt="item slide"/>
                         </div>  
                 )}                         
             }
@@ -103,56 +114,62 @@ export default class HomeView extends Component {
         )
     }
     render(){ 
-        return ( 
-            <div style={{backgroundColor:'#f9f9f9'}}>
-                <div className="container-fluid carousel-body">
-                    <div id="Carousel_Indicator" className="carousel slide" data-ride="carousel"> 
-                        <div className="ribbon ribbon-top-left"><span className="white">News</span></div>
-                        <div className="card p-1">
-                            <ol className="carousel-indicators">
-                                <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
-                                <li data-target="#Carousel_Indicator" data-slide-to="1"></li>
-                                <li data-target="#Carousel_Indicator" data-slide-to="2"></li>
-                                <li data-target="#Carousel_Indicator" data-slide-to="3"></li>
-                                <li data-target="#Carousel_Indicator" data-slide-to="4"></li>
-                            </ol>
-                            <div className="carousel-inner">
-                                {this.render_carousel_item()}
+        const Background = require('../static/images/bg_user.png')
+        if(this.state.Isloading) {
+            return (
+                 <Loader />
+            )
+        }
+        else {
+            return (
+                <div style={{backgroundImage: `url(${Background})`}} >
+                    <div className="row" style={{margin:0}}>
+                        <div  className="col-10 mx-auto" style={{backgroundColor:'#f9f9f9'}}>
+                            <div id="Carousel_Indicator" style={{marginTop:2+'vh'}} className="carousel slide" data-ride="carousel">         
+                                <ol className="carousel-indicators">
+                                    <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
+                                    <li data-target="#Carousel_Indicator" data-slide-to="1"></li>
+                                    <li data-target="#Carousel_Indicator" data-slide-to="2"></li>
+                                    <li data-target="#Carousel_Indicator" data-slide-to="3"></li>
+                                    <li data-target="#Carousel_Indicator" data-slide-to="4"></li>
+                                </ol>
+                                <div className="carousel-inner" >
+                                    {this.render_carousel_item()}
+                                </div>
+                                <a className="carousel-control-prev" href="#Carousel_Indicator" role="button" data-slide="prev">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span className="sr-only">Previous</span>
+                                </a>
+                                <a className="carousel-control-next" href="#Carousel_Indicator" role="button" data-slide="next">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span className="sr-only">Next</span>
+                                </a>
                             </div>
-                            <a className="carousel-control-prev" href="#Carousel_Indicator" role="button" data-slide="prev">
-                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span className="sr-only">Previous</span>
-                            </a>
-                            <a className="carousel-control-next" href="#Carousel_Indicator" role="button" data-slide="next">
-                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span className="sr-only">Next</span>
-                            </a>
-                        </div>      
+                            <div className="container-fluid home-body" >
+                                <hr/>
+                                <div className="card home-body-card"> 
+                                    <div className="ribbon ribbon-top-left"><span className="red">New Release</span></div>
+                                    {this.render_package_list_row("N")}
+                                </div>
+                                <hr/>
+                            
+                                <div className="card home-body-card"> 
+                                    <div className="ribbon ribbon-top-left"><span className="green">Popular</span></div>
+                                    {this.render_package_list_row("P")}
+                                </div>
+                                <hr/>
+                                
+                                <div className="card home-body-card"> 
+                                    <div className="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
+                                    {this.render_package_list_row("D")}
+                                </div>
+                                <hr/>
+                            </div>             
+                        </div>
                     </div>
-                </div>      
-                <div className="container-fluid home-body" >
-                    <hr/>
-                    {this.render_banner("New Release")}
-                    <div className="card home-body-card"> 
-                        <div className="ribbon ribbon-top-left"><span className="red">New Release</span></div>
-                        {this.render_package_list_row("N")}
-                    </div>
-                    <hr/>
-                    {this.render_banner("Popular")}
-                    <div className="card home-body-card"> 
-                        <div className="ribbon ribbon-top-left"><span className="green">Popular</span></div>
-                        {this.render_package_list_row("P")}
-                    </div>
-                    <hr/>
-                    {this.render_banner("ForYOU.")}
-                    <div className="card home-body-card"> 
-                        <div className="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
-                        {this.render_package_list_row("D")}
-                    </div>
-                    <hr/>
-                </div>             
-                <Footer />
-            </div>
-        )
+                    <Footer />
+                </div>
+            )
+        }
     }    
 }

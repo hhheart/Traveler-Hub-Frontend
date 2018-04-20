@@ -1,10 +1,8 @@
 .footer-layout {
     height: 10vh;
+    margin: 0;
     background-color: #ddd;  
-}
-.footer-layout-dis {
-    position: absolute;
-    bottom: 0;
+
 }
 
 .footer-text-layout {
