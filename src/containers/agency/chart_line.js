@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { select_choice, get_LineChart } from '../../actions/agency';
+import { get_LineChart } from '../../actions/agency';
 
 import { scaleRotate as Menu } from 'react-burger-menu'
 import LineChartView from '../../components/agency/chartView_line';
@@ -34,18 +34,12 @@ class LineChart extends Component{
     handleOpenSidebar(){
         this.setState({IsSidebarOpen: true})
     }    
-    handleChoiceChange(event){
-        //console.log(event)
-        this.props.select_choice(event.target.value )
-    }
     handleOnChangeDate(event){
         this.setState({
             [event.target.id]: `${event.target.id}=${event.target.value}`,
         })
-        //console.log(`${event.target.id}=${event.target.value}`)
     }
     handleRegionsSelected(val){
-        //console.log(val)
         this.setState({
             querys: 'regions='+val,
         })        
@@ -71,7 +65,6 @@ class LineChart extends Component{
                 IsLoading:false,
             })
         }))
-        //.then((res)=> {console.log(res)})
     }
     render(){
         return (     
@@ -81,9 +74,7 @@ class LineChart extends Component{
                     isOpen={ this.state.IsSidebarOpen }
                     >
                     <ChartSideBar 
-                        choice={this.props.choice} 
                         loading={this.state.IsLoading}
-                        onChangeChoice={this.handleChoiceChange.bind(this)}
                         onChangeDate={this.handleOnChangeDate.bind(this)}
                         onRegionsSelected={this.handleRegionsSelected.bind(this)}
                         onSearchSubmit={this.handleSearchSubmit.bind(this)}
@@ -101,13 +92,11 @@ class LineChart extends Component{
 }
 function mapStateToProps(state){
     return {
-        choice: state.agency.choice,
         data_plot: state.agency.chart_data,
     };
 }
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        select_choice,
         get_LineChart
     }, dispatch)
 }

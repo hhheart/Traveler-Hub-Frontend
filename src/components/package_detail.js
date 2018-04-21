@@ -34,8 +34,77 @@ const Timeline = ({data}) => {
         </ul>
     )
 }
+const Like = ({Islike,onClickLike,onClickDislike }) => {
+    console.log()
+    if (Islike){
+        return (
+            <div className="col-1">
+                <button className="btn btn-success rounded-circle" 
+                    onClick={onClickLike} >
+                    <i className="fa fa-thumbs-o-up" ></i>
+                </button>
+            </div >
+        )
+    }
+    else {
+        return (
+            <div className="col-1">
+                <button className="btn btn-secondary rounded-circle" 
+                    onClick={onClickLike} >
+                    <i className="fa fa-thumbs-o-up" ></i>
+                </button>
+            </div >
+        )
+    }
+}
+const Dislike = ({Islike,onClickLike,onClickDislike }) => {
+    console.log()
+    if (Islike === false){
+        return (
+            <div className="col-1">
+                <button className="btn btn-danger rounded-circle" 
+                    onClick={onClickDislike}>
+                    <i className="fa fa-thumbs-o-down" ></i>
+                </button>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="col-1">
+                <button className="btn btn-secondary rounded-circle" 
+                    onClick={onClickDislike}>
+                    <i className="fa fa-thumbs-o-down" ></i>
+                </button>
+            </div>
+        )
+    }
+}
+const Bookmark = ({Islike,onClickBookmark}) => {
+    console.log()
+    if (Islike){
+        return (
+            <div className="col-1">
+                <button className="btn btn-secondary rounded-circle"
+                    onClick={onClickBookmark}>
+                    <i className="fa fa-star" ></i>
+                </button>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="col-1">
+                <button className="btn btn-secondary rounded-circle"
+                    onClick={onClickBookmark}>
+                    <i className="fa fa-star" ></i>
+                </button>
+            </div>
+        )
+    }
+}
 const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark}) => {
-    const package_item = package_itm;
+    const item = package_itm;
     const Background = require('../static/images/bg_user.png')
     return (  
         <div style={{backgroundImage: `url(${Background})`}} >
@@ -46,26 +115,26 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                             <div className="col-md-5 ">
                                 <img className="package-detail-image img-fluid text-center" 
                                     alt="package_detail_image" 
-                                src={`${REQUEST_ROOT}${package_item.images[0]}`} />                       
+                                src={`${REQUEST_ROOT}${item.images[0]}`} />                       
                             </div>                 
                             
                             <div id="detail" className="col-md-7 package-detail-header">
-                                <h4 className="package-card-title-margin text-padding">{package_item.package_name}</h4>
+                                <h4 className="package-card-title-margin text-padding">{item.package_name}</h4>
                                 <div id="package-datail" className="row-md-6"> 
                                     <div><span className="package-detail-highlight">Hightlight.</span></div>
-                                    <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{package_item.detail}</p>
+                                    <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{item.detail}</p>
                                 </div>          
                                 <div id="package-highlight" className="row-md-4 card package-card-margin bg-light">
                                     
                                     <div><span className="package-detail-highlight">รายละเอียด.</span></div>
                                     <div className="row card-text">
                                         <ul className="col-6 test-padding">
-                                            <li>สถานที่: {package_item.location}</li>
-                                            <li>ช่วงเวลาเดินทาง: {package_item.travel_date}</li>
+                                            <li>สถานที่: {item.location}</li>
+                                            <li>ช่วงเวลาเดินทาง: {item.travel_date}</li>
                                         </ul>
                                         <ul className="col-6 test-padding">
-                                            <li>ระยะเวลา: {package_item.travel_duration} วัน</li>
-                                            <li>ราคา: {package_item.human_price}</li>
+                                            <li>ระยะเวลา: {item.travel_duration} วัน</li>
+                                            <li>ราคา: {item.human_price}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -75,30 +144,21 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                                         data-toggle="modal" 
                                         data-target="#feedbackModal">จองเลย!</button>
                                     </div>
-                                    <div className="col-1">
-                                        <button className="btn btn-secondary rounded-circle" 
-                                            onClick={onClickLike} >
-                                            <i className="fa fa-thumbs-o-up" ></i>
-                                        </button>
-                                    </div >
-                                    <div className="col-1">
-                                        <button className="btn btn-secondary rounded-circle" 
-                                            onClick={onClickDislike}>
-                                            <i className="fa fa-thumbs-o-down" ></i>
-                                        </button>
-                                    </div>
-                                    <div className="col-1">
-                                        <button className="btn btn-secondary rounded-circle"
-                                            onClick={onClickBookmark}>
-                                            <i className="fa fa-star" ></i>
-                                        </button>
-                                    </div>
+                                    <Like
+                                        Islike={item.userLike}
+                                        onClickLike={onClickLike}
+                                         />
+                                    <Dislike
+                                        Islike={item.userLike}
+                                        onClickDislike={onClickDislike} />
+                                    <Bookmark
+                                        Islike={item.userLike}
+                                        onClickBookmark={onClickBookmark} />
                                 </div>
-
                             </div>
                         </div>
                         <hr/>
-                            <Timeline data={package_item.timeline}/>
+                            <Timeline data={item.timeline}/>
                         <hr/>
                         <div className="page-return"><Link to="/">go back</Link></div>
                     </div>

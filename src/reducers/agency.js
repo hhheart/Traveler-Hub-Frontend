@@ -1,14 +1,23 @@
 import {  
     AGENCY_REGIS_SUCCESS,
     AGENCY_REGIS_FAILURE,
+    
     AGENCY_LINECHART_SUCCESS,
     AGENCY_LINECHART_FAILURE,
+    
+    AGENCY_BARCHART_SUCCESS,
+    AGENCY_BARCHART_FAILURE,
+    
+    AGENCY_USERCHART_SUCCESS,
+    AGENCY_USERCHART_FAILURE,
 } from '../constants/actions_types';
 
 const initialState = {
     response: "empty",
-    choice: 'a',
-    chart_data: '',
+    chart_data: [],
+    barA: [],
+    barB: [],
+    barC: [],
 }
 const agency = (state = initialState, action) => {
     switch(action.type) {
@@ -20,9 +29,8 @@ const agency = (state = initialState, action) => {
         case AGENCY_REGIS_FAILURE:
             console.log('AGENCY-REGISTER-FAILURE')
             return ({
-                response: action.payload.message
+                ...state
             })
-        
         case AGENCY_LINECHART_SUCCESS:
             console.log('GET-LINECHART-SUCCESS')
             return ({
@@ -31,13 +39,41 @@ const agency = (state = initialState, action) => {
         case AGENCY_LINECHART_FAILURE:
             console.log('GET-LINECHART-FAILURE')
             return ({
-                chart_data: action.payload,
+                ...state
             })
 
-        case "CHOICE":
-            console.log('choice is change choice is '+action.value)
+        case AGENCY_BARCHART_SUCCESS:
+            console.log('GET-BARCHART-SUCCESS')
+            console.log(action)
+            if (action.payload.length === 6){
+                return ({
+                    ...state,
+                    barA: action.payload,
+                })
+            }
+            else if (action.payload.length === 9){
+                return ({
+                    ...state,
+                    barB: action.payload,
+                })              
+            }
+            else {break}
+        case AGENCY_BARCHART_FAILURE:
+            console.log('GET-BARCHART-FAILURE')
             return ({
-                choice: action.value
+                ...state
+            })
+        case AGENCY_USERCHART_SUCCESS:
+            console.log('GET-USERCHART-SUCCESS')
+            console.log(action)
+            return ({
+                ...state,
+                barC: action.payload,
+            })
+        case AGENCY_USERCHART_FAILURE:
+            console.log('GET-USERCHART-FAILURE')
+            return ({
+                ...state
             })
         default:
             return state

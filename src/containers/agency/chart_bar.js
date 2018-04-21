@@ -2,26 +2,46 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-//import { scaleRotate as Menu } from 'react-burger-menu'
+import { get_BarChart,get_UserChart } from '../../actions/agency';
 import BarChartView from '../../components/agency/chartView_bar';
-//import ChartSideBar from '../../components/agency/chart_sidebar';
 import Footer from '../../components/footer';
 
 class BarChart extends Component{
     constructor (props) {
         super(props)
         this.state = {
-            IsSidebarOpen: false,
+            query: '',
+            IsLoading: true,
+            regionBar: [],
+            travel_typeBar: [],
+            userBar: [],
         };
     } 
-    handleOpenSidebar(){
-        this.setState({IsSidebarOpen: true})
+    componentWillMount(){
+        this.props.get_BarChart("region=true&latestDay=true")
+        this.props.get_BarChart("travel_types=true&latestDay=true")
+        this.props.get_UserChart("latestDay=true")
+    }
+    handleChange(query,type){
+        this.setState({IsLoading:true})
+        if (type === "user=true"){
+            this.props.get_UserChart(query)
+        }
+        else (
+            this.props.get_BarChart(type+'&'+query)
+        )
+            
     }    
     render(){
         return (     
             <div>
-            <BarChartView onOpenSidebar={this.handleOpenSidebar.bind(this)}/>  
+            <BarChartView 
+                OnChange={this.handleChange.bind(this)}
+                BarRegion={this.props.barA}
+                BarType={this.props.barB}
+                BarUser={this.props.barC}
+                IsLoading={this.state.IsLoading}
+            />  
             <Footer />               
             </div>
  
@@ -30,12 +50,15 @@ class BarChart extends Component{
 }
 function mapStateToProps(state){
     return {
-
+        barA: state.agency.barA,
+        barB: state.agency.barB,
+        barC: state.agency.barC,
     };
 }
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-
+        get_BarChart,
+        get_UserChart
     }, dispatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BarChart));

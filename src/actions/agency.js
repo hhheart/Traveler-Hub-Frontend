@@ -7,11 +7,21 @@ import {
     AGENCY_LINECHART_REQUEST,
     AGENCY_LINECHART_SUCCESS,
     AGENCY_LINECHART_FAILURE,
+
+    AGENCY_BARCHART_REQUEST,
+    AGENCY_BARCHART_SUCCESS,
+    AGENCY_BARCHART_FAILURE,
+
+    AGENCY_USERCHART_REQUEST,
+    AGENCY_USERCHART_SUCCESS,
+    AGENCY_USERCHART_FAILURE,
 } from '../constants/actions_types';
 
 import { 
     USER_ENDPOINT,
     AGENCY_LINECHART_TEMPLATE,
+    AGENCY_BARCHART_TEMPLATE,
+    AGENCY_USERCHART_TEMPLATE
 } from '../constants/endpoints';
 
 export const agency_register = (bodyVal) =>({
@@ -40,13 +50,35 @@ export const get_LineChart = (REQUEST) =>({
             AGENCY_LINECHART_SUCCESS,
             AGENCY_LINECHART_FAILURE,
         ]
-}
-})
-export function select_choice(val) {
-    console.log('choice is coming')
-    //console.log(val)
-    return {
-        type: "CHOICE",
-        value: val,
     }
-}
+})
+export const get_BarChart = (REQUEST) =>({
+    [RSAA]: {
+        endpoint: AGENCY_BARCHART_TEMPLATE + REQUEST,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+localStorage.getItem("login_token"),
+        },
+        types: [    
+            AGENCY_BARCHART_REQUEST,
+            AGENCY_BARCHART_SUCCESS,
+            AGENCY_BARCHART_FAILURE,
+        ]
+        }
+})
+export const get_UserChart = (REQUEST) =>({
+    [RSAA]: {
+        endpoint: AGENCY_USERCHART_TEMPLATE + REQUEST,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+localStorage.getItem("login_token"),
+        },
+        types: [    
+            AGENCY_USERCHART_REQUEST,
+            AGENCY_USERCHART_SUCCESS,
+            AGENCY_USERCHART_FAILURE,
+        ]
+    }
+})
