@@ -97,6 +97,7 @@ class Login extends Component{
                         userID: localStorage.getItem('fb_userID'),
                         firstname: userData.payload.first_name,
                         lastname: userData.payload.last_name,
+                        gender: userData.payload.gender,
                         profileImage: userData.payload.picture.data.url,
                     })
                     .then(response => {
