@@ -89,7 +89,11 @@
 
 
 
-
+h1 {
+    font-size: 6vh;
+    text-align: center;
+    padding: 1vh;
+}
 .Qcard-custom {
     border-width: 1px;
     border-radius: 0px !important;

@@ -57,7 +57,7 @@ export class NavbarView extends Component{
                     data-target="#navbarNav" 
                     aria-controls="navbarNav" 
                     aria-expanded="false" 
-                    aria-label="Toggle navigation">
+                    aria-label=" navigatioTogglen">
                 <span className="navbar-dark navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse bg-white" id="navbarNav">
@@ -84,7 +84,8 @@ export class NavbarView extends Component{
                                 {this.props.email}
                             </a>
                             <div className="dropdown-menu">
-                                <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
+                                <Link className="dropdown-item" to="/member/profile"><i className="fa fa-user-circle-o" ></i> ข้อมูลผู้ใช้งาน</Link>   
+                                <Link className="dropdown-item" to="/member/bookmark"><i className="fa fa-star" ></i> บุ๊คมาร์ค</Link>  
                                 <div className="dropdown-divider text-center"></div>
                                 <button
                                     className="btn btn-outline-danger btn-logout-layout"

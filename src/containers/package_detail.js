@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import axios from 'axios';
+import Loader from '../components/loader';
+//import axios from 'axios';
 
 import PackageDetail from '../components/package_detail';
 import { GET_Package } from '../actions/packages_get';
@@ -19,34 +20,39 @@ class PackageList extends Component {
     // run before component rendered
     componentWillMount(){
         $('html, body').scrollTop(0);
-        //axios.get(`https://api.travelerhub.xyz/package/${this.props.match.params.id}`)
-        //.then(res => {
+        /*axios.get(`https://api.travelerhub.xyz/package/${this.props.match.params.id}`)
+        .then(res => {
         //    //console.log(res.data)
-        //    this.setState({ packages: res.data });
-        //});
+            this.setState({ packages: res.data });
+        });*/
         this.props.GET_Package(this.props.match.params.id)
         .then(res => {
+            console.log('get detail success')
             this.setState({ packages: res.payload });
         });
     }
     handleLike(){
-        //console.log('like & '+this.props.match.params.id)
-        this.props.sent_feedback({like:true,packageId:this.props.match.params.id})
+        this.props.sent_feedback({
+            like:true,
+            packageId:this.props.match.params.id})
         .then(function (response) {
-            alert('thank you! for like')
+            alert('liked this package!')
         })
     }
     handleDislike(){
-        //console.log('dislike & '+this.props.match.params.id)
-        this.props.sent_feedback({like:false,packageId:this.props.match.params.id})
+        this.props.sent_feedback({
+            like:false,
+            packageId:this.props.match.params.id})
         .then(function (response) {
-            alert(' thank you! for dislike')
+            alert('disliked this package!')
         })
     }
     handleBookmark(){
-        this.props.sent_bookmark({bookmark:true,packageId:this.props.match.params.id})
+        this.props.sent_bookmark({
+            bookmark:true,
+            packageId:this.props.match.params.id})
         .then(function (response) {
-            alert(' thank you! for bookmark')
+            alert('bookmark success!')
         })
     }
     render(){ 
@@ -61,7 +67,7 @@ class PackageList extends Component {
         }
         else {
             return (
-                <div className="loader mx-auto"></div>
+                <Loader />
             )
         }
     }    

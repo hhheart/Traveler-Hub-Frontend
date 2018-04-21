@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { REQUEST_ROOT } from '../../constants/endpoints';
 
 const AppendInput = () => {
@@ -53,7 +54,6 @@ const UploadImgModal = () => {
         </div>        
     )
 }
-
 const UserProfileModal = ({ userProfile }) => {
     if (userProfile){
         return <img src={`${REQUEST_ROOT}`+userProfile} 

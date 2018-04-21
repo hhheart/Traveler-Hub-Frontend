@@ -17,14 +17,22 @@ export default class HomeView extends Component {
                 packages:[],
                 NewRelease_packages:[],
                 Hot_packages:[],
+                Rec_packages: [],
             };  
     }    
     // run before component rendered
     componentWillMount(){
-        axios.get('https://api.travelerhub.xyz/package')
+        axios({
+            method: 'get',
+            url: 'https://api.travelerhub.xyz/package/recommend',
+            headers: {
+                'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+        })
         .then(res => {
+            console.log('get forU success')
+            console.log(res.data)
             this.setState({ 
-                packages: res.data.packages,
+                Rec_packages: res.data,
             });
         });
         axios.get('https://api.travelerhub.xyz/package/latest')
@@ -37,7 +45,7 @@ export default class HomeView extends Component {
         .then(res => {
             this.setState({ 
                 Hot_packages: res.data,
-                Isloading: false
+                Isloading: false,
             });
         });
     }
@@ -50,7 +58,7 @@ export default class HomeView extends Component {
             PackageItem = this.state.Hot_packages;
         }
         else {
-            PackageItem = this.state.packages;
+            PackageItem = this.state.Rec_packages;
         }
 
         const rowContent = [];
@@ -67,7 +75,7 @@ export default class HomeView extends Component {
         return rowContent;
     }
     render_carousel_item(){
-        const PackageItem = this.state.packages;
+        const PackageItem = this.state.NewRelease_packages;
         const Content = []; 
         Content.push(PackageItem.map((item,i) => {
             if (i < 5){
@@ -148,6 +156,11 @@ export default class HomeView extends Component {
                             <div className="container-fluid home-body" >
                                 <hr/>
                                 <div className="card home-body-card"> 
+                                    <div className="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
+                                    {this.render_package_list_row("D")}
+                                </div>
+                                <hr/>
+                                <div className="card home-body-card"> 
                                     <div className="ribbon ribbon-top-left"><span className="red">New Release</span></div>
                                     {this.render_package_list_row("N")}
                                 </div>
@@ -158,12 +171,7 @@ export default class HomeView extends Component {
                                     {this.render_package_list_row("P")}
                                 </div>
                                 <hr/>
-                                
-                                <div className="card home-body-card"> 
-                                    <div className="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
-                                    {this.render_package_list_row("D")}
-                                </div>
-                                <hr/>
+                            
                             </div>             
                         </div>
                     </div>

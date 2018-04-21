@@ -14,7 +14,9 @@ export const GET_Package = (pkID) =>({
     [RSAA]: {
         endpoint: `${GET_PACKAGE_TEMPLATE}${pkID}`,
         method: 'GET',
-        headers: {'Authorization': 'Bearer '+localStorage.getItem("login_token")},
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+localStorage.getItem("login_token")},
         types: [    
             GET_PACKAGE_REQUEST,
             GET_PACKAGE_SUCCESS,

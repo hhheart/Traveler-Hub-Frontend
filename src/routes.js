@@ -8,7 +8,8 @@ import PackageDetail from './containers/package_detail';
 import PackageSearch from './containers/package_search';
 import Register from './components/register';
 import Login from './containers/login';
-import User_Profile from './components/user_profile/user_profile';
+import User_Edit from './containers/user_profile/user_edit';
+import User_History from './containers/user_profile/user_history';
 import AboutUS from './components/about_us';
 //agency
 import LineChart from './containers/agency/chart_line';
@@ -19,12 +20,17 @@ export default (
         <div>
             <Switch>  
                     <Route exact path={`/`} component={Home} />         
+                    
                     <Route path={'/package/detail/:id'} component={PackageDetail} />
                     <Route path={'/package/search/page=:page_id'} component={PackageSearch} />
                     <Route path={'/package/page=:page_id'} component={PackageList} />                         
+                    
                     <Route path={'/member/register'} component={Register}/>
                     <Route path={'/member/login'} component={Login}/>
-                    <Route path={'/member/profile'} component={User_Profile}/>
+
+                    <Route path={'/member/profile'} component={User_Edit}/>
+                    <Route path={'/member/bookmark'} component={User_History}/>
+
                     <Route path={'/AboutUS'} component={AboutUS}/>
 
                     <Route path={'/agency/line_chart'} component={LineChart}/>

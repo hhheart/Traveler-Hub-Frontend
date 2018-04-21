@@ -2,19 +2,8 @@
     
     height: auto;
     width: 80vw;
-    padding-top: 5vh;
     margin-bottom: 5vh;
     
-}
-
-.usr-profile-content-layout {
-
-    height: auto;
-    background-color: #fff;
-    border-style: solid;
-    border-width: 0px 1px 1px 1px;
-    border-color: #e7e7e7;
-
 }
 
 .usr-profile-content-mx {

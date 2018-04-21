@@ -240,18 +240,9 @@ export default class PackageList extends Component {
         }
         // initials content 
         else{
-            /*return (
-                <div>
-                    <Parallax ref="parallax" horizontal scrolling={false} pages={6}>
-                        {this.renderQRegionContent2()}
-                    </Parallax>
-                    <Parallax ref="parallax" horizontal scrolling={false} pages={6}>
-                        {this.renderQRegionContent2()}
-                    </Parallax>
-                </div>
-            )*/
             return (
                 <div>
+                    <h1>ค้นหาอย่างรวดเร็ว</h1>
                     {this.renderSidebarBtn()}
                     {this.renderQRegionContent()}
                     {this.renderQTagsContent()}

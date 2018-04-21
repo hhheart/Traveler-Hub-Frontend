@@ -67,16 +67,15 @@ class PackageList extends Component {
                 <div style={{backgroundImage: `url(${Background})`}} >
                     <div className="row" style={{margin:0}}>
                         <div  className="col-10 mx-auto" style={{backgroundColor:'#f9f9f9'}}>                       
-                            <div className="bg-light" style={{marginTop:5+'vh'}}>
-                                <div className="container-fluid">                         
-                                    {this.render_package_list_row()} 
-                                </div>
-                                <Pagination 
-                                    total_pages={this.state.total_pages} 
-                                    current_page={this.state.current_page}
-                                    onChangePage={this.handlePageChange.bind(this)}
-                                    />
-                            </div>                        
+                            <div className="container-fluid">   
+                                <h1>แพ็คเกจทั้งหมด</h1>                      
+                                {this.render_package_list_row()} 
+                            </div>
+                            <Pagination 
+                                total_pages={this.state.total_pages} 
+                                current_page={this.state.current_page}
+                                onChangePage={this.handlePageChange.bind(this)}
+                                />                             
                         </div>
                     </div>
                     <Footer />
