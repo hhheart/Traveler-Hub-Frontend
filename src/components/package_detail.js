@@ -139,6 +139,7 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                                     <div className="col-9">
                                     <button className="btn btn-primary btn-block" 
                                         data-toggle="modal" 
+                                        onClick={()=> window.open(item.url)}
                                         data-target="#feedbackModal">จองเลย!</button>
                                     </div>
                                     <Like
