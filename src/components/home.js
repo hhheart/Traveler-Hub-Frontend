@@ -156,7 +156,8 @@ export default class HomeView extends Component {
                             <div className="container-fluid home-body" >
                                 <hr/>
                                 <div className="card home-body-card"> 
-                                    <div className="ribbon ribbon-top-left"><span className="yellow">ForYOU.</span></div>
+                                    <div className="ribbon ribbon-top-left"><span className="yellow">
+                                        ForYOU<i className="fa fa-heart" style={{color:'pink'}} ></i></span></div>
                                     {this.render_package_list_row("D")}
                                 </div>
                                 <hr/>

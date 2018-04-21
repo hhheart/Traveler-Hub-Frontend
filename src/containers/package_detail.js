@@ -46,8 +46,7 @@ class PackageList extends Component {
             bookmark:true,
             packageId:this.props.match.params.id})
         .then(function (response) {
-            this.setState({Isbookmark:true})
-            alert('bookmark success!')
+            window.location.reload()
         })
     }
     render(){ 

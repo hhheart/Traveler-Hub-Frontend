@@ -35,7 +35,6 @@ const Timeline = ({data}) => {
     )
 }
 const Like = ({Islike,onClickLike,onClickDislike }) => {
-    console.log()
     if (Islike){
         return (
             <div className="col-1">
@@ -58,7 +57,6 @@ const Like = ({Islike,onClickLike,onClickDislike }) => {
     }
 }
 const Dislike = ({Islike,onClickLike,onClickDislike }) => {
-    console.log()
     if (Islike === false){
         return (
             <div className="col-1">
@@ -80,12 +78,11 @@ const Dislike = ({Islike,onClickLike,onClickDislike }) => {
         )
     }
 }
-const Bookmark = ({Islike,onClickBookmark}) => {
-    console.log()
-    if (Islike){
+const Bookmark = ({Isbmk,onClickBookmark}) => {
+    if (Isbmk){
         return (
             <div className="col-1">
-                <button className="btn btn-secondary rounded-circle"
+                <button className="btn btn-primary rounded-circle"
                     onClick={onClickBookmark}>
                     <i className="fa fa-star" ></i>
                 </button>
@@ -152,7 +149,7 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                                         Islike={item.userLike}
                                         onClickDislike={onClickDislike} />
                                     <Bookmark
-                                        Islike={item.userLike}
+                                        Isbmk={item.userBookmark}
                                         onClickBookmark={onClickBookmark} />
                                 </div>
                             </div>
