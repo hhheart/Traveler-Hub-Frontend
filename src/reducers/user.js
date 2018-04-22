@@ -76,7 +76,6 @@ const user = (state = initialState, action) => {
             })
         case LOGIN_FACEBOOK_SUCCESS:
             console.log('facebook success')
-            localStorage.setItem('tk_refresh', 'tk_refresh_value')
             return ({
                 isLoggedIn: true,
                 fbLoggedIn: true,
@@ -94,6 +93,7 @@ const user = (state = initialState, action) => {
             })
         case POST_FB_DATA_SUCCESS:
             console.log('post fb data to server success')
+            localStorage.setItem('tk_refresh', 'tk_refresh_value')
             localStorage.setItem('login_token', action.payload.token)
             return({
                 ...state,
