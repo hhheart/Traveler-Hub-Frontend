@@ -21,7 +21,7 @@ import {
 } from '../constants/actions_types';
 
 const initialState = {
-    role: 'guest',
+    role: 'empty',
     isLoggedIn: false,
     fbLoggedIn: false,
     email: 'empty',
@@ -33,12 +33,13 @@ const user = (state = initialState, action) => {
         case AUTHENTICATION_SUCCESS:
             if (localStorage.getItem('fb_userID') !== null){  
                 console.log('authentication facebook success')
+                console.log(action.payload)
                 return ({
                     fbLoggedIn: true,
                     isLoggedIn: true,
                     email: action.payload.email,
                     profile_image: action.payload.profileImage,
-                    role: 'customer',              
+                    role: action.payload.usertype,                
                 })
             }
             else {

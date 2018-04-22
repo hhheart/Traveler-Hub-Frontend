@@ -29,8 +29,6 @@ export default class HomeView extends Component {
                 'Authorization': 'Bearer '+localStorage.getItem("login_token")},
         })
         .then(res => {
-            console.log('get forU success')
-            console.log(res.data)
             this.setState({ 
                 Rec_packages: res.data,
             });
@@ -81,7 +79,7 @@ export default class HomeView extends Component {
             if (i < 5){
                 if (i === 0){
                     return (
-                        <div className="carousel-item active">
+                        <div className="carousel-item active" >
                             <img 
                                 className="d-block carousel" 
                                 src={`${REQUEST_ROOT}${item.images[0]}`} 

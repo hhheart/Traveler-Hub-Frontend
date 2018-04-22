@@ -27,7 +27,6 @@ import {
     USER_HISTORY_SUCCESS,
     USER_HISTORY_FAILURE,
 } from '../constants/actions_types';
-
 import { 
     SERVER_LOGIN, 
     POST_FACEBOOK_DATA,

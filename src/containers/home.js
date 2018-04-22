@@ -48,12 +48,12 @@ class Home extends Component{
         $('html, body').scrollTop(0);
         return (
             <div>
-                {this.IsReRenderNeeded()}
                 {this.IsUserLoggedIn()}
+                {this.ChooseHomeContent()}
+                {this.IsReRenderNeeded()}
                 <LoginModal />
                 <RegisterModal />
                 <RegisAgencyModal />
-                {this.ChooseHomeContent()}
             </div>
         )
     }

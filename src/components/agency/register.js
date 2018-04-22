@@ -54,7 +54,7 @@ const RegisAgencyModal = ({onChange, onSubmit}) => {
                                 
                             </div>
                             <div className="form-group">
-                                <label for="exampleFormControlSelect1">เลือกอเจนท์ซี่</label>
+                                <label htmlFor="exampleFormControlSelect1">เลือกอเจนท์ซี่</label>
                                 <select 
                                     name="company"
                                     className="form-control" 

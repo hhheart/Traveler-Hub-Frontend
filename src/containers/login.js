@@ -23,6 +23,9 @@ class Login extends Component{
             fb_graph_api_rq: '',
         }
     }    
+    handleClickRegister(){
+        jQuery('#RegisterModal').modal('show')
+    }
     onEmailChange(event) {
         this.setState({email: event.target.value})
     }
@@ -109,9 +112,6 @@ class Login extends Component{
             .catch((error) => {
                 alert(error)
             })
-    }
-    handleClickRegister(){
-        jQuery('#RegisterModal').modal('show')
     }
     render(){
         return (     

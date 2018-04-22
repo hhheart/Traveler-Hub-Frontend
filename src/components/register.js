@@ -272,7 +272,7 @@ export default class RegisterModal extends Component{
                                                     onChange={this.onChange}
                                                     value="male" 
                                                     required/>
-                                                <label className="control-label" for="gender_male" >ชาย</label>
+                                                <label className="control-label" htmlFor="gender_male" >ชาย</label>
                                             </div>
                                             <div className="custom-control custom-radio col-2 offset-md-2">
                                                 <input 
@@ -283,7 +283,7 @@ export default class RegisterModal extends Component{
                                                     onChange={this.onChange} 
                                                     value="female" 
                                                     required/>
-                                                <label className="control-label" for="gender_female">หญิง</label>
+                                                <label className="control-label" htmlFor="gender_female">หญิง</label>
                                             </div>
                                         </div>
                                         <div className="text-center" >
