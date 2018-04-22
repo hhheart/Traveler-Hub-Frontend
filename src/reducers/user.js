@@ -28,8 +28,8 @@ const initialState = {
     profile_image: 'empty',
 
     //for facebook
-    firstname: 'empty',
-    lastname: 'empty',
+    first_name: 'empty',
+    last_name: 'empty',
     gender: 'empty',
 }
 const user = (state = initialState, action) => {
@@ -81,8 +81,8 @@ const user = (state = initialState, action) => {
                 fbLoggedIn: true,
                 email: action.payload.email,
                 
-                firstname: action.payload.firstname,
-                lastname: action.payload.lastname,
+                first_name: action.payload.first_name,
+                last_name: action.payload.last_name,
                 gender: action.payload.gender,
                 profile_image: action.payload.picture.data.url,
             })
