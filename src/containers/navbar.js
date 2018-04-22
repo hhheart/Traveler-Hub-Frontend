@@ -12,6 +12,8 @@ import { NavbarView } from '../components/navbar';
 
 class Navbar extends Component{
     componentWillMount(){
+        //console.log('fbloggined: '+this.props.fbLoggedIn)
+        //console.log('loggined: '+this.props.isLoggedIn)
         this.props.check_token()
     }
     handleLogout(){

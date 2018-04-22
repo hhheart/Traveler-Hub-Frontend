@@ -26,20 +26,23 @@ const initialState = {
     fbLoggedIn: false,
     email: 'empty',
     profile_image: 'empty',
-    errorMsg: 'empty',
+
+    //for facebook
+    firstname: 'empty',
+    lastname: 'empty',
+    gender: 'empty',
 }
 const user = (state = initialState, action) => {
     switch(action.type) {
         case AUTHENTICATION_SUCCESS:
             if (localStorage.getItem('fb_userID') !== null){  
                 console.log('authentication facebook success')
-                console.log(action.payload)
                 return ({
                     fbLoggedIn: true,
                     isLoggedIn: true,
                     email: action.payload.email,
                     profile_image: action.payload.profileImage,
-                    role: action.payload.usertype,                
+                    role: action.payload.usertype,          
                 })
             }
             else {
@@ -78,6 +81,10 @@ const user = (state = initialState, action) => {
                 isLoggedIn: true,
                 fbLoggedIn: true,
                 email: action.payload.email,
+                
+                firstname: action.payload.firstname,
+                lastname: action.payload.lastname,
+                gender: action.payload.gender,
                 profile_image: action.payload.picture.data.url,
             })
         case LOGIN_FACEBOOK_FAILURE:
@@ -102,10 +109,10 @@ const user = (state = initialState, action) => {
             localStorage.removeItem('login_token')
             localStorage.removeItem('fb_userID')
             localStorage.removeItem('fb_accessToken')
-            window.location.reload()
+            //window.location.reload()
             return ({
-                role: 'guest',
-                email: '',
+                role: 'empty',
+                email: 'empty',
                 fbLoggedIn: false,
                 isLoggedIn: false,
             })
@@ -116,8 +123,8 @@ const user = (state = initialState, action) => {
             console.log('loging out')
             localStorage.removeItem('login_token')
             return ({
-                role: 'guest',
-                email: '',
+                role: 'empty',
+                email: 'empty',
                 isLoggedIn: false,
             })
         case USER_EDIT_SUCCESS:

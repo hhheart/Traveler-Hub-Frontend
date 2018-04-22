@@ -23,7 +23,7 @@ class Home extends Component{
     IsReRenderNeeded(){
         if (localStorage.getItem('tk_refresh') !== null){
             localStorage.removeItem('tk_refresh')
-            window.location.reload()
+            //window.location.reload()
         }
     }
     IsUserLoggedIn(){

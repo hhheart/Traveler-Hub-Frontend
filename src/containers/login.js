@@ -94,7 +94,7 @@ class Login extends Component{
             .then((result) =>{
                 //get userdata from facebook server
                 this.props.onLogin_facebook(this.getFacebook_API_request(result))
-                .then( userData => {
+                /*.then( userData => {
                     console.log(userData)
                     //post userdata to ours own server
                     this.props.postFB_dataToServer({
@@ -105,10 +105,21 @@ class Login extends Component{
                         gender: userData.payload.gender,
                         profileImage: userData.payload.picture.data.url,
                     })
-                    /*.then(response => {
+                    .then(response => {
                         //console.log(response.payload)
                         localStorage.setItem('login_token', response.payload.token)
-                    })*/
+                    })
+                })*/
+                .then( () => {
+                    //post userdata to ours own server
+                    this.props.postFB_dataToServer({
+                        email: this.props.email,
+                        userID: localStorage.getItem('fb_userID'),
+                        firstname: this.props.firstname,
+                        lastname: this.props.lastname,
+                        gender: this.props.gender,
+                        profileImage: this.props.profile_image,
+                    })
                 })
             })
             .catch((error) => {
@@ -132,7 +143,10 @@ class Login extends Component{
 function mapStateToProps(state){
     return {
         email: state.user.email,
-        token_id: state.user.token_id,
+        firstname: state.user.firstname,
+        lastname: state.user.lastname,
+        gender: state.user.gender,
+        profile_image: state.user.profile_image,
     };
 }
 function mapDispatchToProps(dispatch){
