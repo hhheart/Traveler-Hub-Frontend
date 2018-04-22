@@ -127,8 +127,8 @@ class Login extends Component{
 function mapStateToProps(state){
     return {
         email: state.user.email,
-        firstname: state.user.firstname,
-        lastname: state.user.lastname,
+        firstname: state.user.first_name,
+        lastname: state.user.last_name,
         gender: state.user.gender,
         profile_image: state.user.profile_image,
     };
