@@ -73,7 +73,6 @@ const user = (state = initialState, action) => {
             })
         case LOGIN_FACEBOOK_SUCCESS:
             console.log('facebook success')
-            console.log(action.payload)
             localStorage.setItem('tk_refresh', 'tk_refresh_value')
             return ({
                 isLoggedIn: true,
@@ -84,15 +83,14 @@ const user = (state = initialState, action) => {
         case LOGIN_FACEBOOK_FAILURE:
             console.log('facebook failure')
             return ({
-                role: 'guest',
-                email: '',
-                errorMsg: 'error',
+                ...state
             })
         case POST_FB_DATA_SUCCESS:
             console.log('post fb data to server success')
+            localStorage.setItem('login_token', action.payload.token)
             return({
                 ...state,
-                email: action.payload.user.email,                
+                role: action.payload.user.usertype,          
             })
         case POST_FB_DATA_FAILURE:
             console.log('post fb data to server failure')
@@ -113,11 +111,7 @@ const user = (state = initialState, action) => {
             })
         case DELETE_FB_PERMISSION_FAILURE:
             console.log('delete app permission failure')
-            return ({
-                role: 'c',
-                email: '',
-                errorMsg: 'error',
-            })     
+            return ({...state})     
         case LOGOUT: 
             console.log('loging out')
             localStorage.removeItem('login_token')

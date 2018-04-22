@@ -92,9 +92,11 @@ class Login extends Component{
         }
         asyncTest()
             .then((result) =>{
+                //get userdata from facebook server
                 this.props.onLogin_facebook(this.getFacebook_API_request(result))
                 .then( userData => {
                     console.log(userData)
+                    //post userdata to ours own server
                     this.props.postFB_dataToServer({
                         email: userData.payload.email,
                         userID: localStorage.getItem('fb_userID'),
@@ -103,10 +105,10 @@ class Login extends Component{
                         gender: userData.payload.gender,
                         profileImage: userData.payload.picture.data.url,
                     })
-                    .then(response => {
+                    /*.then(response => {
                         //console.log(response.payload)
                         localStorage.setItem('login_token', response.payload.token)
-                    })
+                    })*/
                 })
             })
             .catch((error) => {
