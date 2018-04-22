@@ -56,7 +56,7 @@ const UploadImgModal = () => {
 }
 const UserProfileModal = ({ userProfile }) => {
     if (userProfile){
-        return <img src={`${REQUEST_ROOT}`+userProfile} 
+        return <img src={userProfile} 
             
             alt="ProfileImage"
             className="usr-profile-img img-fluid"

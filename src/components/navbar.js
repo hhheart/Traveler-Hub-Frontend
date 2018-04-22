@@ -33,7 +33,7 @@ export class NavbarView extends Component{
     renderImageProfile(){
         if (this.props.image){
             console.log(this.props.image)
-            return <img src={`${REQUEST_ROOT}`+this.props.image} alt="ProfileImage" 
+            return <img src={this.props.image} alt="ProfileImage" 
                 className="" style={{width:50+'px',height:50+'px'}}/>
         }
         else {
