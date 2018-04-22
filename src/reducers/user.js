@@ -73,14 +73,13 @@ const user = (state = initialState, action) => {
             })
         case LOGIN_FACEBOOK_SUCCESS:
             console.log('facebook success')
+            console.log(action.payload)
             localStorage.setItem('tk_refresh', 'tk_refresh_value')
-            localStorage.setItem('login_token', action.payload.token)
             return ({
                 isLoggedIn: true,
                 fbLoggedIn: true,
                 email: action.payload.email,
                 profile_image: action.payload.picture.data.url,
-                role: action.payload.user.usertype,
             })
         case LOGIN_FACEBOOK_FAILURE:
             console.log('facebook failure')
