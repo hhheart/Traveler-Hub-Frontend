@@ -65,7 +65,6 @@ const user = (state = initialState, action) => {
                 isLoggedIn: true,
                 email: action.payload.user.email,
                 role: action.payload.user.usertype,
-                errorMsg: '',
             })
         case LOGIN_FAILURE:
             console.log('login failure')
@@ -75,13 +74,13 @@ const user = (state = initialState, action) => {
         case LOGIN_FACEBOOK_SUCCESS:
             console.log('facebook success')
             localStorage.setItem('tk_refresh', 'tk_refresh_value')
-            localStorage.setItem('login_token', 'dummy_token')
+            localStorage.setItem('login_token', action.payload.token)
             return ({
                 isLoggedIn: true,
                 fbLoggedIn: true,
                 email: action.payload.email,
                 profile_image: action.payload.picture.data.url,
-                role: 'customer',
+                role: action.payload.user.usertype,
             })
         case LOGIN_FACEBOOK_FAILURE:
             console.log('facebook failure')
