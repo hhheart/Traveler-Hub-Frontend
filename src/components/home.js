@@ -151,7 +151,7 @@ export default class HomeView extends Component {
                                     <span className="sr-only">Next</span>
                                 </a>
                             </div>
-                            <div className="container-fluid home-body" >
+                            <div className="home-body" >
                                 <hr/>
                                 <div className="card home-body-card"> 
                                     <div className="ribbon ribbon-top-left"><span className="yellow">

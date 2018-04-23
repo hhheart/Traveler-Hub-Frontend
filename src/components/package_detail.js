@@ -8,6 +8,30 @@ import {REQUEST_ROOT} from '../constants/endpoints';
 import '../static/css/package_detail.css'; 
 import '../static/css/test_timeline.css'; 
 
+const Carousel = ({images}) => {
+    const Content = []; 
+    Content.push(images.map((item,i) => {
+       
+            if (i === 0){
+                return (
+                    <div className="carousel-item active" >
+                                <img className="d-block carousel package-detail-image img-fluid text-center" 
+                                    alt="package_detail_image" 
+                                src={`${REQUEST_ROOT}${item}`} />    
+                    </div>  
+            )}
+            else {
+                return (
+                    <div className="carousel-item">
+                                <img className="d-block carousel package-detail-image img-fluid text-center" 
+                                    alt="package_detail_image" 
+                                src={`${REQUEST_ROOT}${item}`} />    
+                    </div>  
+            )}                         
+
+    }))
+    return <div>{Content}</div>;  
+}
 const Timeline = ({data}) => {
     return (
         <ul className="timeline">
@@ -110,17 +134,39 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                     <div className="container detail-layout">
                         <div id="header-content" className="row">    
                             <div className="col-md-5 ">
-                                <img className="package-detail-image img-fluid text-center" 
-                                    alt="package_detail_image" 
-                                src={`${REQUEST_ROOT}${item.images[0]}`} />                       
+
+                                <div id="Carousel_Indicator" style={{marginTop:2+'vh'}} className="carousel slide" data-ride="carousel">         
+                                    <ol className="carousel-indicators">
+                                        <li data-target="#Carousel_Indicator" data-slide-to="0" className="active"></li>
+                                        <li data-target="#Carousel_Indicator" data-slide-to="1"></li>
+                                        <li data-target="#Carousel_Indicator" data-slide-to="2"></li>
+                                        <li data-target="#Carousel_Indicator" data-slide-to="3"></li>
+                                        <li data-target="#Carousel_Indicator" data-slide-to="4"></li>
+                                    </ol>
+                                    <div className="carousel-inner" >
+                                        <Carousel images={item.images}/>
+                                    </div>
+                                    <a className="carousel-control-prev" href="#Carousel_Indicator" role="button" data-slide="prev">
+                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span className="sr-only">Previous</span>
+                                    </a>
+                                    <a className="carousel-control-next" href="#Carousel_Indicator" role="button" data-slide="next">
+                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span className="sr-only">Next</span>
+                                    </a>
+                                </div> 
+
                             </div>                 
                             
                             <div id="detail" className="col-md-7 package-detail-header">
+                                
                                 <h4 className="package-card-title-margin text-padding">{item.package_name}</h4>
+                                
                                 <div id="package-datail" className="row-md-6"> 
                                     <div><span className="package-detail-highlight">Hightlight.</span></div>
                                     <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{item.detail}</p>
                                 </div>          
+                                
                                 <div id="package-highlight" className="row-md-4 card package-card-margin bg-light">
                                     
                                     <div><span className="package-detail-highlight">รายละเอียด.</span></div>
@@ -156,6 +202,7 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                             </div>
                         </div>
                         <hr/>
+                            <h1 style={{textDecoration: 'underline'}}>ตารางเดินทาง</h1>
                             <Timeline data={item.timeline}/>
                         <hr/>
                         <div className="page-return"><Link to="/">go back</Link></div>

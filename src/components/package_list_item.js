@@ -22,14 +22,14 @@ const PackageListItem = ({package_item}) => {
                     <img alt="package-list-img" className="card-img-top image-layout" src={imageUrl}/>
                     <div className="package-item-star"> 
                     <i className="fa fa-eye"
-                            style={{color:'white', fontSize:1+'vw'}} >
-                                <label style={{marginLeft:5+'px',marginRight:5+'px'}} >{view}</label></i> 
+                            style={{color:'white'}} >
+                                <label className="label-text" >{view}</label></i> 
                         <i className="fa fa-thumbs-o-up"
-                            style={{color:'#74d600', fontSize:1+'vw'}} >
-                                <label style={{marginLeft:5+'px',marginRight:5+'px'}} >{numLike}</label></i> 
+                            style={{color:'#74d600'}} >
+                                <label className="label-text" >{numLike}</label></i> 
                         <i className="fa fa-thumbs-o-down" 
-                            style={{color:'red', fontSize:1+'vw'}} >
-                                <label style={{marginLeft:5+'px',marginRight:5+'px'}}>{numDislike}</label></i> 
+                            style={{color:'red'}} >
+                                <label className="label-text">{numDislike}</label></i> 
                     </div>
                 </div>
                 <div className="test-layout-title bg-light">{titleUrl}</div>

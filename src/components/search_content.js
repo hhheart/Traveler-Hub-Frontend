@@ -4,7 +4,6 @@ import Loader from '../components/loader';
 import Pagination from './pagination';
 import {REQUEST_ROOT} from '../constants/endpoints';
 
-//import data from '../static/js/provinces.json';
 export default class PackageList extends Component {   
     
     componentWillMount(){
@@ -86,14 +85,14 @@ export default class PackageList extends Component {
             const oneRow = [];
             const RowItm = [];
           
-            RowItm.push(                  
+            RowItm.push(    
+                <div className="col" style={{padding:0}}>              
                 <div className="card Qcard-custom">
                     <div 
                         className="btn card-body Qcard-body-custom" 
                         id="dropdownMenuButton"
                         data-toggle="collapse" 
-                        href={"#"+String(i)}
-                    >       
+                        href={"#"+String(i)}>       
                         <img 
                             alt="regionIMG" 
                             src={`${REQUEST_ROOT}${regions[i].images[0].path}`} 
@@ -106,49 +105,15 @@ export default class PackageList extends Component {
                             {this.renderProvinces(i)}
                         </div>
                     </div>
-                </div>              
+                </div>   
+                </div>           
             )
             
             oneRow.push(RowItm)
-            rowContent.push(oneRow.map(itm => {return <div className="mx-auto justify-content-center">{itm}</div>}))
+            rowContent.push(oneRow.map(itm => {return <div className="row mx-auto justify-content-center">{itm}</div>}))
         }
         return rowContent;
     }
-    /*renderQRegionContent2(){
-        const styles = {
-            fontFamily: 'Menlo-Regular, Menlo, monospace',
-            fontSize: 14,
-            lineHeight: '10px',
-            color: '#000',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }
-        const regions = this.props.dict_regions;
-        const RowItm = [];
-
-        
-        RowItm.push(regions.map((itm,i) => {
-        return (
-            <Parallax.Layer
-                offset={i}
-                speed={0.5}
-                style={styles}
-                onClick={() => {
-                    if (i+1 !== regions.length){
-                        this.refs.parallax.scrollTo(i+1)
-                    }else {
-                        this.refs.parallax.scrollTo(0)
-                    }
-                }}>
-                <img 
-                    alt="regionIMG" 
-                    src={`${REQUEST_ROOT}${itm.images[0].path}`} 
-                    className="QRegion-img" 
-                />
-            </Parallax.Layer>
-        )}))
-        
-        return RowItm
-    }*/
     renderProvinces(num){
         const provinces = this.props.dict_regions[num].provinces;
         const rowContent = [];
@@ -194,7 +159,6 @@ export default class PackageList extends Component {
         }
         return rowContent;
     }
-
     render_package_list_row(){
         const PackageItem = this.props.packages;
         const rowContent = [];

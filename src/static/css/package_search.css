@@ -1,3 +1,5 @@
+
+
 .bg-color-custom {
     background-color: #f9f9f9;
 }
@@ -88,70 +90,107 @@
 
 
 
+@media only screen and (min-device-width : 0px) and (max-device-width : 900px) {
+    .card .overlay {
+        opacity: 1;
+    }
+    .card:hover .overlay {
+        opacity: 0;
+    }
+    #qregion {
+        font-size: 4vw;
+    }
+    #qtag {
+        font-size: 2.5vw;
+    }
+    .QRegion-img {
+        height: 25vh;
+        width: 75vw;
+    }
+    .QTag-img {
+        height: 12vh;
+    }
+    .Qprovince-text {font-size: 2vw;}    
+}
+@media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {
+    @media only screen and (min-width : 0px) and (max-width : 900px) {  
+        .card .overlay {
+            opacity: 1;
+        }
+        .card:hover .overlay {
+            opacity: 0;
+        }
+        #qregion {
+            font-size: 4vw;
+        }
+        #qtag {
+            font-size: 2.5vw;
+        }
+        .QRegion-img {
+            height: 25vh;
+            width: 75vw;
+        }
+        .QTag-img {
+            height: 12vh;
+        }
+        .Qprovince-text {font-size: 2vw;}       
+    }
+    @media only screen and (min-width : 900px) and (max-width : 4096px) {  
 
+        .card:hover .overlay {
+            opacity: 1;
+        }
+        #qregion {
+            font-size: 2vw;
+            line-height: 32vh;
+            width: 60%;
+            position: absolute;
+            left: 20%;
+        }
+        #qtag {
+            font-size: 2.5vw;
+            line-height: 14vh;
+            width: 90%;
+            position: absolute;
+            left: 5%;
+        }
+        .QRegion-img {
+            height: 30vh;
+            width: 60%
+        }
+        .QTag-img {
+            height: 12vh;
+            width: 90%;
+        }
+        .Qprovince-text {font-size: 1vw;}
+    }
+}
 h1 {
     font-size: 6vh;
     text-align: center;
     padding: 1vh;
 }
+/*.Qcard-custom:hover {
+    border-color: #e9e9e9;
+}*/
 .Qcard-custom {
     border-width: 1px;
     border-radius: 0px !important;
     border-color: white;
 }
-.card:hover .overlay {
-    opacity: 1;
-  }
 .overlay {
     position: absolute;
     left: 0; 
     top: 0; 
-    background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5); /* Black see-through */
-    color: #f1f1f1; 
     width: 100%;
+    height: auto;
     transition: .5s ease;
     opacity:0;
     color: white;
     text-align: center;
 }
-#qregion {
-    font-size: 10vh;
-    padding: 17vh;
-}
-#qtag {
-    font-size: 4vh;
-    padding: 4vh;
-}
-.Qcard-custom:hover {
-    border-width: 1px;
-    border-color: #e9e9e9;
-}
-
-.Qcard-body-custom {
-    padding: 0.5vw;
-    border-width: 0px;
-}
-.QRegion-img {
-    height: 44vh;
-    width: 100%;
-}
-.QTag-img {
-    height: 12vh;
-}
-.Qtitle-region {
-    color: white;
-    font-size: 4vw;    
-}
-.Qtitle-tag {
-    color: white;
-    font-size: 2vw;     
-}
-.no-border {
-    border-width: 0px;
-}
-.Qprovince-text {
-    font-size: 1vw;   
+.Qprovince-text {  
     background-color: white;
 }
 .Qprovince-text:hover {
@@ -162,5 +201,10 @@ h1 {
     border-color: #fcb034;
 
 }
-
-
+.Qcard-body-custom {
+    padding: 0.5vw;
+    border-width: 0px;
+}
+.no-border {
+    border-width: 0px;
+}

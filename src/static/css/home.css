@@ -2,6 +2,7 @@
     .carousel {
         height: 30vh;
         width: 100%;
+
     }    
 }
 @media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {
@@ -12,16 +13,10 @@
         padding: 0;
     }
 }
-.test-home-jumbotron {
-    background-color: #ddd;
-    height: 30vh;
-    width: auto;
-    margin: 0 auto;
-}
 .home-body {
     background-color: #f9f9f9;
     height: auto;
-    width: 80vw;
+    width: auto;
     margin-bottom: 5vh;
 }
 .home-body-title {
@@ -29,7 +24,6 @@
 }
 .home-body-card {
     margin: 0 auto;
-    margin: 10px 0 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;

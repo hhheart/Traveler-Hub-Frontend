@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { URL_ROOT } from '../constants/endpoints';
 import { REQUEST_ROOT } from '../constants/endpoints';
-//import LoginModal from '../containers/login';
+import $ from 'jquery';
+//import jQuery from 'jquery';
 import '../static/css/nav.css'
 
 export class NavbarView extends Component{ 
@@ -46,12 +47,14 @@ export class NavbarView extends Component{
             <nav className="navbar navbar-expand-lg navbar-light bg-white">
                 <Link to={`${URL_ROOT}`}>
                     <img className="navbar-brand navbar-logo-size" 
+                        style={{marginLeft:2+'vw'}}
                         alt="_LOGO_" 
                         src={require('../static/images/logo_2.png')}
                     />
                 </Link>
                 <button 
                     className="navbar-toggler" 
+                    style={{marginRight:2+'vw'}}
                     type="button" 
                     data-toggle="collapse" 
                     data-target="#navbarNav" 
@@ -60,18 +63,30 @@ export class NavbarView extends Component{
                     aria-label=" navigatioTogglen">
                 <span className="navbar-dark navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse bg-white" id="navbarNav">
+                <div className="collapse navbar-collapse bg-white add-shadow" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        <li className="nav-item " 
+                            data-toggle="collapse" 
+                            data-target="#navbarNav"
+                             >
                             <Link className="nav-link" to={`${URL_ROOT}`}>หน้าแรก</Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item"
+                            data-toggle="collapse" 
+                            data-target="#navbarNav"
+                        >
                             <Link className="nav-link" to={`/package/page=${1}`}>แพ็คเกจทั้งหมด</Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item"
+                            data-toggle="collapse" 
+                            data-target="#navbarNav"
+                        >
                             <Link className="nav-link" to={`/package/search/page=${1}`}>ค้นหาแพ็คเกจ</Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item"
+                            data-toggle="collapse" 
+                            data-target="#navbarNav"
+                        >
                             <Link className="nav-link" to={`/AboutUS`}>เกี่ยวกับเรา</Link>
                         </li>
                     </ul>
@@ -97,7 +112,7 @@ export class NavbarView extends Component{
                     </ul>
                 </div>     
             </nav>
-        )   
+        )  
     }
     renderAgencyContent(){  
         return (
@@ -120,12 +135,18 @@ export class NavbarView extends Component{
                 </button>
                 <div className="collapse navbar-collapse bg-white" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        <li className="nav-item"
+                            data-toggle="collapse" 
+                            data-target="#navbarNav"
+                        >
                             <Link className="nav-link" to={'/agency/line_chart'}>ข้อมูลเข้าชม</Link>
                         </li>
                     </ul>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        <li className="nav-item"
+                            data-toggle="collapse" 
+                            data-target="#navbarNav"
+                        >
                             <Link className="nav-link" to={'/agency/bar_chart'}>สรุปผู้ใช้งาน</Link>
                         </li>
                     </ul>

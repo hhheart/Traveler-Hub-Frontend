@@ -1,12 +1,29 @@
+@media only screen and (min-device-width : 0px) and (max-device-width : 900px) { 
+    .footer-text {
+        font-size: 2.5vw;
+        margin-left: 2.5vw;
+    }
+}
+@media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {
+    @media only screen and (min-width : 0px) and (max-width : 900px) {
+        .footer-text {
+            font-size: 2.5vw;
+            margin-left: 2.5vw;
+        }
+    }
+    @media only screen and (min-width : 900px) and (max-width : 4096px) {
+        .footer-text {
+            font-size: 1vw;
+            margin-left: 2vw;
+        }
+    }
+}
 .footer-layout {
     height: 10vh;
     margin: 0;
     background-color: #ddd;  
 
 }
-
-.footer-text-layout {
-    font-size: 1vw;
-    margin-left: 1vw;
+.footer-text {
     line-height: 10vh;
 }

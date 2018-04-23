@@ -16,7 +16,11 @@ a:hover {
     top: 0;
     height: 12vh;
     width: 100%;
+    
     z-index: 100;
+
+    margin: 0;
+    padding: 0;
 
     border-bottom-color: rgb(107, 102, 102);
     border-bottom-style: solid;
@@ -24,7 +28,29 @@ a:hover {
     
     box-shadow: 1px 1px 5px grey;
 }
-
+@media only screen and (min-device-width : 0px) and (max-device-width : 900px) { 
+    .navbar-nav{
+        text-align: center;
+    }
+    .add-shadow {
+        box-shadow: 0 7px 5px -5px grey;
+    }
+}
+@media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {
+    @media only screen and (min-width : 0px) and (max-width : 900px) {
+        .navbar-nav{
+            text-align: center;
+        }
+        .add-shadow {
+            box-shadow: 0 7px 5px -5px grey;
+        }
+    }
+    @media only screen and (min-width : 900px) and (max-width : 4096px) {
+        .navbar-nav{
+            margin-left: 2vw;
+        }
+    }
+}
 .nav-link {color: #000;}
 .nav-link:focus {color: #fcb034 !important;}
 

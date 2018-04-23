@@ -7,25 +7,44 @@
         width: 90vw;
         height:35vh;
     }
+    .package-detail-header {
+        min-height: 50vh;
+        max-height: auto;
+    
+    }
 }
 @media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {   
-    .package-detail-image {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: auto;
-        height: 45vh;
+    @media only screen and (min-width : 0px) and (max-width : 900px) {  
+        .package-detail-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90vw;
+            height:35vh;
+        }
+        .package-detail-header {
+            min-height: 40vh;
+            max-height: auto;
         
+        }
+    }
+    @media only screen and (min-width : 900px) and (max-width : 4096px) {  
+        .package-detail-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: auto;
+            height: 45vh;
+        }
+        .package-detail-header {
+            min-height: 40vh;
+            max-height: auto;
         
+        }
     }
 }
 .detail-layout {
     padding-top: 5vh;
-}
-.package-detail-header {
-    min-height: 40vh;
-    max-height: auto;
-
 }
 .text-padding {
     padding: 1vh 1vh 1vh 1vh;
