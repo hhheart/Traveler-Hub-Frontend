@@ -11,6 +11,9 @@
         padding: 1vh 1vh 1vh 1vh;
         height: 13vh;
     }
+    .package-detail-header {
+        margin-top: 10vh;
+    }
 }
 @media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {   
     @media only screen and (min-width : 0px) and (max-width : 900px) {  
@@ -24,6 +27,9 @@
         .text-padding {
             padding: 1vh 1vh 1vh 1vh;
             height: 13vh;
+        }
+        .package-detail-header {
+            margin-top: 10vh;
         }
     }
     @media only screen and (min-width : 900px) and (max-width : 4096px) {  
