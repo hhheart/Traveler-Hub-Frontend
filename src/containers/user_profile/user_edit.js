@@ -14,8 +14,8 @@ class User_Edit extends Component {
             usr_data: '',
             new_usr_data: {
                 email: "",
-                firstname: "",
-                lastname: "",
+                first_name: "",
+                last_name: "",
                 password: "",
                 password_confirm: "",
                 gender: "",
@@ -37,8 +37,8 @@ FetchUserProfile(){
         this.setState({
             usr_data : res.data,
             new_usr_data: {
-                firstname: res.data.firstname,
-                lastname: res.data.lastname,
+                first_name: res.data.first_name,
+                last_name: res.data.last_name,
                 gender: res.data.gender,
                 age: res.data.age,
             },

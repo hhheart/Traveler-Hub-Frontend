@@ -56,7 +56,7 @@ const UploadImgModal = () => {
 }
 const UserProfileModal = ({ userProfile }) => {
     if (userProfile){
-        return <img src={`${REQUEST_ROOT}`+userProfile} 
+        return <img src={userProfile} 
             
             alt="ProfileImage"
             className="usr-profile-img img-fluid"
@@ -98,17 +98,17 @@ const UserEdit = ({
                     <span className="input-group-text" id="inputGroup-sizing-default">ชื่อจริง</span>
                 </div>
                 <input type="text" 
-                    id="firstname"
+                    id="first_name"
                     className="form-control" 
-                    placeholder={UserData.firstname}
+                    placeholder={UserData.first_name}
                     onChange={OnInputChange}/>
                 <div className="input-group-prepend">
                     <span className="input-group-text" id="inputGroup-sizing-default">นามสกุล</span>
                 </div>
                 <input type="text" 
-                    id="lastname"
+                    id="last_name"
                     className="form-control" 
-                    placeholder={UserData.lastname}
+                    placeholder={UserData.last_name}
                     onChange={OnInputChange}/>
                 <AppendInput />
             </div>

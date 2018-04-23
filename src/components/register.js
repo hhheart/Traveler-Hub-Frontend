@@ -12,8 +12,8 @@ export default class RegisterModal extends Component{
                 email: "",
                 password: "",
                 password_confirm: "",
-                firstname: "",
-                lastname: "",
+                first_name: "",
+                last_name: "",
                 gender: "",
                 birthdate: "",
                 usertype: "customer",
@@ -36,8 +36,8 @@ export default class RegisterModal extends Component{
                 $('#email').val('');
                 $('#password').val('');
                 $('#password_confirm').val('');
-                $('#firstname').val('');
-                $('#lastname').val('');
+                $('#first_name').val('');
+                $('#last_name').val('');
                 $('#birth_date').val('');
                 $('#gender_male').prop("checked", false);
                 $('#gender_female').prop("checked", false);
@@ -79,8 +79,8 @@ export default class RegisterModal extends Component{
                         isValid = true                   
                 }
                 if (curStepBtn === 'step-2' && 
-                    $('#firstname').val()!== "" && 
-                    $('#lastname').val()!== "" &&
+                    $('#first_name').val()!== "" && 
+                    $('#last_name').val()!== "" &&
                     $('#birth_date').val()!== "" &&
                     ($('#gender_male').prop("checked") !== false || 
                     $('#gender_female').prop("checked") !== false)){
@@ -226,28 +226,28 @@ export default class RegisterModal extends Component{
                                         <div className="form-group">
                                             <label className="control-label">ชื่อ</label>
                                             <input 
-                                                id="firstname"
-                                                name="firstname"
+                                                id="first_name"
+                                                name="first_name"
                                                 maxLength="25" 
                                                 type="text" 
                                                 className="form-control" 
                                                 placeholder="Enter Name" 
                                                 onChange={this.onChange}
-                                                value={this.state.POST_DATA.firstname}
+                                                value={this.state.POST_DATA.first_name}
                                                 required/>
                                             <div className="invalid-feedback">กรุณาระบุ ชื่อ</div>
                                         </div>
                                         <div className="form-group">
                                             <label className="control-label">นามสกุล</label>
                                             <input 
-                                                id="lastname"
-                                                name="lastname"
+                                                id="last_name"
+                                                name="last_name"
                                                 maxLength="25" 
                                                 type="text" 
                                                 className="form-control" 
-                                                placeholder="Enter LastName"
+                                                placeholder="Enter last_name"
                                                 onChange={this.onChange}
-                                                value={this.state.POST_DATA.lastname}
+                                                value={this.state.POST_DATA.last_name}
                                                 required/>
                                             <div className="invalid-feedback">กรุณาระบุ นามสกุล</div>
                                         </div>

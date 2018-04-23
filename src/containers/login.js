@@ -99,8 +99,8 @@ class Login extends Component{
                     this.props.postFB_dataToServer({
                         email: this.props.email,
                         userID: localStorage.getItem('fb_userID'),
-                        firstname: this.props.firstname,
-                        lastname: this.props.lastname,
+                        first_name: this.props.first_name,
+                        last_name: this.props.last_name,
                         gender: this.props.gender,
                         profileImage: this.props.profile_image,
                     })
@@ -127,8 +127,8 @@ class Login extends Component{
 function mapStateToProps(state){
     return {
         email: state.user.email,
-        firstname: state.user.firstname,
-        lastname: state.user.lastname,
+        first_name: state.user.first_name,
+        last_name: state.user.last_name,
         gender: state.user.gender,
         profile_image: state.user.profile_image,
     };
