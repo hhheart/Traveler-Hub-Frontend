@@ -19,22 +19,15 @@
 
 
 
-.search-bar-style {
+.search-bar-wrapper {
     box-shadow: 1px 1px 5px grey;
+    height: 88%;
     width: auto;
-    height: 100%;
+    overflow-y: auto;
 }
 .search-bar-header-layout {
     text-align: center;
     vertical-align: center;
-}
-.search-input-main {
-
-    border-width: 0.1vw;
-    border-style: solid;
-    border-radius: 0.3vw;
-    border-color: #e0e0e0;
-    overflow: auto;
 }
 .search-input-margin {
     margin-bottom: 1vh;

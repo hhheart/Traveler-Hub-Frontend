@@ -74,7 +74,7 @@ export default class SearchBar extends Component {
         } 
         else {
             return (
-                <div className="card-footer search-input-btn-border">
+                <div className="card-footer search-input-btn-border" >
                     <button 
                         className="btn btn-outline-success btn-block " 
                         type="submit"
@@ -133,12 +133,12 @@ export default class SearchBar extends Component {
     }
     render(){ 
         return(
-            <div className="card search-bar-style">
-                <div style={{overflow:'auto'}}>
+            <div className="card search-bar-wrapper">
+                <div >
                     <div className="card-header">
                         <h5 className="card-title search-bar-header-layout">ค้นหาแบบละเอียด</h5>
                     </div>
-                    
+              
                     <div className="card-body">
                         <div id="search" className="input-group search-input-margin">
                             <div className="input-group-prepend">
@@ -242,11 +242,14 @@ export default class SearchBar extends Component {
                                 <option data-hidden="true"></option>
                                 {this.renderTagsInput()}
                             </select>
-                        </div>                  
+                        </div>           
+
+
                     </div>
                     {this.renderBTN()}
+
                 </div>
-        </div>
+            </div>
         ) 
     }
 }
