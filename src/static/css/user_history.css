@@ -23,8 +23,7 @@
     }
     
     .ht-card-warpper{
-        width: 90%;
-        margin-left: 5%;
+        width: 100%;
     }
     .ht-card-layout {
         margin-top: 1.5vh;
@@ -46,7 +45,7 @@
         justify-content: center;
     }
     .ht-text3 {
-        font-size: 1.2vw;
+        font-size: 1.4vw;
         color: #fff;
     }
 }
@@ -75,8 +74,7 @@
             }
         }
         .ht-card-warpper{
-            width: 90%;
-            margin-left: 5%;
+            width: 100%
         }
         .ht-card-layout {
             margin-top: 1.5vh;
@@ -98,7 +96,7 @@
             justify-content: center;
         }
         .ht-text3 {
-            font-size: 1.2vw;
+            font-size: 1.4vw;
             color: #fff;
         }
     }

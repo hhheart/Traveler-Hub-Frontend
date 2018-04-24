@@ -14,40 +14,44 @@
     background-color: #f9f9f9;
 }
 
+
+
+
+
+
 .search-bar-style {
     box-shadow: 1px 1px 5px grey;
-    min-width: 23vw;
-    height: 88vh;
+    width: auto;
+    height: 100%;
 }
 .search-bar-header-layout {
     text-align: center;
     vertical-align: center;
-    margin: 0;
 }
 .search-input-main {
-    height: 40vh;
+
     border-width: 0.1vw;
     border-style: solid;
     border-radius: 0.3vw;
     border-color: #e0e0e0;
     overflow: auto;
 }
-.search-input-margin {
-    margin-bottom: 1vh;
-}
 .search-input-title {
     color: #fcb034;
-    margin-left: 0.5vw;
     font-size: 1.5vh;
 }
 .select-input-style {
-    width: 22vw;
+   
     border-width: 0.1vw;
     border-style: solid;
     border-radius: 0.3vw;
     border-color: #e0e0e0;
     background-color: white;
 }
+
+
+
+
 
 .tagbox-layout {
     margin-top: 1vh;
@@ -66,7 +70,6 @@
     border-width: 0;
     border-radius: 1vw;
 }
-
 .btn-sidebar {
     z-index: 100;
     height: 10vh;
@@ -86,10 +89,6 @@
 .icon-center {
     line-height: 8vh;
 }
-
-
-
-
 
 @media only screen and (min-device-width : 0px) and (max-device-width : 900px) {
     .card .overlay {
