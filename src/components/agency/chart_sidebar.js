@@ -197,6 +197,7 @@ export default class ChartSideBar extends Component {
                         <select 
                             id="travel_types"
                             data-width="auto"
+                            title="ประเภทการท่องเที่ยว"
                             className="selectpicker select-input-style search-input-margin" 
                             data-actions-box="true"
                             data-size="5"

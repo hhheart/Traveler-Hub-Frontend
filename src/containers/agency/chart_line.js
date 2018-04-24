@@ -28,7 +28,7 @@ class LineChart extends Component{
             REQUEST_T: '',
         };
     } 
-    componentWillMount(){
+    componentDidMount(){
         //reload for fix bootstrap-select (1.13.0-beta bugs)
         if (localStorage.getItem('dummy_key') !== null){  
             window.localStorage.removeItem('dummy_key')

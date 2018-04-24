@@ -6,7 +6,6 @@ import{
     YAxis, 
     CartesianGrid, 
     Tooltip, 
-    Legend,
     ResponsiveContainer
 } from 'recharts';
 import  SideBarBTN  from './chart_sidebar_btn';
@@ -29,7 +28,6 @@ export default class LineChartView extends React.Component {
                                     <YAxis/>
                                     <CartesianGrid strokeDasharray="3 3"/>
                                     <Tooltip/>
-                                    <Legend />
                                     <Line type="monotone" dataKey="เหนือ" stroke="blue" activeDot={{r: 8}}/>
                                     <Line type="monotone" dataKey="ตะวันออกเฉียงเหนือ" stroke="orange" activeDot={{r: 8}}/>
                                     <Line type="monotone" dataKey="กลาง" stroke="green" activeDot={{r: 8}}/>
@@ -58,7 +56,6 @@ export default class LineChartView extends React.Component {
                                     <YAxis/>
                                     <CartesianGrid strokeDasharray="3 3"/>
                                     <Tooltip/>
-                                    <Legend />
                                     <Line type="monotone" dataKey="เหนือ" stroke="blue" activeDot={{r: 8}}/>
                                     <Line type="monotone" dataKey="ตะวันออกเฉียงเหนือ" stroke="orange" activeDot={{r: 8}}/>
                                     <Line type="monotone" dataKey="กลาง" stroke="green" activeDot={{r: 8}}/>
@@ -87,7 +84,6 @@ export default class LineChartView extends React.Component {
                                     <YAxis/>
                                     <CartesianGrid strokeDasharray="3 3"/>
                                     <Tooltip/>
-                                    <Legend />
                                     <Line type="monotone" dataKey="ผจญภัย" stroke="blue" activeDot={{r: 8}}/>
                                     <Line type="monotone" dataKey="ธรรมชาติ" stroke="orange" activeDot={{r: 8}}/>
                                     <Line type="monotone" dataKey="ศาสนา" stroke="green" activeDot={{r: 8}}/>
