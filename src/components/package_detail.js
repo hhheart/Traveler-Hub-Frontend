@@ -6,7 +6,7 @@ import Footer from '../components/footer';
 import {REQUEST_ROOT} from '../constants/endpoints';
 
 import '../static/css/package_detail.css'; 
-import '../static/css/test_timeline.css'; 
+import '../static/css/timeline.css'; 
 
 const Carousel = ({images}) => {
     const Content = []; 
@@ -48,6 +48,7 @@ const Timeline = ({data}) => {
                                     <div className="timeline-badge"></div>
                                     <div className="timeline-panel">
                                         <div className="timeline-body">
+                                            <div>{event.time}</div>
                                             <p>{event.activity}</p>
                                         </div>
                                     </div>
@@ -183,10 +184,10 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                                 </div>
                                 <div className="row text-center no-gutters">
                                     <div className="col-9">
-                                    <button className="btn btn-primary btn-block" 
+                                    <button className="btn btn-outline-danger btn-block" 
                                         data-toggle="modal" 
                                         onClick={()=> window.open(item.url)}
-                                        data-target="#feedbackModal">จองเลย!</button>
+                                        data-target="#feedbackModal">เข้าเว็บไซต์หลัก</button>
                                     </div>
                                     <Like
                                         Islike={item.userLike}
@@ -205,7 +206,7 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                             <h1 style={{textDecoration: 'underline'}}>ตารางเดินทาง</h1>
                             <Timeline data={item.timeline}/>
                         <hr/>
-                        <div className="page-return"><Link to="/">go back</Link></div>
+                        <div className="page-return"><Link to="/">back home</Link></div>
                     </div>
                 </div>
             </div>

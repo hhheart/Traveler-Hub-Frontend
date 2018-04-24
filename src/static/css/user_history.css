@@ -1,0 +1,166 @@
+@media only screen and (min-device-width : 0px) and (max-device-width : 900px) { 
+    @media only screen and (min-width : 0px) and (max-width : 550px) {
+        .ht-card-layout {
+            height: 12vh;
+        }
+        .ht-img-layout {
+            height: 12vh;
+        }
+        .ht-overlay-wrapper {
+            left: 0;
+        }
+    }
+    @media only screen and (min-width : 550px) and (max-width : 900px) {
+        .ht-card-layout {
+            height: 15vh;
+        }
+        .ht-img-layout {
+            height: 15vh;
+        }
+        .ht-overlay-wrapper {
+            right: 0;
+        }
+    }
+    
+    .ht-card-warpper{
+        width: 90%;
+        margin-left: 5%;
+    }
+    .ht-card-layout {
+        margin-top: 1.5vh;
+        margin-bottom: 1.5vh;
+
+    }
+    .ht-img-layout {
+        width: auto;
+        
+    }
+    .ht-text {
+        font-size: 2vw;
+        text-align: center;
+        justify-content: center;
+    }
+    .ht-text2 {
+        font-size: 1.7vw;
+        text-align: center;
+        justify-content: center;
+    }
+    .ht-text3 {
+        font-size: 1.2vw;
+        color: #fff;
+    }
+}
+@media only screen and (min-device-width : 900px) and (max-device-width : 4096px) {
+    @media only screen and (min-width : 0px) and (max-width : 900px) {
+        @media only screen and (min-width : 0px) and (max-width : 550px) {
+            .ht-card-layout {
+                height: 12vh;
+            }
+            .ht-img-layout {
+                height: 12vh;
+            }
+            .ht-overlay-wrapper {
+                left: 0;
+            }
+        }
+        @media only screen and (min-width : 550px) and (max-width : 900px) {
+            .ht-card-layout {
+                height: 15vh;
+            }
+            .ht-img-layout {
+                height: 15vh;
+            }
+            .ht-overlay-wrapper {
+                right: 0;
+            }
+        }
+        .ht-card-warpper{
+            width: 90%;
+            margin-left: 5%;
+        }
+        .ht-card-layout {
+            margin-top: 1.5vh;
+            margin-bottom: 1.5vh;
+
+        }
+        .ht-img-layout {
+            width: auto;
+            
+        }
+        .ht-text {
+            font-size: 2vw;
+            text-align: center;
+            justify-content: center;
+        }
+        .ht-text2 {
+            font-size: 1.7vw;
+            text-align: center;
+            justify-content: center;
+        }
+        .ht-text3 {
+            font-size: 1.2vw;
+            color: #fff;
+        }
+    }
+    @media only screen and (min-width : 900px) and (max-width : 4096px) {
+        .ht-card-warpper{
+            width: 70%;
+            margin-left: 15%;
+        }
+        .ht-card-layout {
+            height: 20vh;
+            margin-top: 3vh;
+            margin-bottom: 2.5vh;
+
+        }
+        .ht-img-layout {
+            height: 19.8vh;
+            min-width: 20vh;
+            width: auto;
+            margin: 0;
+            
+        }
+        .ht-text {
+            font-size: 1.5vw;
+            text-align: center;
+            justify-content: center;
+        }
+        .ht-text2 {
+            font-size: 1.2vw;
+            text-align: center;
+            justify-content: center;
+        }
+        .ht-text3 {
+            font-size: 0.8vw;
+            color: #fff;
+        }
+        .ht-overlay-wrapper {
+            left: 0;
+        }
+    }
+}
+.ht-overlay-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: absolute;
+    padding: 5px;
+    top:0%;
+  }
+.ht-text {
+    color: #000;
+    text-decoration: none;
+    
+}
+.ht-text2 {
+    color: #000;
+    text-decoration: none;
+    
+}
+.ht-text3 {
+    text-decoration: none;
+    
+}
+.ht-card-warpper .card:hover{
+    border-width: 1px;
+    box-shadow: -1px 1px 10px 1px grey;
+}

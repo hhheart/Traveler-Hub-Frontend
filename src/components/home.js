@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import PackageListItem from './package_list_item';
 import axios from 'axios';
 import {REQUEST_ROOT} from '../constants/endpoints';
+import { Link } from 'react-router-dom'
 
 import Footer from '../components/footer';
 import Loader from '../components/loader';
-
 import '../static/css/home.css';
 import '../static/css/ribbon.css';
 
@@ -80,19 +80,33 @@ export default class HomeView extends Component {
                 if (i === 0){
                     return (
                         <div className="carousel-item active" >
-                            <img 
-                                className="d-block carousel" 
-                                src={`${REQUEST_ROOT}${item.images[0]}`} 
-                                alt="active slide"/>
+                            <Link 
+                                to={{
+                                    pathname: `/package/detail/${item._id}`, 
+                                    }}>
+                                <img 
+                                    className="d-block carousel" 
+                                    src={`${REQUEST_ROOT}${item.images[0]}`} 
+                                    alt="active slide"/>
+                                
+                                <h3>{item.package_name}</h3>
+                           </Link>
                         </div>  
                 )}
                 else {
                     return (
                         <div className="carousel-item">
-                            <img 
-                                className="d-block carousel" 
-                                src={`${REQUEST_ROOT}${item.images[0]}`} 
-                                alt="item slide"/>
+                            <Link 
+                                to={{
+                                    pathname: `/package/detail/${item._id}`, 
+                                    }}>
+                                <img 
+                                    className="d-block carousel" 
+                                    src={`${REQUEST_ROOT}${item.images[0]}`} 
+                                    alt="item slide"/>
+                                
+                                <h3>{item.package_name}</h3>
+                            </Link>
                         </div>  
                 )}                         
             }

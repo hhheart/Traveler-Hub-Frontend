@@ -198,7 +198,7 @@ class PackageSearch extends Component{
                 break;               
             }
             default: {
-                return console.log('defautl case reset')
+                return window.location.reload()
             }
 
         }        
@@ -239,7 +239,6 @@ class PackageSearch extends Component{
         })
     }
     render(){
-        //console.log('container: '+this.props.current_page)
         const Background = require('../static/images/bg_user.png')
         return (    
             <div>         

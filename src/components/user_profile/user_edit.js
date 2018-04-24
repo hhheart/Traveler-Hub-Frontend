@@ -2,10 +2,17 @@ import React from 'react'
 
 import { REQUEST_ROOT } from '../../constants/endpoints';
 
+const PrependInput = ({label}) => {
+    return (
+        <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-default">{label}</span>
+        </div>       
+    )
+}
 const AppendInput = () => {
     return (
         <div className="input-group-append">
-            <span className="input-group-text btn btn-secondary" id="basic-addon2">
+            <span className="input-group-text btn btn-secondary disabled" id="basic-addon2">
                 <i className="fa fa-pencil" />
             </span>
         </div>        
@@ -78,74 +85,64 @@ const UserEdit = ({
     OnSubmitEdit}) => {
     return (
         <div className="usr-profile-content-mx">
+            <h1>ข้อมูลผู้ใช้งาน</h1>
             <UploadImgModal />
             <UserProfileModal 
                 userProfile={UserData.profileImage}
             />
-            
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-default">อีเมลล์</span>
-                </div>
-                <input type="text" 
-                    id="email"
-                    className="form-control" 
-                    value={UserData.email}
-                    />
-            </div>           
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-default">ชื่อจริง</span>
-                </div>
-                <input type="text" 
-                    id="first_name"
-                    className="form-control" 
-                    placeholder={UserData.first_name}
-                    onChange={OnInputChange}/>
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-default">นามสกุล</span>
-                </div>
-                <input type="text" 
-                    id="last_name"
-                    className="form-control" 
-                    placeholder={UserData.last_name}
-                    onChange={OnInputChange}/>
-                <AppendInput />
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-default">เพศ</span>
-                </div>
-                <Gender UserData={UserData}/>
-                <AppendInput />
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-default">อายุ</span>
-                </div>
-                <input type="date" 
-                        id="age"
+            <div className="input-wrapper">
+                <div className="input-group usr-profile-input-mx mx-auto">
+                    <PrependInput label={"อีเมลล์"}/>
+                    <input type="text" 
+                        id="email"
                         className="form-control" 
-                        placeholder={UserData.age}
+                        value={UserData.email}
+                        />
+                </div>           
+                <div className="input-group usr-profile-input-mx mx-auto">
+                    <PrependInput label={"ชื่อจริง"}/>
+                    <input type="text" 
+                        id="first_name"
+                        className="form-control" 
+                        placeholder={UserData.first_name}
                         onChange={OnInputChange}/>
-                <AppendInput />
-            </div>
-            <div className="input-group usr-profile-input-mx mx-auto">
-                <input type="password" 
-                    id="password"
-                    className="form-control" 
-                    placeholder="รหัสผ่านใหม่"
-                    onChange={OnInputChange}/>
-                <input type="password" 
-                    id="password_confirm"
-                    className="form-control" 
-                    placeholder="ยืนยันรหัสผ่าน"
-                    onChange={OnInputChange}/>
-                <AppendInput />  
-            </div>
-            <button
-                className="btn btn-outline-warning btn-custom" 
+                </div>
+                <div className="input-group usr-profile-input-mx mx-auto">
+                    <PrependInput label={"นามสกุล"}/>
+                    <input type="text" 
+                        id="last_name"
+                        className="form-control" 
+                        placeholder={UserData.last_name}
+                        onChange={OnInputChange}/>
+                </div>
+                <div className="input-group usr-profile-input-mx mx-auto">
+                    <PrependInput label={"เพศ"}/>
+                    <Gender UserData={UserData}/>
+                </div>
+                <div className="input-group usr-profile-input-mx mx-auto">
+                    <PrependInput label={"วันเกิด"}/>
+                    <input type="date" 
+                            id="age"
+                            className="form-control" 
+                            placeholder={UserData.age}
+                            onChange={OnInputChange}/>
+                </div>
+                <div className="input-group usr-profile-input-mx mx-auto">
+                    <input type="password" 
+                        id="password"
+                        className="form-control" 
+                        placeholder="รหัสผ่านใหม่"
+                        onChange={OnInputChange}/>
+                    <input type="password" 
+                        id="password_confirm"
+                        className="form-control" 
+                        placeholder="ยืนยันรหัสผ่าน"
+                        onChange={OnInputChange}/>  
+                </div>
+                <button
+                className="btn btn-outline-warning btn-block" 
                 onClick={OnSubmitEdit} >บันทึก</button>
+            </div>
         </div>
     )
 }

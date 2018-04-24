@@ -6,7 +6,7 @@ import {REQUEST_ROOT} from '../constants/endpoints';
 
 export default class PackageList extends Component {   
     
-    componentWillMount(){
+    componentDidMount(){
         //reload for fix bootstrap-select (1.13.0-beta bugs)
         if (localStorage.getItem('dummy_key') !== null){  
             window.localStorage.removeItem('dummy_key')
@@ -52,18 +52,17 @@ export default class PackageList extends Component {
                 return "\""+ value +"\""
             }
             default: {
-                return console.log("renderTagText error !")
+                return "แสดงทั้งหมด"
             }
         }
     }
     renderTag(){
-        //console.log(this.props.tags)
+        var counter = 0; 
         const tagsContent = [];
         const test = this.props.tags;
-        //console.log(Object.getOwnPropertyNames(test));
         for (var key in test){
-            //console.log("foo["+ key +"]="+ test[key]);
             if (test[key] !== ''){
+                counter+=1
                 tagsContent.push(
                     <button 
                         className="btn btn-dark tagbtn-layout"
@@ -74,6 +73,17 @@ export default class PackageList extends Component {
                     </button>                
                 )
             }
+        }
+        if (counter === 0){
+            tagsContent.push(
+                <button 
+                    className="btn btn-dark tagbtn-layout"
+                    onClick={this.onClickTags("default")}
+                    >
+                    {this.renderTagText("default","default")}
+                    <i className="fa fa-close" style={{fontSize:2+'vh', marginLeft:1+'vw'}} ></i>
+                </button>                
+            )     
         }
         return <div className="row mx-auto justify-content-center">{tagsContent}</div>
        
@@ -182,18 +192,13 @@ export default class PackageList extends Component {
             </div>
         )
     }
-    renderContent(){
-        // if search query success render this 
-        if(this.props.packages){
-            return(
+    IsContentLoading(){
+        if (this.props.loading){
+            return <Loader />
+        }
+        else {
+            return (
                 <div>
-                    {this.renderSidebarBtn()}
-                    <div>"ผลลัพธ์การค้นหา"</div>
-                    <div className="card tagbox-body-layout" >
-                        <div classNmae="card-body ">
-                            {this.renderTag()}
-                        </div>
-                    </div>    
                     {this.render_package_list_row()}
                     <Pagination  
                         total_pages={this.props.total_pages} 
@@ -201,6 +206,24 @@ export default class PackageList extends Component {
                         onChangePage={this.props.handlePageChange.bind(this)}/>
                 </div>
             )
+        }
+    }
+    renderContent(){
+        // if search query success render this 
+        if(this.props.packages){
+            
+            return(
+                <div>
+                    {this.renderSidebarBtn()}
+                    <h1>"ผลลัพธ์การค้นหา"</h1>
+                    <div className="card tagbox-body-layout" >
+                        <div classNmae="card-body ">
+                            {this.renderTag()}
+                        </div>
+                    </div>    
+                    {this.IsContentLoading()}
+                </div>
+            )     
         }
         // initials content 
         else{
@@ -219,9 +242,7 @@ export default class PackageList extends Component {
             return this.renderContent()
         }
         else {
-            return(
-                <Loader />
-            )
+            return <Loader />
         }
     }
 }

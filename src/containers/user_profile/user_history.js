@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getUserHistory } from '../../actions/user';
-
+import $ from 'jquery';
 import UserHistory from '../../components/user_profile/user_history';
 import Footer from '../../components/footer';
 import '../../static/css/user_profile.css';
@@ -16,7 +16,9 @@ class User_History extends Component {
         };  
     }    
 componentWillMount(){
+    $('html, body').scrollTop(0);
     this.FetchUserHistory()
+    
 }
 FetchUserHistory(){
     this.props.getUserHistory()
@@ -34,11 +36,11 @@ render(){
             <div style={{backgroundImage: `url(${Background})`}} >
                 <div className="row" style={{margin:0}}>
                     <div  className="col-10 mx-auto" style={{backgroundColor:'#f9f9f9'}}>
-                        <div className="usr-profile-layout justify-content-center text-center">       
-                            <UserHistory 
-                                Isloading={this.state.Isloading}
-                                HistoryPackages={this.state.history}/>
-                        </div>
+                       
+                        <UserHistory 
+                            Isloading={this.state.Isloading}
+                            HistoryPackages={this.state.history}/>
+              
                     </div>
                 </div>
                 <Footer />

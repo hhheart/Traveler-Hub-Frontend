@@ -3,7 +3,7 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { onEditUser } from '../../actions/user';
-
+import $ from 'jquery';
 import UserEdit from '../../components/user_profile/user_edit';
 import Footer from '../../components/footer';
 
@@ -24,6 +24,7 @@ class User_Edit extends Component {
         };  
     }    
 componentWillMount(){
+    $('html, body').scrollTop(0);
     this.FetchUserProfile()
 }
 FetchUserProfile(){
