@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {Component} from 'react';
 import $ from 'jquery';
 import {
     BarChart, 
@@ -12,12 +12,13 @@ import {
     PieChart,
     Pie,
 } from 'recharts';
-export default class BarChartView extends React.Component {
+import '../../static/css/agency_line.css'; 
+export default class BarChartView extends Component {
     renderOptionBox(ID){
         return(
             <div className="card">
                 <div className="card-body">
-                    <div className="card-title" style={{fontSize:0.8+'em'}}>อัพเดทเมื่อ dd/mm/yyyy hh:mm:ss</div>
+                    <div className="card-title" style={{textAlign:'center'}}>ค้นหาจากล่าสุด</div>
                     <div className="input-group mb-3">
                         <select
                             onChange={()=> this.props.OnChange($(`select[name=${ID}]`).val(),`${ID}=true`)}
@@ -34,113 +35,78 @@ export default class BarChartView extends React.Component {
             </div>
         )
     }
+    IsLoading(data,IsLoading){
+        if (IsLoading === false){
+            return (
+                <ResponsiveContainer width='100%' height="100%" aspect={3.0/1.0}>
+                    <BarChart height={300} data={data}
+                        margin={{top:10, right: 60}}>
+                        <XAxis dataKey="name"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <Bar dataKey="like" fill="#9acd32" label={{ position: 'top' }}></Bar>
+                        <Bar dataKey="dislike" fill="#ec2f4b" label={{ position: 'top' }}></Bar>
+                    </BarChart>
+                </ResponsiveContainer>
+            )
+        }
+        else {
+            return (<div style={{textAlign:'center'}}>loading...</div>)
+        } 
+    }
+
+    RBarChart(data1){
+        return (
+            <div className="cl-wrapper">
+                <h4>Like และ DisLike แพ็คเกจรวมในแต่ละภูมิภาค</h4>
+                <div className="row mx-auto align-items-center">
+                    <div className="col-md-3 justify-content-center align-items-center">
+                        {this.renderOptionBox("region")}
+                    </div>
+                    <div className="col-md-9">
+                        {this.IsLoading(data1,this.props.IsLoading1)}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    TBarChart(data2){
+        return (
+            <div className="cl-wrapper">
+                <h4>Like และ DisLike แพ็คเกจรวมในแต่ละประเภท</h4>
+                <div className="row mx-auto align-items-center">
+                    <div className="col-md-3 justify-content-center align-items-center">
+                        {this.renderOptionBox("travel_types")}
+                    </div>
+                    <div className="col-md-9">
+                        {this.IsLoading(data2,this.props.IsLoading2)}
+                    </div>
+                </div>
+            </div>
+        )
+    }
     render() {
-        const Background = require('../../static/images/bg_agency.png')
         const COLORS = ['#8bb2d0', '#f7abb7',];
         const data1 = this.props.BarRegion;
         const data2 = this.props.BarType;
         const data3 = this.props.BarUser;
         const RADIAN = Math.PI / 180;                    
         const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-             const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-          const x  = cx + radius * Math.cos(-midAngle * RADIAN);
-          const y = cy  + radius * Math.sin(-midAngle * RADIAN);
-         
-          return (
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
-                {`${(percent * 100).toFixed(0)}%`}
-            </text>
-          );
-        };
-        
+            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+            const x  = cx + radius * Math.cos(-midAngle * RADIAN);
+            const y = cy  + radius * Math.sin(-midAngle * RADIAN);        
+            return (
+                <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                    {`${(percent * 100).toFixed(0)}%`}
+                </text>
+            );
+        }; 
         return (
-            <div className="row" style={{backgroundColor:'red',backgroundImage: `url(${Background})`}} >
-                <div className="col-10 mx-auto" style={{backgroundColor:'#fff',marginTop:0+'vh',marginBottom:0+'vh'}} >
-                    <div style={{marginTop:5+'vh'}}>ความคิดเห็นผู้เข้าชมแพ็คเกจรวมในแต่ละภูมิภาค</div>
-                    <div className="row">
-                        <div className="col-md-3 d-flex justify-content-center align-items-center"
-                            style={{backgroundColor:'#fff',height:300}}>
-                            {this.renderOptionBox("region")}
-                        </div>
-                        <div className="col-md-9" style={{backgroundColor:'#fff'}}>
-                            <ResponsiveContainer width='100%' aspect={3.0/1.0}>
-                                <BarChart height={300} data={data1}
-                                    margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-                                    <XAxis dataKey="name" />
-                                    <YAxis/>
-                                    <Tooltip/>
-                                    <CartesianGrid strokeDasharray="3 3"/>
-                                    <Bar dataKey="like" fill="#9acd32" label={{ position: 'top' }}></Bar>
-                                    <Bar dataKey="dislike" fill="#ec2f4b" label={{ position: 'top' }}></Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
-                    <div>ความคิดเห็นผู้เข้าชมแพ็คเกจรวมในแต่ละประเภท</div>
-                    <div className="row">
-                        <div className="col-md-3 d-flex justify-content-center align-items-center"
-                            style={{backgroundColor:'#fff',height:300}}>
-                            {this.renderOptionBox("travel_types")}
-                        </div>
-                        <div className="col-md-9" style={{backgroundColor:'#fff'}}>
-                            <ResponsiveContainer width='100%' aspect={3.0/1.0}>
-                                <BarChart height={300} data={data2}
-                                    margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-                                    <XAxis dataKey="name"/>
-                                    <YAxis/>
-                                    <Tooltip/>
-                                    <CartesianGrid strokeDasharray="3 3"/>
-                                    <Bar dataKey="like" fill="#9acd32" label={{ position: 'top' }}></Bar>
-                                    <Bar dataKey="dislike" fill="#ec2f4b" label={{ position: 'top' }}></Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
-                    <div>ผู้ใช้งานล่าสุด</div>
-                        <div className="row">
-                            <div className="col-md-3 d-flex justify-content-center align-items-center"
-                                style={{backgroundColor:'#fff',height:300}}>
-                                {this.renderOptionBox("user")}
-                            </div>
-                            <div className="col-md-9 ">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <ResponsiveContainer width='100%' aspect={1.0/1.0}>
-                                            <BarChart height={300} data={data3}
-                                                margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-                                                <XAxis dataKey="name"/>
-                                                <YAxis/>
-                                                <Tooltip/>
-                                                <CartesianGrid strokeDasharray="3 3"/>
-                                                <Bar dataKey="value" fill="pink" label={{ position: 'top' }}>
-                                                    {data3.map((entry, index) => 
-                                                        <Cell fill={COLORS[index % COLORS.length]}/>)}
-                                                </Bar>
-                                            </BarChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                    <div className="col-md-6" style={{backgroundColor:'#fff'}}>
-                                        <ResponsiveContainer width='100%' aspect={1.0/1.0}>
-                                            <PieChart onMouseEnter={this.onPieEnter}>
-                                                <Pie
-                                                data={data3} 
-                                                cx={150} 
-                                                cy={150} 
-                                                labelLine={false}
-                                                label={renderCustomizedLabel}
-                                                outerRadius={150} 
-                                                >
-                                                    {data3.map((entry, index) => 
-                                                    <Cell fill={COLORS[index % COLORS.length]}/>)}
-                                                </Pie>
-                                            </PieChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>   
+            <div>
+                {this.RBarChart(data1)}
+                {this.TBarChart(data2)}
+            </div>
         )
     }
 }

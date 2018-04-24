@@ -46,26 +46,26 @@ class LineChart extends Component{
         this.setState({
             [event.target.name]: event.target.value,
             [event.target.id]: `${event.target.id}=${event.target.value}`,
-        },()=> this.handleSearchSubmit())
+        })
     }
     handleRegionsSelected(val){
         this.setState({
             querys_R: 'regions='+val,
-        },()=> this.autoSearch(this.state.querys_R))        
+        })        
     }
     handleProvincesSelected(val){
         console.log(val)
         this.setState({
             querys_P: 'provinces='+val,
-        },()=> this.autoSearch(this.state.querys_P))           
+        })           
     }
     handleTagsSelected(val){
         console.log(val)
         this.setState({
             querys_T: 'travel_types='+val,
-        },()=> this.autoSearch(this.state.querys_T))           
+        })           
     }
-    autoSearch(querys){
+    /*autoSearch(querys){
         this.setState({
             REQUEST: this.state.startDate+'&'+this.state.endDate+'&'+querys,
             IsLoading: true
@@ -76,7 +76,7 @@ class LineChart extends Component{
                 IsLoading:false,
             })
         }))
-    }
+    }*/
     handleSearchSubmit(){
         this.setState({IsLoading: true})
         this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_R)

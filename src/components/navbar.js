@@ -134,7 +134,7 @@ export class NavbarView extends Component{
                 </Link>
                 <button 
                     className="navbar-toggler" 
-                    style={{marginLeft:2+'vw'}}
+                    style={{marginRight:2+'vw'}}
                     type="button" 
                     data-toggle="collapse" 
                     data-target="#navbarNav" 

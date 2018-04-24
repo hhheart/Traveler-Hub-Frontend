@@ -35,7 +35,6 @@ const agency = (state = initialState, action) => {
             })
         case AGENCY_LINECHART_SUCCESS:
             console.log('GET-LINECHART-SUCCESS')
-            console.log(action.payload)
             switch(action.payload.type){
                 case 'regions': 
                     return ({
@@ -63,7 +62,7 @@ const agency = (state = initialState, action) => {
 
         case AGENCY_BARCHART_SUCCESS:
             console.log('GET-BARCHART-SUCCESS')
-            console.log(action)
+            console.log(action.payload)
             if (action.payload.length === 6){
                 return ({
                     ...state,
@@ -84,7 +83,7 @@ const agency = (state = initialState, action) => {
             })
         case AGENCY_USERCHART_SUCCESS:
             console.log('GET-USERCHART-SUCCESS')
-            console.log(action)
+            console.log(action.payload)
             return ({
                 ...state,
                 barC: action.payload,
