@@ -36,6 +36,9 @@
     border-color: #e0e0e0;
     overflow: auto;
 }
+.search-input-margin {
+    margin-bottom: 1vh;
+}
 .search-input-title {
     color: #fcb034;
     font-size: 1.5vh;
@@ -48,7 +51,10 @@
     border-color: #e0e0e0;
     background-color: white;
 }
-
+.search-input-btn-border {
+    border-bottom: solid #e0e0e0;
+    border-width: 1px;
+}
 
 
 

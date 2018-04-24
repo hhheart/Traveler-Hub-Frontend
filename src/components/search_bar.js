@@ -61,7 +61,7 @@ export default class SearchBar extends Component {
     renderBTN(){
         if (this.props.loading){
             return (
-                <div className="card-footer">
+                <div className="card-footer search-input-btn-border">
                     <button 
                         className="btn btn-outline-success btn-block" 
                         type="submit"
@@ -74,9 +74,9 @@ export default class SearchBar extends Component {
         } 
         else {
             return (
-                <div className="card-footer">
+                <div className="card-footer search-input-btn-border">
                     <button 
-                        className="btn btn-outline-success btn-block" 
+                        className="btn btn-outline-success btn-block " 
                         type="submit"
                         onClick={this.props.onSearchSubmit}
                         >
@@ -175,7 +175,7 @@ export default class SearchBar extends Component {
                         <div className="search-input-title">วันเดินทางไป</div>
                         <input 
                             id="arrival-date"
-                            className="form-control" 
+                            className="form-control search-input-margin" 
                             type="date" 
                             //placeholder="วันเดินทางไป"   
                             value={this.props.tags.arrive}
@@ -193,12 +193,12 @@ export default class SearchBar extends Component {
                         />                  
                         
                         <div className="search-input-title">ภูมิภาค/จังหวัด</div>
-                        <div className="input-group mb-3 search-input-margin">
+                        <div className="input-group">
                             <select 
                                 id="ProvincesID"
                                 data-width="auto"
                                 title="ภูมิภาค/จังหวัด"
-                                className="selectpicker select-input-style" 
+                                className="selectpicker select-input-style search-input-margin" 
                                 data-actions-box="true"
                                 data-size="5"
                                 onChange={()=>this.onProvincesChange()}
@@ -209,11 +209,11 @@ export default class SearchBar extends Component {
                         </div>   
                         
                         <div className="search-input-title">บริษัท</div>
-                        <div className="input-group mb-3 search-input-margin">
+                        <div className="input-group">
                             <select 
                                 id="CompanysID"
                                 data-width="auto"
-                                className="selectpicker select-input-style" 
+                                className="selectpicker select-input-style search-input-margin" 
                                 title="บริษัท" 
                                 data-actions-box="true"
                                 data-size="5"
@@ -230,11 +230,11 @@ export default class SearchBar extends Component {
                         </div>                        
                         
                         <div className="search-input-title">คำค้นหาพิเศษ</div>
-                        <div className="input-group mb-3 search-input-margin">
+                        <div className="input-group">
                             <select 
                                 id="tagsID"
                                 data-width="auto"
-                                className="selectpicker select-input-style" 
+                                className="selectpicker select-input-style search-input-margin" 
                                 data-actions-box="true"
                                 data-size="5"
                                 onChange={() => this.onTagsChange()}
