@@ -14,10 +14,12 @@ import {
 
 const initialState = {
     response: "empty",
-    chart_data: [],
-    barA: [],
-    barB: [],
-    barC: [],
+    lineR: '',
+    lineP: '',
+    lineT: '',
+    barA: '',
+    barB: '',
+    barC: '',
 }
 const agency = (state = initialState, action) => {
     switch(action.type) {
@@ -33,9 +35,26 @@ const agency = (state = initialState, action) => {
             })
         case AGENCY_LINECHART_SUCCESS:
             console.log('GET-LINECHART-SUCCESS')
-            return ({
-                chart_data: action.payload,
-            })
+            console.log(action.payload)
+            switch(action.payload.type){
+                case 'regions': 
+                    return ({
+                        ...state,
+                        lineR: action.payload.data,
+                    })
+                case 'provinces': 
+                    return ({
+                        ...state,
+                        lineP: action.payload.data,
+                    })
+                case 'travel_types': 
+                    return ({
+                        ...state,
+                        lineT: action.payload.data,
+                    })
+                default: 
+                    return ({ ...state})
+            }
         case AGENCY_LINECHART_FAILURE:
             console.log('GET-LINECHART-FAILURE')
             return ({

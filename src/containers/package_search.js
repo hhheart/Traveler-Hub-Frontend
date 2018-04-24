@@ -263,9 +263,9 @@ class PackageSearch extends Component{
                         onCompanysSelected={this.onCompanysSelected.bind(this)}
                     />
                 </Menu>
-                <div style={{backgroundImage: `url(${Background})`}} >
+                <div id="page-wrap" style={{backgroundImage: `url(${Background})`}} >
                     <div className="row" style={{margin:0}}>
-                        <div id="page-wrap" className="col-10 mx-auto layout-main">       
+                        <div className="col-10 mx-auto layout-main">       
                             <SearchContent 
                                 loading={this.state.loading}
                                 packages={this.props.packages}
@@ -283,8 +283,8 @@ class PackageSearch extends Component{
                             />         
                         </div>
                     </div>
+                    <Footer />
                 </div>
-                <Footer />
             </div>
         )
     }

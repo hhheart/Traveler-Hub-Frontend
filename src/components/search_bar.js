@@ -134,7 +134,6 @@ export default class SearchBar extends Component {
     render(){ 
         return(
             <div className="card search-bar-wrapper">
-                <div >
                     <div className="card-header">
                         <h5 className="card-title search-bar-header-layout">ค้นหาแบบละเอียด</h5>
                     </div>
@@ -244,11 +243,8 @@ export default class SearchBar extends Component {
                             </select>
                         </div>           
 
-
                     </div>
-                    {this.renderBTN()}
-
-                </div>
+                   {this.renderBTN()}
             </div>
         ) 
     }

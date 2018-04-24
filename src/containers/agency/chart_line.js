@@ -15,10 +15,17 @@ class LineChart extends Component{
         this.state = {
             IsSidebarOpen: false,
             IsLoading: false,
-            startDate: '',
-            endDate: '',
-            querys: '',
-            REQUEST: '',
+            sd_label: '2018-05-02',
+            ed_label: '2018-05-02',
+            
+            startDate: '2018-05-02',
+            endDate: '2018-05-02',
+            querys_R: '',
+            querys_P: '',
+            querys_T: '',
+            REQUEST_R: '',
+            REQUEST_P: '',
+            REQUEST_T: '',
         };
     } 
     componentWillMount(){
@@ -35,28 +42,32 @@ class LineChart extends Component{
         this.setState({IsSidebarOpen: true})
     }    
     handleOnChangeDate(event){
+        console.log(event.target.value)
         this.setState({
+            [event.target.name]: event.target.value,
             [event.target.id]: `${event.target.id}=${event.target.value}`,
-        })
+        },()=> this.handleSearchSubmit())
     }
     handleRegionsSelected(val){
         this.setState({
-            querys: 'regions='+val,
-        })        
+            querys_R: 'regions='+val,
+        },()=> this.autoSearch(this.state.querys_R))        
     }
-    handleSearchSubmit(){
-        if(this.state.startDate === '' ){
-            this.setState({
-                startDate: `startDate=${this.state.endDate}`,
-            })
-        }
-        else if (this.state.endDate === ''){
-            this.setState({
-                endDate: `endDate=${this.state.startDate}`,
-            })            
-        }
+    handleProvincesSelected(val){
+        console.log(val)
         this.setState({
-            REQUEST: this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys,
+            querys_P: 'provinces='+val,
+        },()=> this.autoSearch(this.state.querys_P))           
+    }
+    handleTagsSelected(val){
+        console.log(val)
+        this.setState({
+            querys_T: 'travel_types='+val,
+        },()=> this.autoSearch(this.state.querys_T))           
+    }
+    autoSearch(querys){
+        this.setState({
+            REQUEST: this.state.startDate+'&'+this.state.endDate+'&'+querys,
             IsLoading: true
         } ,()=> this.props.get_LineChart(this.state.REQUEST)
             .then (()=> {
@@ -66,7 +77,19 @@ class LineChart extends Component{
             })
         }))
     }
+    handleSearchSubmit(){
+        this.setState({IsLoading: true})
+        this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_R)
+        //this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_P)
+        this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_T)
+        .then (()=> {
+        this.setState({
+            IsSidebarOpen: false,
+            IsLoading:false,
+        })})
+    }
     render(){
+        const Background = require('../../static/images/bg_agency.png')
         return (     
             <div>
                 <Menu 
@@ -77,14 +100,26 @@ class LineChart extends Component{
                         loading={this.state.IsLoading}
                         onChangeDate={this.handleOnChangeDate.bind(this)}
                         onRegionsSelected={this.handleRegionsSelected.bind(this)}
+                        onProvincesSelected={this.handleProvincesSelected.bind(this)}
+                        onTagsSelected={this.handleTagsSelected.bind(this)}
                         onSearchSubmit={this.handleSearchSubmit.bind(this)}
+                        startDate={this.state.sd_label}
+                        endDate={this.state.ed_label}
                     />
                 </Menu>
-                <LineChartView 
-                    onOpenSidebar={this.handleOpenSidebar.bind(this)}
-                    chart_plot={this.props.data_plot}
-                />  
-                <Footer />               
+                <div id="chart-wrap" style={{backgroundImage: `url(${Background})`}}>
+                    <div className="row" style={{margin:0}}>
+                         <div className="col-10 mx-auto">
+                            <LineChartView
+                                onOpenSidebar={this.handleOpenSidebar.bind(this)}
+                                lineR={this.props.lineR}
+                                lineP={this.props.lineP}
+                                lineT={this.props.lineT}
+                            />  
+                        </div>
+                    </div>
+                    <Footer />  
+                </div>             
             </div>
  
         )
@@ -92,7 +127,9 @@ class LineChart extends Component{
 }
 function mapStateToProps(state){
     return {
-        data_plot: state.agency.chart_data,
+        lineR: state.agency.lineR,
+        lineP: state.agency.lineP,
+        lineT: state.agency.lineT,
     };
 }
 function mapDispatchToProps(dispatch){

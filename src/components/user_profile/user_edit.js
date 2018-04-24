@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { REQUEST_ROOT } from '../../constants/endpoints';
-
 const PrependInput = ({label}) => {
     return (
         <div className="input-group-prepend">
@@ -9,7 +7,7 @@ const PrependInput = ({label}) => {
         </div>       
     )
 }
-const AppendInput = () => {
+/*const AppendInput = () => {
     return (
         <div className="input-group-append">
             <span className="input-group-text btn btn-secondary disabled" id="basic-addon2">
@@ -17,7 +15,7 @@ const AppendInput = () => {
             </span>
         </div>        
     )
-}
+}*/
 const Gender = ({UserData,OnInputChange}) => {
     if (UserData.gender === 'male'){
         return (

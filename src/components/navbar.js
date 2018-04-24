@@ -127,12 +127,14 @@ export class NavbarView extends Component{
             <nav className="navbar navbar-expand-lg navbar-light bg-white">
                 <Link to={`${URL_ROOT}`}>
                     <img className="navbar-brand navbar-logo-size" 
+                        style={{marginLeft:2+'vw'}}
                         alt="_LOGO_" 
                         src={require('../static/images/logo_2.png')}
                     />
                 </Link>
                 <button 
                     className="navbar-toggler" 
+                    style={{marginLeft:2+'vw'}}
                     type="button" 
                     data-toggle="collapse" 
                     data-target="#navbarNav" 
@@ -141,7 +143,7 @@ export class NavbarView extends Component{
                     aria-label="Toggle navigation">
                 <span className="navbar-dark navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse bg-white" id="navbarNav">
+                <div className="collapse navbar-collapse bg-white add-shadow" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item"
                             data-toggle="collapse" 
@@ -166,8 +168,9 @@ export class NavbarView extends Component{
                             <a className="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
                                 {this.props.email}
                             </a>
-                            <div className="dropdown-menu">
-                                <Link className="dropdown-item" to="/member/profile">ข้อมูลผู้ใช้งาน</Link>   
+                            <div className="dropdown-menu"
+                                data-toggle="collapse" 
+                                data-target="#navbarNav">
                                 <div className="dropdown-divider text-center"></div>
                                 <button
                                     className="btn btn-outline-danger btn-logout-layout"

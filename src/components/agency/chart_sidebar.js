@@ -2,16 +2,9 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import data from '../../static/js/provinces.json';
 export default class ChartSideBar extends Component {
-    constructor() {
-        super()
-        this.state = {
 
-        }
-    }
     renderTagsInput(){
-        const tags = ["ภูเขา", "แม่น้ำ", "ทะเลหมอก", "น้ำตก", "ล่องแก่ง", "ปีนเขา", 
-        "วัด", "หาด", "อุทยาน", "ป่า", "ดอย", "สะพานแขวน", "อ่าง", "พิพิธภัณฑ์", "ห้วย", 
-        "พระธาตุ", "พระเจดีย์", "ดำน้ำ", "ปะการัง", "ทะเล", "ฝาย", "เขื่อน", "ปาย", "พัทยา", "มัลดีฟส์"]
+        const tags = ["ผจญภัย","ธรรมชาติ","ศาสนา","สถานที่น่าสนใจ","ขึ้นดอย","อุทยาน","ทะเลและหมู่เกาะ","ย้อนรอยอดีต","เทศกาล"]
         if (tags.length > 0){
             //console.log(tags)
             const listItem=[];
@@ -19,7 +12,7 @@ export default class ChartSideBar extends Component {
                 return (
                     <option 
                         value={item.toString()}
-                        data-content={`<span class="badge badge-success">${item}</span>`}>
+                        data-content={`<span class="badge badge-danger">${item}</span>`}>
                             {item}
                     </option>                
                 )
@@ -35,7 +28,7 @@ export default class ChartSideBar extends Component {
         listItem.push(data.map( (item,i) => {
             return (
                 <option 
-                    data-content={`<span class="badge badge-dark">${item.region}</span>`}>
+                    data-content={`<span class="badge badge-warning">${item.region}</span>`}>
                         {item.region}
                 </option>               
             )
@@ -82,6 +75,21 @@ export default class ChartSideBar extends Component {
             return this.props.onRegionsSelected(selectedRegions)
         });
     }
+    onProvincesChange(){
+        var selectedProvinces = "";
+        $.when(        
+            $(document).ready(function () {       
+                $("#provinces option:selected").each(function(){
+                    if ($(this).text() !== ""){
+                        selectedProvinces += $(this).text() + " ";
+                    }
+                }
+            );          
+        }))
+        .then(() => {
+            return this.props.onProvincesSelected(selectedProvinces)
+        });     
+    }
     onTagsChange(){
         var selectedTags = "";
         $.when(        
@@ -127,29 +135,38 @@ export default class ChartSideBar extends Component {
     }
     render(){ 
         return(
-            <div className="card search-bar-style">
+            <div className="card search-bar-wrapper">
+                
                 <div className="card-header">
                     <h5 className="card-title search-bar-header-layout">ค้นหาแบบละเอียด</h5>
                 </div>
+
                 <div className="card-body">
                     <div className="search-input-title">วันเริ่มต้น</div>
                     <input 
                         id="startDate"
+                        name="sd_label"
                         type="date" 
-                        className="form-control"    
+                        value={this.props.startDate}
+                        className="form-control search-input-margin"    
                         onChange={this.props.onChangeDate} />
+                    
                     <div className="search-input-title">วันสิ้นสุด</div>
                     <input 
                         id="endDate"
+                        name="ed_label"
                         type="date"
+                        value={this.props.endDate}
                         className="form-control search-input-margin"                    
-                        onChange={this.props.onChangeDate}/>                  
-                    <div className="input-group mb-3 search-input-margin">
+                        onChange={this.props.onChangeDate}/>    
+                    
+                    <div className="search-input-title">เลือกภูมิภาค</div>              
+                    <div className="input-group">
                         <select 
                             id="regions"
                             data-width="auto"
                             title="ภูมิภาค"
-                            className="selectpicker select-input-style" 
+                            className="selectpicker select-input-style search-input-margin" 
                             data-actions-box="true"
                             data-size="5"
                             onChange={()=>this.onRegionsChange()}
@@ -158,12 +175,14 @@ export default class ChartSideBar extends Component {
                             {this.renderRegionInput()}
                         </select>
                     </div>  
-                    <div className="input-group mb-3 search-input-margin">
+                   
+                    <div className="search-input-title">เลือกจังหวัด</div>
+                    <div className="input-group">
                         <select 
-                            id="ProvincesID"
+                            id="provinces"
                             data-width="auto"
                             title="จังหวัด"
-                            className="selectpicker select-input-style" 
+                            className="selectpicker select-input-style search-input-margin" 
                             data-actions-box="true"
                             data-size="5"
                             onChange={()=>this.onProvincesChange()}
@@ -172,11 +191,13 @@ export default class ChartSideBar extends Component {
                             {this.renderProvinceInput()}
                         </select>
                     </div>  
-                    <div className="input-group mb-3 search-input-margin">
+                    
+                    <div className="search-input-title">เลือประเภทท่องเที่ยว</div>
+                    <div className="input-group">
                         <select 
                             id="travel_types"
                             data-width="auto"
-                            className="selectpicker select-input-style" 
+                            className="selectpicker select-input-style search-input-margin" 
                             data-actions-box="true"
                             data-size="5"
                             onChange={() => this.onTagsChange()}
@@ -186,7 +207,8 @@ export default class ChartSideBar extends Component {
                         </select>
                     </div>                                         
                 </div>
-            {this.renderBTN()}
+
+                {this.renderBTN()}
         </div>
         ) 
     }
