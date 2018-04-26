@@ -18,8 +18,8 @@ class LineChart extends Component{
             sd_label: '2018-05-02',
             ed_label: '2018-05-02',
             
-            startDate: '2018-05-02',
-            endDate: '2018-05-02',
+            startDate: 'startDate=2018/05/02',
+            endDate: 'endDate=2018/05/02',
             querys_R: '',
             querys_P: '',
             querys_T: '',
