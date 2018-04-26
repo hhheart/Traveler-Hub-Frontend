@@ -65,7 +65,7 @@ export const get_BarChart = (REQUEST) =>({
             AGENCY_BARCHART_SUCCESS,
             AGENCY_BARCHART_FAILURE,
         ]
-        }
+    }
 })
 export const get_UserChart = (REQUEST) =>({
     [RSAA]: {

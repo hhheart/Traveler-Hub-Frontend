@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { get_BarChart,get_UserChart } from '../../actions/agency';
+import { get_BarChart, get_UserChart } from '../../actions/agency';
 import BarChartView from '../../components/agency/chartView_bar';
 import Footer from '../../components/footer';
 
@@ -78,7 +78,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         get_BarChart,
-        get_UserChart
+        get_UserChart,
     }, dispatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BarChart));
