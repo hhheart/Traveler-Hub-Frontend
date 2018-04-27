@@ -293,7 +293,7 @@ export default class RegisterModal extends Component{
                                 </div>
                                 <div className="row setup-content" id="step-3">
                                     <div className="col-8 offset-2 col-md-8 offset-md-2">
-                                        <h3 className="text-center">ยืนยันเพื่อเสร็จสิ้น!</h3>
+                                        <h5 className="text-center">ยืนยันเพื่อเสร็จสิ้น!</h5>
                                         <button 
                                             className="btn btn-outline-success nextBtn btn-block" 
                                             type="submit" 
