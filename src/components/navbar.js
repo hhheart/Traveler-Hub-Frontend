@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { URL_ROOT } from '../constants/endpoints';
-import { REQUEST_ROOT } from '../constants/endpoints';
-import $ from 'jquery';
-//import jQuery from 'jquery';
 import '../static/css/nav.css'
 
 export class NavbarView extends Component{ 

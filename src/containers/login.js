@@ -21,6 +21,8 @@ class Login extends Component{
             email:  '',
             password: '',
             fb_graph_api_rq: '',
+            isloading: false,
+            error: '',
         }
     }    
     handleClickRegister(){
@@ -34,6 +36,7 @@ class Login extends Component{
     }
     onSubmit(event) {
         event.preventDefault()
+        this.setState({isloading:true})
         this.props.onLogin({
             email: this.state.email,
             password: this.state.password,
@@ -44,15 +47,15 @@ class Login extends Component{
                 window.jQuery = jQuery;
                 require('bootstrap')
                 jQuery('#loginModal').modal('hide')
-                alert('login successful')   
+                //alert('login successful')   
             }
             else (
-                //console.log(res.payload.response.user)
-                alert('Error: '+res.payload.response.user)
+                this.setState({error:res.payload.response.message.message})
             )
             this.setState({
                 email: '',
                 password: '',
+                isloading: false,
             })
         })
     }
@@ -120,6 +123,8 @@ class Login extends Component{
                 onClickRegister={this.handleClickRegister.bind(this)}
                 email={this.state.email}
                 password={this.state.password}
+                isloading={this.state.isloading}
+                error={this.state.error}
             />
         )
     }

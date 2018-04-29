@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Redirect } from 'react-router'
+//import { Redirect } from 'react-router'
 import { check_token, } from '../actions/user';
 import $ from 'jquery';
 import jQuery from 'jquery';
@@ -22,6 +22,10 @@ class Home extends Component{
         }; 
     }  
     //fix user edit
+    componentDidMount(){
+        this.IsReRenderNeeded()
+        this.IsUserLoggedIn()
+    }
     IsReRenderNeeded(){
         if (localStorage.getItem('tk_refresh') !== null){
             localStorage.removeItem('tk_refresh')
@@ -29,14 +33,14 @@ class Home extends Component{
         }
     }
     IsUserLoggedIn(){
-        this.props.check_token()
-        .then( ()=> {
-            if(this.props.isLoggedIn === false){
+        //this.props.check_token()
+        //.then( ()=> {
+            if(localStorage.getItem('login_token') === null){
                 window.jQuery = jQuery;
                 require('bootstrap')
                 jQuery('#loginModal').modal('show');
             }
-        })
+        //})
     }
     ChooseHomeContent(){
         if (this.props.usertype === 'customer'){
@@ -54,11 +58,11 @@ class Home extends Component{
     }
     render(){
         $('html, body').scrollTop(0);
+        this.IsReRenderNeeded()
+        this.IsUserLoggedIn()
         return (
             <div>
-                {this.IsUserLoggedIn()}
                 {this.ChooseHomeContent()}
-                {this.IsReRenderNeeded()}
                 <LoginModal />
                 <RegisterModal />
                 <RegisAgencyModal />

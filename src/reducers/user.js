@@ -38,6 +38,7 @@ const user = (state = initialState, action) => {
             if (localStorage.getItem('fb_userID') !== null){  
                 console.log('authentication facebook success')
                 return ({
+
                     fbLoggedIn: true,
                     isLoggedIn: true,
                     email: action.payload.email,
@@ -48,6 +49,7 @@ const user = (state = initialState, action) => {
             else {
                 console.log('authentication success')
                 return ({
+
                     fbLoggedIn: false,
                     isLoggedIn: true,
                     email: action.payload.email,
@@ -58,7 +60,6 @@ const user = (state = initialState, action) => {
         case AUTHENTICATION_FAILURE:
             console.log('authentication failure')
             return ({
-                ...state,
                 isLoggedIn: false,
                 fbLoggedIn: false,
             })   

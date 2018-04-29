@@ -1,6 +1,45 @@
 import React from 'react';
+import $ from 'jquery';
 import '../static/css/social-button.css'; 
 
+const IsLoadingTitle = ({isloading}) => {
+    if (isloading){
+        return (
+            <div className="modal-header justify-content-center">
+                <h5 className="modal-title"><i className="fa fa-spinner fa-spin" style={{fontSize:30+'px'}}/></h5>
+            </div>
+   
+        )
+    }
+    else {
+        return (
+            <div className="modal-header ">
+                <h5 className="modal-title">ลงชื่อเข้าใช้งาน</h5>
+            </div>
+        )
+    }  
+}
+const IsLoadingBTN = ({onSubmit,isloading}) => {
+    if (isloading){
+        return (
+            <button 
+            type="submit" 
+            className="btn btn-warning btn-outline"
+            onClick={onSubmit}
+            >กำลังเข้าสู่ระบบ...</button>
+        )
+    }
+    else {
+        return (
+            <button 
+            id="btnSubmit"
+            type="submit" 
+            className="btn btn-warning"
+            onClick={onSubmit}
+            >เข้าสู่ระบบ</button>
+        )
+    }
+}
 const LoginModal = ({
     onSubmit ,
     onSubmit_facebook, 
@@ -8,14 +47,16 @@ const LoginModal = ({
     onPasswordChage, 
     onClickRegister,
     email, 
-    password}) => {
+    password,
+    isloading,
+}) => {
     return (
         <div className="modal fade" id="loginModal" data-backdrop="static" role="dialog">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">ลงชื่อเข้าใช้งาน</h5>
-                    </div>
+
+                        <IsLoadingTitle isloading={isloading}/>
+
                     <div className="modal-body">
                         <div className="row">
                             <div className="form-group col-6">
@@ -48,6 +89,7 @@ const LoginModal = ({
                                         onChange={onPasswordChage}
                                         value={password}
                                         />
+                                    <div class="invalid-feedback">That didn't work.</div>
                                 </div>
                             </div>
                         </div>                              
@@ -75,11 +117,7 @@ const LoginModal = ({
                             data-toggle="modal"
                             data-target="#RegisAgencyModal"
                             href=''>เป็นผู้ดูแล?</a>
-                        <button 
-                            type="button" 
-                            className="btn btn-warning"
-                            onClick={onSubmit}
-                            >เข้าสู่ระบบ</button>
+                        <IsLoadingBTN isloading={isloading} onSubmit={onSubmit} />
                     </div>
                 </div>
             </div>
