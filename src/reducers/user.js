@@ -58,7 +58,9 @@ const user = (state = initialState, action) => {
         case AUTHENTICATION_FAILURE:
             console.log('authentication failure')
             return ({
-                ...state
+                ...state,
+                isLoggedIn: false,
+                fbLoggedIn: false,
             })   
         case LOGIN_SUCCESS:
             console.log('login success')

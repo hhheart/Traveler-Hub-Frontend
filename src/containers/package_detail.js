@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import $ from 'jquery';
 import Loader from '../components/loader';
 import PackageDetail from '../components/package_detail';
@@ -18,12 +19,19 @@ class PackageList extends Component {
     // run before component rendered
     componentWillMount(){
         $('html, body').scrollTop(0);
-        this.props.GET_Package(this.props.match.params.id)
-        .then(res => {
-            console.log('get detail success')
-            console.log(res.payload)
-            this.setState({ packages: res.payload });
-        });
+        if (this.props.isLoggedIn){
+            console.log('logged in')
+            this.props.GET_Package(this.props.match.params.id)
+            .then(res => {
+                console.log('get detail success')
+                console.log(res.payload)
+                this.setState({ packages: res.payload });
+            });
+        }
+        else {
+            console.log('not logged in yet')
+            this.props.history.push('/')
+        }
     }
     handleLike(){
         this.props.sent_feedback({
@@ -69,6 +77,7 @@ class PackageList extends Component {
 function mapStateToProps(state){
     return {
         packages: state.package_search.packages,
+        isLoggedIn: state.user.isLoggedIn,
     };
 }
 function mapDispatchToProps(dispatch){
@@ -78,4 +87,4 @@ function mapDispatchToProps(dispatch){
         sent_bookmark,
     }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(PackageList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PackageList));
