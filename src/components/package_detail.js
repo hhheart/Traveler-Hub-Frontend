@@ -47,8 +47,8 @@ const Timeline = ({data}) => {
                                     <div className="test-time">{event.time}</div>
                                     <div className="timeline-badge"></div>
                                     <div className="timeline-panel">
-                                        <div className="timeline-body">
-                                            <div>{event.time}</div>
+                                        <div className="timeline-body text-padding">
+                                            <div className="font-weight-bold">{event.time}</div>
                                             <p>{event.activity}</p>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@ const Timeline = ({data}) => {
 const Like = ({Islike,onClickLike,onClickDislike }) => {
     if (Islike){
         return (
-            <div className="col-1">
+            <div className="col-2">
                 <button className="btn btn-success rounded-circle" 
                     onClick={onClickLike} >
                     <i className="fa fa-thumbs-o-up" ></i>
@@ -72,7 +72,7 @@ const Like = ({Islike,onClickLike,onClickDislike }) => {
     }
     else {
         return (
-            <div className="col-1">
+            <div className="col-2">
                 <button className="btn btn-secondary rounded-circle" 
                     onClick={onClickLike} >
                     <i className="fa fa-thumbs-o-up" ></i>
@@ -84,7 +84,7 @@ const Like = ({Islike,onClickLike,onClickDislike }) => {
 const Dislike = ({Islike,onClickLike,onClickDislike }) => {
     if (Islike === false){
         return (
-            <div className="col-1">
+            <div className="col-2">
                 <button className="btn btn-danger rounded-circle" 
                     onClick={onClickDislike}>
                     <i className="fa fa-thumbs-o-down" ></i>
@@ -94,7 +94,7 @@ const Dislike = ({Islike,onClickLike,onClickDislike }) => {
     }
     else {
         return (
-            <div className="col-1">
+            <div className="col-2">
                 <button className="btn btn-secondary rounded-circle" 
                     onClick={onClickDislike}>
                     <i className="fa fa-thumbs-o-down" ></i>
@@ -106,7 +106,7 @@ const Dislike = ({Islike,onClickLike,onClickDislike }) => {
 const Bookmark = ({Isbmk,onClickBookmark}) => {
     if (Isbmk){
         return (
-            <div className="col-1">
+            <div className="col-2">
                 <button className="btn btn-primary rounded-circle"
                     onClick={onClickBookmark}>
                     <i className="fa fa-star" ></i>
@@ -116,7 +116,7 @@ const Bookmark = ({Isbmk,onClickBookmark}) => {
     }
     else {
         return (
-            <div className="col-1">
+            <div className="col-2">
                 <button className="btn btn-secondary rounded-circle"
                     onClick={onClickBookmark}>
                     <i className="fa fa-star" ></i>
@@ -161,11 +161,11 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                             
                             <div id="detail" className="col-md-7 package-detail-header">
                                 
-                                <h4 className="package-card-title-margin text-padding">{item.package_name}</h4>
+                                <h4 className="package-card-title-margin ">{item.package_name}</h4>
                                 
                                 <div id="package-datail" className="row-md-6"> 
                                     <div><span className="package-detail-highlight">Hightlight.</span></div>
-                                    <p className="text-padding">&emsp;&emsp;&emsp;&emsp;{item.detail}</p>
+                                    <p className="">&emsp;&emsp;&emsp;&emsp;{item.detail}</p>
                                 </div>          
                                 
                                 <div id="package-highlight" className="row-md-4 card package-card-margin bg-light">
@@ -183,22 +183,24 @@ const PackageDetail = ({package_itm,onClickLike,onClickDislike,onClickBookmark})
                                     </div>
                                 </div>
                                 <div className="row text-center no-gutters">
-                                    <div className="col-9">
+                                    <div className="col-6">
                                     <button className="btn btn-outline-danger btn-block" 
                                         data-toggle="modal" 
                                         onClick={()=> window.open(item.url)}
                                         data-target="#feedbackModal">เข้าเว็บไซต์หลัก</button>
                                     </div>
-                                    <Like
-                                        Islike={item.userLike}
-                                        onClickLike={onClickLike}
-                                         />
-                                    <Dislike
-                                        Islike={item.userLike}
-                                        onClickDislike={onClickDislike} />
-                                    <Bookmark
-                                        Isbmk={item.userBookmark}
-                                        onClickBookmark={onClickBookmark} />
+                                   
+                                        <Like
+                                            Islike={item.userLike}
+                                            onClickLike={onClickLike}
+                                            />
+                                        <Dislike
+                                            Islike={item.userLike}
+                                            onClickDislike={onClickDislike} />
+                                        <Bookmark
+                                            Isbmk={item.userBookmark}
+                                            onClickBookmark={onClickBookmark} />
+          
                                 </div>
                             </div>
                         </div>
