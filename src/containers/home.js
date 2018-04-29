@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router'
 import { check_token, } from '../actions/user';
 import $ from 'jquery';
 import jQuery from 'jquery';
@@ -38,7 +40,13 @@ class Home extends Component{
     }
     ChooseHomeContent(){
         if (this.props.usertype === 'customer'){
-            return <HomeView />
+            if (localStorage.getItem('redirect') !== null){
+                //return <Redirect to={`/package/detail/5ad250ef13d0cd04e23e08cb`} push />
+                this.props.history.push(`/package/detail/${localStorage.getItem('redirect')}`)
+            }
+            else {
+                return <HomeView />
+            }
         }
         else if (this.props.usertype === 'agency'){
             return <LineChart />
@@ -69,4 +77,4 @@ function mapDispatchToProps(dispatch){
         check_token,
     }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

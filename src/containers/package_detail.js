@@ -18,18 +18,17 @@ class PackageList extends Component {
     }    
     // run before component rendered
     componentWillMount(){
+        localStorage.removeItem('redirect')
         $('html, body').scrollTop(0);
         if (this.props.isLoggedIn){
-            console.log('logged in')
             this.props.GET_Package(this.props.match.params.id)
             .then(res => {
-                console.log('get detail success')
-                console.log(res.payload)
+                console.log('got packages detail')
                 this.setState({ packages: res.payload });
             });
         }
         else {
-            console.log('not logged in yet')
+            localStorage.setItem('redirect',this.props.match.params.id)
             this.props.history.push('/')
         }
     }

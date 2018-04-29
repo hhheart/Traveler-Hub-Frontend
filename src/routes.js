@@ -20,7 +20,6 @@ export default (
         <div>
             <Switch>  
                     <Route exact path={`/`} component={Home} />         
-                    
                     <Route path={'/package/detail/:id'} component={PackageDetail} />
                     <Route path={'/package/search/page=:page_id'} component={PackageSearch} />
                     <Route path={'/package/page=:page_id'} component={PackageList} />                         
