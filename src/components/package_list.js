@@ -41,6 +41,7 @@ class PackageList extends Component {
         })
     }
     render_package_list_row(){
+        console.log(this.state.packages)
         const PackageItem = this.state.packages;
         const rowContent = [];
         for(var i = 0; i < PackageItem.length; i+=4) {

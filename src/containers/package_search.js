@@ -24,8 +24,8 @@ class PackageSearch extends Component{
             pname_request: '',
             minp_request: '',
             maxp_request: '',
-            arrival_request: '',
-            departure_request: '',
+            arrival_request: '&Arrival=2018/05/02',
+            departure_request: '&Departure=2018/05/02',
             region_request: '',
             province_request: '',
             company_request: '',
@@ -38,8 +38,8 @@ class PackageSearch extends Component{
                 pkname: '',
                 minp: '',
                 maxp: '',
-                arrive: '',
-                depart: '',
+                arrive: '2018-05-02',
+                depart: '2018-05-02',
                 region: '',
                 provinces: '',
                 company: '',
@@ -221,7 +221,8 @@ class PackageSearch extends Component{
                 this.state.province_request+
                 this.state.tags_request+
                 this.state.Qtag_request+
-                this.state.page_request,
+                this.state.page_request+
+                this.state.company_request,
                 loading:true,
         },() => this.getRequestLink())
     }

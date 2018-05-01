@@ -35,31 +35,6 @@ export default class ChartSideBar extends Component {
         }))
         return listItem       
     }
-    renderProvinceInput(){
-        const listItem=[];
-        listItem.push(data.map( (item,i) => {
-            return (
-                <optgroup label={item.region}>
-
-                    {this.ProvincesInput(i)}
-                      
-                </optgroup>               
-            )
-        }))
-        return listItem
-    }
-    ProvincesInput(i){
-        const provinceItem=[];
-        provinceItem.push(data[i].provinces.map( item => {
-            return (
-                <option 
-                    data-content={`<span class="badge badge-dark">${item}</span>`}>
-                        {item}
-                </option>                
-            )
-        }))
-        return provinceItem       
-    }
     onRegionsChange(){
         var selectedRegions = "";
         $.when(        
@@ -74,21 +49,6 @@ export default class ChartSideBar extends Component {
         .then(() => {
             return this.props.onRegionsSelected(selectedRegions)
         });
-    }
-    onProvincesChange(){
-        var selectedProvinces = "";
-        $.when(        
-            $(document).ready(function () {       
-                $("#provinces option:selected").each(function(){
-                    if ($(this).text() !== ""){
-                        selectedProvinces += $(this).text() + " ";
-                    }
-                }
-            );          
-        }))
-        .then(() => {
-            return this.props.onProvincesSelected(selectedProvinces)
-        });     
     }
     onTagsChange(){
         var selectedTags = "";
@@ -175,23 +135,7 @@ export default class ChartSideBar extends Component {
                             {this.renderRegionInput()}
                         </select>
                     </div>  
-                   
-                    <div className="search-input-title">เลือกจังหวัด</div>
-                    <div className="input-group">
-                        <select 
-                            id="provinces"
-                            data-width="auto"
-                            title="จังหวัด"
-                            className="selectpicker select-input-style search-input-margin" 
-                            data-actions-box="true"
-                            data-size="5"
-                            onChange={()=>this.onProvincesChange()}
-                            multiple>
-                            <option data-hidden="true"></option>
-                            {this.renderProvinceInput()}
-                        </select>
-                    </div>  
-                    
+
                     <div className="search-input-title">เลือประเภทท่องเที่ยว</div>
                     <div className="input-group">
                         <select 

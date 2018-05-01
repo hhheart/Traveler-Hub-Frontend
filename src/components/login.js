@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import '../static/css/social-button.css'; 
 
 const IsLoadingTitle = ({isloading}) => {

@@ -176,7 +176,6 @@ export default class SearchBar extends Component {
                             id="arrival-date"
                             className="form-control search-input-margin" 
                             type="date" 
-                            //placeholder="วันเดินทางไป"   
                             value={this.props.tags.arrive}
                             onChange={this.props.onArrivalChange} 
                         />
@@ -185,8 +184,7 @@ export default class SearchBar extends Component {
                         <input 
                             id="departure-date"
                             className="form-control search-input-margin" 
-                            type="date" 
-                            //placeholder="วันเดินทางกลับ"    
+                            type="date"    
                             value={this.props.tags.depart}                
                             onChange={this.props.onDepartureChange}
                         />                  
@@ -216,13 +214,13 @@ export default class SearchBar extends Component {
                                 title="บริษัท" 
                                 data-actions-box="true"
                                 data-size="5"
-                                onChange={()=>this.CompanyChange()}
+                                onChange={()=>this.onCompanyChange()}
                                 multiple>
                                     <option data-hidden="true"></option>
-                                    <option data-content={`<span class="badge badge-info">noomsaotour</span>`}>
+                                    <option value="noomsaotours" data-content={`<span class="badge badge-info">noomsaotours</span>`}>
                                         noomsaotours
                                     </option> 
-                                    <option data-content={`<span class="badge badge-info">tourtooktee</span>`}>
+                                    <option value="tourtooktee" data-content={`<span class="badge badge-info">tourtooktee</span>`}>
                                         tourtooktee
                                     </option> 
                             </select>

@@ -176,7 +176,7 @@ export default class RegisterModal extends Component{
                                             <input 
                                                 id="email"
                                                 name="email"
-                                                maxLength="16" 
+                                                maxLength="25" 
                                                 type="text" 
                                                 className="form-control form-control-success" 
                                                 placeholder="Enter Email"

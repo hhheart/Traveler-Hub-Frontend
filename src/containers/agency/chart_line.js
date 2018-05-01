@@ -18,13 +18,11 @@ class LineChart extends Component{
             sd_label: '2018-05-02',
             ed_label: '2018-05-02',
             
-            startDate: 'startDate=2018/05/02',
-            endDate: 'endDate=2018/05/02',
+            startDate: 'startDate=2018-05-02',
+            endDate: 'endDate=2018-05-02',
             querys_R: '',
-            querys_P: '',
             querys_T: '',
             REQUEST_R: '',
-            REQUEST_P: '',
             REQUEST_T: '',
         };
     } 
@@ -53,34 +51,15 @@ class LineChart extends Component{
             querys_R: 'regions='+val,
         })        
     }
-    handleProvincesSelected(val){
-        console.log(val)
-        this.setState({
-            querys_P: 'provinces='+val,
-        })           
-    }
     handleTagsSelected(val){
         console.log(val)
         this.setState({
             querys_T: 'travel_types='+val,
         })           
     }
-    /*autoSearch(querys){
-        this.setState({
-            REQUEST: this.state.startDate+'&'+this.state.endDate+'&'+querys,
-            IsLoading: true
-        } ,()=> this.props.get_LineChart(this.state.REQUEST)
-            .then (()=> {
-            this.setState({
-                IsSidebarOpen: false,
-                IsLoading:false,
-            })
-        }))
-    }*/
     handleSearchSubmit(){
         this.setState({IsLoading: true})
         this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_R)
-        //this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_P)
         this.props.get_LineChart(this.state.startDate+'&'+this.state.endDate+'&'+this.state.querys_T)
         .then (()=> {
         this.setState({
@@ -100,7 +79,6 @@ class LineChart extends Component{
                         loading={this.state.IsLoading}
                         onChangeDate={this.handleOnChangeDate.bind(this)}
                         onRegionsSelected={this.handleRegionsSelected.bind(this)}
-                        onProvincesSelected={this.handleProvincesSelected.bind(this)}
                         onTagsSelected={this.handleTagsSelected.bind(this)}
                         onSearchSubmit={this.handleSearchSubmit.bind(this)}
                         startDate={this.state.sd_label}

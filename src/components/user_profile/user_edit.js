@@ -81,6 +81,7 @@ const UserEdit = ({
     UserData, 
     OnInputChange,
     OnSubmitEdit}) => {
+    console.log(UserData)
     return (
         <div className="usr-profile-content-mx">
             <h1>ข้อมูลผู้ใช้งาน</h1>
@@ -122,7 +123,7 @@ const UserEdit = ({
                     <input type="date" 
                             id="age"
                             className="form-control" 
-                            placeholder={UserData.age}
+                            value={UserData.age}
                             onChange={OnInputChange}/>
                 </div>
                 <div className="input-group usr-profile-input-mx mx-auto">

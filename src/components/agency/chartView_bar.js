@@ -7,10 +7,7 @@ import {
     YAxis, 
     CartesianGrid, 
     Tooltip, 
-    Cell,
     ResponsiveContainer,
-    PieChart,
-    Pie,
 } from 'recharts';
 import '../../static/css/agency_line.css'; 
 export default class BarChartView extends Component {
@@ -40,7 +37,7 @@ export default class BarChartView extends Component {
             return (
                 <ResponsiveContainer width='100%' height="100%" aspect={3.0/1.0}>
                     <BarChart height={300} data={data}
-                        margin={{top:10, right: 60}}>
+                        margin={{top:20, right: 60}}>
                         <XAxis dataKey="name"/>
                         <YAxis/>
                         <Tooltip/>
@@ -55,7 +52,6 @@ export default class BarChartView extends Component {
             return (<div style={{textAlign:'center'}}>loading...</div>)
         } 
     }
-
     RBarChart(data1){
         return (
             <div className="cl-wrapper">
@@ -86,26 +82,39 @@ export default class BarChartView extends Component {
             </div>
         )
     }
+    UBarChart(data3){          
+        return (
+            <div className="cl-wrapper">
+                <h4>จำนวนผู้ใช้งานล่าสุด</h4>
+                <div className="row mx-auto align-items-center">
+                    <div className="col-md-3 justify-content-center align-items-center">
+                        {this.renderOptionBox("user")}
+                    </div>
+                    <div className="col-md-9 ">
+                        <ResponsiveContainer width='100%' height="100%" aspect={2.0/1.0}>
+                            <BarChart 
+                                height={300} 
+                                data={data3}
+                                margin={{top:20, right: 60}}>>
+                                <XAxis dataKey="name"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                    
+                                <Bar dataKey="value" fill="#fccf40" label={{ position: 'top' }}/>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     render() {
-        const COLORS = ['#8bb2d0', '#f7abb7',];
-        const data1 = this.props.BarRegion;
-        const data2 = this.props.BarType;
-        const data3 = this.props.BarUser;
-        const RADIAN = Math.PI / 180;                    
-        const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-            const x  = cx + radius * Math.cos(-midAngle * RADIAN);
-            const y = cy  + radius * Math.sin(-midAngle * RADIAN);        
-            return (
-                <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                    {`${(percent * 100).toFixed(0)}%`}
-                </text>
-            );
-        }; 
         return (
             <div>
-                {this.RBarChart(data1)}
-                {this.TBarChart(data2)}
+                {this.RBarChart(this.props.BarRegion)}
+                {this.TBarChart(this.props.BarType)}
+                {this.UBarChart(this.props.BarUser)}
             </div>
         )
     }
