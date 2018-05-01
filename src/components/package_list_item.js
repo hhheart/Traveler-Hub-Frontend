@@ -14,7 +14,7 @@ const PackageListItem = ({package_item}) => {
     const numLike = package_item.like;
     const numDislike = package_item.dislike;
     const view = package_item.number_of_views;
-    const logo = package_item.logo;
+    const logo = `${REQUEST_ROOT}${package_item.logo}`;
     return (
         <div>
             <div className="card package-list-card">
