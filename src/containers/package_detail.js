@@ -18,6 +18,7 @@ class PackageList extends Component {
     }    
     // run before component rendered
     componentWillMount(){
+        console.log(this.props.match.params.id)
         localStorage.removeItem('redirect')
         $('html, body').scrollTop(0);
         if (this.props.isLoggedIn){

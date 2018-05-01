@@ -82,7 +82,7 @@ export default class BarChartView extends Component {
             </div>
         )
     }
-    UBarChart(data3){          
+    UBarChart(data3){        
         return (
             <div className="cl-wrapper">
                 <h4>จำนวนผู้ใช้งานล่าสุด</h4>
@@ -100,7 +100,6 @@ export default class BarChartView extends Component {
                                 <YAxis/>
                                 <Tooltip/>
                                 <CartesianGrid strokeDasharray="3 3"/>
-                    
                                 <Bar dataKey="value" fill="#fccf40" label={{ position: 'top' }}/>
                             </BarChart>
                         </ResponsiveContainer>

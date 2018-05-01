@@ -1,7 +1,7 @@
 import React, {Component} from 'react'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-//import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import LoginModal from '../components/login';
 import jQuery from 'jquery';
 import { 
@@ -146,4 +146,4 @@ function mapDispatchToProps(dispatch){
         check_token,
     }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
