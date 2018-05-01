@@ -7,15 +7,6 @@ const PrependInput = ({label}) => {
         </div>       
     )
 }
-/*const AppendInput = () => {
-    return (
-        <div className="input-group-append">
-            <span className="input-group-text btn btn-secondary disabled" id="basic-addon2">
-                <i className="fa fa-pencil" />
-            </span>
-        </div>        
-    )
-}*/
 const Gender = ({UserData,OnInputChange}) => {
     if (UserData.gender === 'male'){
         return (
@@ -34,7 +25,7 @@ const Gender = ({UserData,OnInputChange}) => {
         )
     }
 }
-const UploadImgModal = () => {
+const UploadImgModal = ({OnInputChange}) => {
     return (
         <div className="modal fade" id="UploadImgModal">
             <div className="modal-dialog modal-dialog-centered" role="document">
@@ -47,7 +38,7 @@ const UploadImgModal = () => {
                     </div>
                     <div className="modal-body">
                         <div className="input-group mb-3">
-                            <input type="file" name="Image"/>
+                            <input onChange={OnInputChange} type="file" name="Image"/>
                         </div>
                     </div>
                     <div className="modal-footer">
@@ -81,7 +72,7 @@ const UserEdit = ({
     UserData, 
     OnInputChange,
     OnSubmitEdit}) => {
-    console.log(UserData)
+    //console.log(UserData)
     return (
         <div className="usr-profile-content-mx">
             <h1>ข้อมูลผู้ใช้งาน</h1>
@@ -123,7 +114,7 @@ const UserEdit = ({
                     <input type="date" 
                             id="age"
                             className="form-control" 
-                            value={UserData.age}
+                            value={UserData.birthdate}
                             onChange={OnInputChange}/>
                 </div>
                 <div className="input-group usr-profile-input-mx mx-auto">

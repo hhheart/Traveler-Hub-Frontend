@@ -48,6 +48,7 @@ FetchUserProfile(){
       });
 }
 handleInputChange(event,id){
+    console.log(event.target.value)
     var token = this.state.new_usr_data;
     token[event.target.id] = event.target.value;
     this.setState( {new_usr_data:token} )

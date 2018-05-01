@@ -223,6 +223,9 @@ export default class SearchBar extends Component {
                                     <option value="tourtooktee" data-content={`<span class="badge badge-info">tourtooktee</span>`}>
                                         tourtooktee
                                     </option> 
+                                    <option value="tourtooktee" data-content={`<span class="badge badge-info">ททท.</span>`}>
+                                        ททท
+                                    </option> 
                             </select>
                         </div>                        
                         
