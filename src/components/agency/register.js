@@ -63,6 +63,7 @@ const RegisAgencyModal = ({onChange, onSubmit}) => {
                                     <option value="">กรุณาเลือก...</option>
                                     <option value="noomsaotours">noomsaotours</option>
                                     <option value="tourtooktee">tourtooktee</option>
+                                    <option value="ททท">ททท</option>
                                 </select >
                             </div>
                             <div className="text-center" >
